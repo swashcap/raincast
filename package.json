@@ -1,0 +1,16 @@
+{
+  "name": "pdx-stats",
+  "version": "1.0.0",
+  "description": "Weather and statistics widgets for Portland, Oregon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pdx",
+    "portland",
+    "weather"
+  ],
+  "author": "swashcap",
+  "license": "MIT"
+}
