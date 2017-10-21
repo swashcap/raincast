@@ -4,7 +4,14 @@
   "description": "Weather and statistics widgets for Portland, Oregon.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mkdirp build && run-p build:css build:js",
+    "build:css": "postcss client/main.css -o build/main.css",
+    "build:js": "",
+    "clean": "rimraf build",
+    "lint": "standard '**/*.js'",
+    "precommit": "npm run lint && npm test",
+    "start": "node server/index.js",
+    "test": "NODE_ENV=test ava test"
   },
   "keywords": [
     "pdx",
@@ -12,5 +19,30 @@
     "weather"
   ],
   "author": "swashcap",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ip": "^1.1.5",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.1.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^4.0.1",
+    "normalize.css": "^7.0.0",
+    "qr-image": "^3.2.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.5",
+    "ava": "^0.22.0",
+    "husky": "^0.14.3",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.1.1",
+    "postcss-cli": "^4.1.1",
+    "postcss-import": "^11.0.0",
+    "rimraf": "^2.6.2",
+    "standard": "^10.0.3"
+  },
+  "private": true
 }
