@@ -4,10 +4,10 @@
   "description": "Weather and statistics widgets for Portland, Oregon.",
   "main": "index.js",
   "scripts": {
-    "build": "mkdirp build && run-p build:css build:js",
-    "build:css": "postcss client/main.css -o build/main.css",
-    "build:js": "",
-    "clean": "rimraf build",
+    "build": "mkdirp dist && run-p build:css build:js",
+    "build:css": "postcss client/main.css -o dist/main.css",
+    "build:js": "webpack",
+    "clean": "rimraf dist",
     "lint": "standard '**/*.js'",
     "precommit": "npm run lint && npm test",
     "start": "node server/index.js",
@@ -21,11 +21,17 @@
   "author": "swashcap",
   "license": "MIT",
   "dependencies": {
+    "history": "^4.7.2",
+    "inferno": "^3.10.1",
+    "inferno-create-element": "^3.10.1",
+    "inferno-router": "^3.10.1",
     "ip": "^1.1.5",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-logger": "^3.1.0",
+    "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
+    "koa-send": "^4.1.1",
     "koa-static": "^4.0.1",
     "normalize.css": "^7.0.0",
     "qr-image": "^3.2.0",
@@ -36,13 +42,18 @@
   "devDependencies": {
     "autoprefixer": "^7.1.5",
     "ava": "^0.22.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-inferno": "^3.3.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "husky": "^0.14.3",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.1",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
     "rimraf": "^2.6.2",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "webpack": "^3.8.1"
   },
   "private": true
 }

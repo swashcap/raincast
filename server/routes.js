@@ -8,7 +8,7 @@ const { promisify } = require('util')
 const parseXml = promisify(parseString)
 
 module.exports.registerRoutes = app => {
-  app.use(get('/qr-code', (ctx) => {
+  app.use(get('/qr-code.png', (ctx) => {
     ctx.type = 'image/png'
     ctx.body = qr.image(`http://${ip.address()}:${ctx.serverPort}/admin`)
   }))
