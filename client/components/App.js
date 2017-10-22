@@ -1,17 +1,30 @@
-import { Link } from 'inferno-router'
+import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
+import { Link, Router } from 'preact-router'
 
-const App = ({ children }) => (
-  <div className='app'>
-    <header role='banner'>
-      <nav role='navigation'>
-        <Link to='/'>Home</Link>
-        <Link to='/admin'>Admin</Link>
-      </nav>
-    </header>
-    <main>
-      {children}
-    </main>
-  </div>
-)
+import Admin from './Admin'
+import Home from './Home'
 
-export default App
+export default class App extends Component {
+  handleRoute (event) {
+    this.currentUrl = event.url
+  }
+
+  render () {
+    return (
+      <div className='app'>
+        <header role='banner'>
+          <nav role='navigation'>
+            <Link href='/'>Home</Link>
+            <Link href='/admin'>Admin</Link>
+          </nav>
+        </header>
+        <main>
+          <Router onChange={event => this.handleRoute(event)}>
+            <Home path='/' />
+            <Admin path='/admin' />
+          </Router>
+        </main>
+      </div>
+    )
+  }
+}

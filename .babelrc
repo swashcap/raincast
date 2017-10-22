@@ -1,11 +1,11 @@
 {
   "plugins": [
-    "babel-plugin-syntax-jsx",
     [
-      "babel-plugin-inferno",
+      "transform-react-jsx",
       {
-        "imports": true
+        "pragma": "h"
       }
     ]
-  ]
+  ],
+  "presets": ["env"]
 }

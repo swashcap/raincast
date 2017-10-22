@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
+const cors = require('koa-cors')
 const fs = require('fs')
 const koaStatic = require('koa-static')
 const logger = require('koa-logger')
@@ -15,6 +16,7 @@ app.context.darkskyApiKey = process.env.API_KEY
 app.context.serverPort = process.env.PORT || 3000
 
 app.use(bodyParser())
+app.use(cors())
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger())

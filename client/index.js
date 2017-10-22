@@ -1,20 +1,15 @@
-import { render } from 'inferno'
-import { IndexRoute, Route, Router } from 'inferno-router'
-import createBrowserHistory from 'history/createBrowserHistory'
+/* global requestAnimationFrame */
+import { h, render } from 'preact' // eslint-disable-line no-unused-vars
 
-import Admin from './components/Admin'
-import App from './components/App'
-import Home from './components/Home'
+let root
 
-const browserHistory = createBrowserHistory()
+const init = () => {
+  const App = require('./components/App').default
+  root = render(<App />, document.getElementById('app'), root)
+}
 
-const routes = (
-  <Router history={browserHistory}>
-    <Route component={App}>
-      <IndexRoute component={Home} />
-      <Route path='/admin' component={Admin} />
-    </Route>
-  </Router>
-)
+if (module.hot) {
+  module.hot.accept('./components/App', () => requestAnimationFrame(init))
+}
 
-render(routes, document.getElementById('app'))
+init()
