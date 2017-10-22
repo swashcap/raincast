@@ -1,37 +1,43 @@
 /* global API_URL,fetch */
 import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 
+import makeRequest from '../lib/makeRequest'
+
 export default class Home extends Component {
   constructor (props, context) {
     super(props, context)
 
     this.state = {
-      alerts: []
+      alerts: [],
+      errorMessages: [],
+      weather: null
     }
   }
 
-  componentWillMount () {
-    fetch(`${API_URL}/api/alerts`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`${response.status}: ${response.statusText}`)
-        }
 
-        return response.json()
-      })
-      .then((alerts) => {
+
+  componentWillMount () {
+    return Promise.all([
+      makeRequest('/api/alerts').catch(this.handleRequestError),
+      makeRequest('/api/weather').catch(this.handleRequestError)
+    ])
+      .then(([alerts, weather]) => {
         this.setState({
-          alerts,
-          error: this.state.error
+          alerts: Array.isArray(alerts) ? alerts : this.state.alerts,
+          errorMessages: this.state.errorMessages,
+          weather: weather ? weather : this.state.weather
         })
       })
-      .catch((error) => {
-        console.error(error)
-        this.setState({
-          alerts: this.state.alerts,
-          error: error.message
-        })
-      })
+      .then(this.handleRequestError)
+  }
+
+  handleRequestError(error) {
+    console.error(error)
+    this.setState({
+      alerts: this.state.alerts,
+      errorMessages: errorMessages.concat(error.message),
+      weather: this.state.weather
+    })
   }
 
   renderAlerts () {
@@ -57,9 +63,29 @@ export default class Home extends Component {
     )
   }
 
+  renderErrorMessages() {
+  }
+
+  renderWeather() {
+    const {
+      weather: {
+        currently: {
+          icon,
+          temperature
+        }
+      }
+    } = this.state
+
+    return (
+      <div class="weather-forecast">
+      </div>
+    )
+  }
+
   render () {
     return (
       <div className='home'>
+        {this.renderErrorMessages()}
         {this.renderAlerts()}
         <img alt='Admin QR code' src='/qr-code.png' />
       </div>

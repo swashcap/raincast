@@ -22,11 +22,14 @@ module.exports.registerRoutes = app => {
         headers: {
           'Accept-Encoding': 'gzip,deflate'
         },
+        gzip: true,
         url: `https://api.darksky.net/forecast/${ctx.darkskyApiKey}/${latitude},${longitude}`
       })
     } catch (error) {
+      delete error.response // remove for sensible logging
       console.error(error)
-      ctx.code = 500
+      ctx.status = error.statusCode
+      ctx.body = error.error
     }
   }))
   app.use(get('/api/alerts', async (ctx) => {
