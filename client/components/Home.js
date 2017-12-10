@@ -1,3 +1,4 @@
+/* global API_URL */
 import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 
 import makeRequest from '../lib/makeRequest'
@@ -84,7 +85,7 @@ export default class Home extends Component {
       <div className='home'>
         {this.renderErrorMessages()}
         {this.renderAlerts()}
-        <img alt='Admin QR code' src='/qr-code.png' />
+        <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
       </div>
     )
   }
