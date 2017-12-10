@@ -22,14 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "ip": "^1.1.5",
-    "koa": "^2.3.0",
+    "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-cors": "0.0.16",
     "koa-logger": "^3.1.0",
     "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
     "koa-send": "^4.1.1",
-    "koa-static": "^4.0.1",
+    "koa-static": "^4.0.2",
     "normalize.css": "^7.0.0",
     "qr-image": "^3.2.0",
     "redux": "^3.7.2",
@@ -38,8 +38,8 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.5",
-    "ava": "^0.22.0",
+    "autoprefixer": "^7.2.2",
+    "ava": "^0.24.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
@@ -47,14 +47,14 @@
     "babel-preset-env": "^1.6.1",
     "husky": "^0.14.3",
     "mkdirp": "^0.5.1",
-    "npm-run-all": "^4.1.1",
+    "npm-run-all": "^4.1.2",
     "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
-    "preact": "^8.2.5",
-    "preact-router": "^2.5.7",
+    "preact": "^8.2.6",
+    "preact-router": "^2.6.0",
     "rimraf": "^2.6.2",
     "standard": "^10.0.3",
-    "webpack": "^3.8.1"
+    "webpack": "^3.10.0"
   },
   "private": true
 }
