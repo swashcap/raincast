@@ -1,4 +1,3 @@
-/* global API_URL,fetch */
 import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 
 import makeRequest from '../lib/makeRequest'
@@ -12,9 +11,9 @@ export default class Home extends Component {
       errorMessages: [],
       weather: null
     }
+
+    this.handleRequestError = this.handleRequestError.bind(this)
   }
-
-
 
   componentWillMount () {
     return Promise.all([
@@ -25,17 +24,16 @@ export default class Home extends Component {
         this.setState({
           alerts: Array.isArray(alerts) ? alerts : this.state.alerts,
           errorMessages: this.state.errorMessages,
-          weather: weather ? weather : this.state.weather
+          weather: weather || this.state.weather
         })
       })
-      .then(this.handleRequestError)
   }
 
-  handleRequestError(error) {
+  handleRequestError (error) {
     console.error(error)
     this.setState({
       alerts: this.state.alerts,
-      errorMessages: errorMessages.concat(error.message),
+      errorMessages: this.state.errorMessages.concat(error.message),
       weather: this.state.weather
     })
   }
@@ -63,10 +61,10 @@ export default class Home extends Component {
     )
   }
 
-  renderErrorMessages() {
+  renderErrorMessages () {
   }
 
-  renderWeather() {
+  renderWeather () {
     const {
       weather: {
         currently: {
@@ -77,8 +75,7 @@ export default class Home extends Component {
     } = this.state
 
     return (
-      <div class="weather-forecast">
-      </div>
+      <div class='weather-forecast' />
     )
   }
 

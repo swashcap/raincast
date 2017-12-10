@@ -1,3 +1,4 @@
+/* global API_URL,fetch */
 const makeRequest = endpoint => fetch(`${API_URL}${endpoint}`)
   .then(response => {
     if (!response.ok) {
