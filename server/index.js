@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa-cors')
+const debug = require('debug')
 const fs = require('fs')
 const koaStatic = require('koa-static')
 const logger = require('koa-logger')
@@ -13,6 +14,7 @@ const { registerRoutes } = require('./routes.js')
 const app = new Koa()
 
 app.context.darkskyApiKey = process.env.API_KEY
+app.context.debug = debug('raincast:server')
 app.context.serverPort = process.env.PORT || 3000
 
 app.use(bodyParser())

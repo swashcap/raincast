@@ -27,7 +27,7 @@ module.exports.registerRoutes = app => {
       })
     } catch (error) {
       delete error.response // remove for sensible logging
-      console.error(error)
+      ctx.debug(error)
       ctx.status = error.statusCode
       ctx.body = error.error
     }
@@ -43,7 +43,7 @@ module.exports.registerRoutes = app => {
       const { feed: { entry } } = await parseXml(response)
       ctx.body = entry
     } catch (error) {
-      console.error(error)
+      ctx.debug(error)
       ctx.code = 500
     }
   }))
