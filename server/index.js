@@ -41,7 +41,7 @@ registerRoutes(app)
 
 if (!module.parent) {
   app.listen(app.context.serverPort)
-  console.log(`donut-monster listening on ${app.context.serverPort}`)
+  console.log(`raincast listening on ${app.context.serverPort}`)
 }
 
 module.exports = app
