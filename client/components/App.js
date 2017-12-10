@@ -1,14 +1,11 @@
 import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
 import { Link, Router } from 'preact-router'
+import createHashHistory from 'history/createHashHistory'
 
 import Admin from './Admin'
 import Home from './Home'
 
 export default class App extends Component {
-  handleRoute (event) {
-    this.currentUrl = event.url
-  }
-
   render () {
     return (
       <div className='app'>
@@ -19,7 +16,7 @@ export default class App extends Component {
           </nav>
         </header>
         <main>
-          <Router onChange={event => this.handleRoute(event)}>
+          <Router history={createHashHistory()}>
             <Home path='/' />
             <Admin path='/admin' />
           </Router>

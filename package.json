@@ -4,16 +4,15 @@
   "description": "Weather and statistics widgets for Portland, Oregon.",
   "main": "server/index.js",
   "scripts": {
-    "build": "mkdirp dist && run-p build:css build:js",
-    "build:css": "postcss client/main.css -o dist/main.css",
-    "build:js": "webpack",
+    "build": "npm run clean && mkdirp dist && webpack -p",
     "clean": "rimraf dist",
-    "dev": "webpack-dev-server",
+    "dev": "run-p wds server",
     "lint": "standard '**/*.js'",
     "precommit": "npm run lint && npm test",
     "server": "node server/index.js",
     "start": "run-s build server",
-    "test": "NODE_ENV=test ava test"
+    "test": "NODE_ENV=test ava test",
+    "wds": "webpack-dev-server"
   },
   "keywords": [
     "pdx",
@@ -24,12 +23,12 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^3.1.0",
+    "history": "^4.7.2",
     "ip": "^1.1.5",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-cors": "0.0.16",
     "koa-logger": "^3.1.0",
-    "koa-mount": "^3.0.0",
     "koa-route": "^3.2.0",
     "koa-send": "^4.1.1",
     "koa-static": "^4.0.2",
@@ -53,7 +52,6 @@
     "husky": "^0.14.3",
     "mkdirp": "^0.5.1",
     "npm-run-all": "^4.1.2",
-    "postcss-cli": "^4.1.1",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",
     "preact": "^8.2.6",
