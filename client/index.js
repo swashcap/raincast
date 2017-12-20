@@ -1,5 +1,5 @@
 /* global requestAnimationFrame */
-import { h, render } from 'preact' // eslint-disable-line no-unused-vars
+import preact, { render } from 'preact' // eslint-disable-line no-unused-vars
 
 import './styles/main.css'
 

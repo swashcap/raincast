@@ -1,5 +1,5 @@
 /* global API_URL */
-import { h, Component } from 'preact' // eslint-disable-line no-unused-vars
+import preact, { Component } from 'preact' // eslint-disable-line no-unused-vars
 
 import makeRequest from '../lib/makeRequest'
 
