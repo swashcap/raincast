@@ -1,7 +1,10 @@
 /* global API_URL */
 import preact, { Component } from 'preact' // eslint-disable-line no-unused-vars
 
+import ErrorAlert from './ErrorAlert'
 import makeRequest from '../lib/makeRequest'
+import WeatherAlerts from './WeatherAlerts'
+import './Home.css'
 
 export default class Home extends Component {
   constructor (props, context) {
@@ -9,7 +12,7 @@ export default class Home extends Component {
 
     this.state = {
       alerts: [],
-      errorMessages: [],
+      errors: [],
       weather: null
     }
 
@@ -24,7 +27,7 @@ export default class Home extends Component {
       .then(([alerts, weather]) => {
         this.setState({
           alerts: Array.isArray(alerts) ? alerts : this.state.alerts,
-          errorMessages: this.state.errorMessages,
+          errors: this.state.errors,
           weather: weather || this.state.weather
         })
       })
@@ -33,36 +36,39 @@ export default class Home extends Component {
   handleRequestError (error) {
     console.error(error)
     this.setState({
-      alerts: this.state.alerts,
-      errorMessages: this.state.errorMessages.concat(error.message),
-      weather: this.state.weather
+      errors: this.state.errors.concat({
+        date: Date.now(),
+        message: error.message
+      })
     })
   }
 
-  renderAlerts () {
-    const { alerts } = this.state
-
-    return (
-      <aside className='weather-alerts'>
-        {alerts.map(({
-          'cap:effective': effective,
-          'cap:event': name,
-          id: [id],
-          link: [{ '$': { href } }]
-        }) => (
-          <article className='weather-alert' key={id}>
-            <a href={href} rel='bookmark'>
-              <h1>{name}</h1>
-              <time datetime={effective}>{effective}</time>
-            </a>
-          </article>
-        )
-        )}
-      </aside>
-    )
+  removeError (index) {
+    this.setState({
+      errors: this.state.errors.filter((_, i) => i !== index)
+    })
   }
 
-  renderErrorMessages () {
+  setState (newState) {
+    super.setState(Object.assign(this.state, newState))
+  }
+
+  renderErrors () {
+    const { errors } = this.state
+
+    if (errors.length) {
+      return (
+        <div className='Home-error-messages'>
+          {errors.map(({ date, message }, index) => (
+            <ErrorAlert
+              key={date}
+              onClick={() => this.removeError(index)}
+              message={message}
+            />
+          ))}
+        </div>
+      )
+    }
   }
 
   renderWeather () {
@@ -83,8 +89,8 @@ export default class Home extends Component {
   render () {
     return (
       <div className='home'>
-        {this.renderErrorMessages()}
-        {this.renderAlerts()}
+        {this.renderErrors()}
+        <WeatherAlerts alerts={this.state.alerts} />
         <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
       </div>
     )

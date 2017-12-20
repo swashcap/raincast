@@ -40,8 +40,8 @@ module.exports.registerRoutes = app => {
         },
         url: 'https://alerts.weather.gov/cap/wwaatmget.php?x=ORZ006&y=0'
       })
-      const { feed: { entry } } = await parseXml(response)
-      ctx.body = entry
+      const { feed } = await parseXml(response)
+      ctx.body = feed.entry
     } catch (error) {
       ctx.debug(error)
       ctx.code = 500

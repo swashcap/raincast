@@ -1,0 +1,17 @@
+.ErrorAlert {
+  background: rgba(216, 83, 58, .6);
+  border-left: medium solid orange;
+  border-radius: 2px;
+  color: white;
+  font-size: 75%;
+  line-height: 1.25;
+  padding: .5em 1em;
+}
+.ErrorAlert button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+
+}

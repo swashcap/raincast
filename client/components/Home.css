@@ -1,0 +1,12 @@
+.Home {
+}
+
+.Home-error-messages {
+  padding: .5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.Home-error-messages .ErrorAlert + .ErrorAlert {
+  margin-top: .5rem;
+}

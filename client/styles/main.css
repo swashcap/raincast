@@ -1,5 +1,8 @@
 @import "../../node_modules/normalize.css/normalize.css";
 
-body {
-  background: green;
+html {
+  background: #000;
+  color: #fff;
+  font-family: sans-serif;
+  line-height: 1.5;
 }
