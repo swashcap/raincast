@@ -62,7 +62,7 @@ export default class Home extends Component {
           {errors.map(({ date, message }, index) => (
             <ErrorAlert
               key={date}
-              onClick={() => this.removeError(index)}
+              onClose={() => this.removeError(index)}
               message={message}
             />
           ))}
