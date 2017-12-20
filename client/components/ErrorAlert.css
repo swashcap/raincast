@@ -1,17 +1,32 @@
 .ErrorAlert {
-  background: rgba(216, 83, 58, .6);
-  border-left: medium solid orange;
-  border-radius: 2px;
-  color: white;
+  background: rgba(255, 0, 0, .2);
+  border-left: medium solid rgba(255, 0, 0, .5);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: row;
   font-size: 75%;
+  justify-content: space-between;
   line-height: 1.25;
-  padding: .5em 1em;
+  padding: .5em .5em .5em 1em;
 }
 .ErrorAlert button {
-  background: none;
+  background: var(--text-color);
+  border-radius: 100%;
   border: none;
-  color: inherit;
+  color: var(--background-color);
   cursor: pointer;
   display: inline-block;
-
+  font-size: 133.3%;
+  font-weight: 400;
+  height: 1em;
+  line-height: 1;
+  padding: 0;
+  text-align: center;
+  width: 1em;
 }
+.ErrorAlert button:active,
+.ErrorAlert button:focus,
+.ErrorAlert button:hover {
+  opacity: 0.8;
+}
+
