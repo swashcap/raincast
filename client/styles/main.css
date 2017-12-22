@@ -1,19 +1,20 @@
 @import "../../node_modules/normalize.css/normalize.css";
 
 :root {
-  --background-color: #000;
+  --background-color: rgb(0, 0, 0);
   --border-radius: .125rem;
-  --border-color: rgb(80, 0, 0);
-  --text-color: rgb(255, 0, 0);
-
+  --border-color: rgb(90, 0, 0);
+  --font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --text-color: rgb(200, 0, 0);
 
   --error-background-color: rgba(255, 0, 0, .2);
 
   --icon-opacity: .7;
 
-  --secondary-font-size: 75%;
+  --secondary-font-family: Menlo, "Andale Mono", "Courier New", monospace;
+  --secondary-font-size: 80%;
   --secondary-line-height: 1.25;
-  --secondary-text-color: rgb(170, 0, 0);
+  --secondary-text-color: rgb(190, 0, 0);
 
   --spacing: .5rem;
 }
@@ -27,7 +28,12 @@
 html {
   background: var(--background-color);
   color: var(--text-color);
-  font-family: sans-serif;
+  font-family: var(--font-family);
   line-height: 1.5;
+}
+@media (min-width: 70em) {
+  html {
+    font-size: 120%;
+  }
 }
 

@@ -1,10 +1,15 @@
 .Home {
   align-items: stretch;
   display: flex;
-  flex: 2;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  flex: 2;
   padding: calc(2 * var(--spacing));
+}
+@media (orientation: landscape) {
+  .Home {
+    flex-direction: row;
+  }
 }
 
 /** Errors */
@@ -21,11 +26,19 @@
 
 /** Alerts */
 .Home .WeatherAlerts {
-  border-left: thin solid var(--border-color);
+  border-color: var(--border-color);
+  border-style: solid;
+  border-width: thin 0 0;
   display: flex;
-  flex-direction: column;
-  padding-left: calc(2 * var(--spacing));
-  width: 33.33%;
+  padding: calc(2 * var(--spacing)) 0 0;
+}
+@media (orientation: landscape) {
+  .Home .WeatherAlerts {
+    border: 0 0 0 thin;
+    flex-direction: column;
+    padding: 0 0 0 calc(2 * var(--spacing));
+    width: 33.33%;
+  }
 }
 
 /** Weather */
@@ -33,6 +46,10 @@
   display: flex;
   flex: 2;
   flex-direction: column;
-  padding-right: calc(2 * var(--spacing));
+}
+@media (orientation: landscape) {
+  .Home .WeatherDays {
+    padding-right: calc(2 * var(--spacing));
+  }
 }
 

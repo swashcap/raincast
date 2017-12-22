@@ -4,6 +4,7 @@
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: row;
+  font-family: var(--secondary-font-family);
   font-size: var(--secondary-text-color);
   justify-content: space-between;
   line-height: var(--secondary-line-height);

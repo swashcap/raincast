@@ -1,6 +1,7 @@
 .WeatherAlerts {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .WeatherAlerts .WeatherAlerts-item + .WeatherAlerts-item {
@@ -32,13 +33,15 @@
   line-height: 1.25;
 }
 .WeatherAlerts-item-meta dd span {
-  font-size: 62.5%;
-  opacity: 0.75;
+  color: var(--secondary-text-color);
+  font-family: var(--secondary-font-family);
+  font-size: calc(var(--secondary-font-size) / 1.2);
   padding-left: .5em;
 }
 
 .WeatherAlerts-item-area {
   color: var(--secondary-text-color);
+  font-family: var(--secondary-font-family);
   font-size: var(--secondary-font-size);
   line-height: var(--secondary-line-height);
   margin: 0;
@@ -46,5 +49,4 @@
 
 /** Loading state */
 .WeatherAlerts-loading {
-  justify-content: center;
 }

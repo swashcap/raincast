@@ -12,6 +12,7 @@
 .LoadingIndicator span {
   color: var(--secondary-text-color);
   display: block;
+  font-family: var(--secondary-font-family);
   font-size: var(--secondary-font-size);
   line-height: var(--secondary-line-height);
   padding-left: .5em;

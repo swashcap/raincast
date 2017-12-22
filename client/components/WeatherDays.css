@@ -92,6 +92,7 @@
 /** Item time */
 .WeatherDays-item time {
   color: var(--secondary-text-color);
+  font-family: var(--secondary-font-family);
   font-size: var(--secondary-font-size);
   line-height: var(--secondary-line-height);
   padding-right: 1ex;
