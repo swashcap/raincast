@@ -5,8 +5,8 @@
 
 .WeatherAlerts .WeatherAlerts-item + .WeatherAlerts-item {
   border-top: thin solid var(--border-color);
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: calc(2 * var(--spacing));
+  padding-top: calc(2 * var(--spacing));
 }
 
 .WeatherAlerts-item a {
@@ -38,10 +38,10 @@
 }
 
 .WeatherAlerts-item-area {
-  font-size: 75%;
-  line-height: 1.25;
+  color: var(--secondary-text-color);
+  font-size: var(--secondary-font-size);
+  line-height: var(--secondary-line-height);
   margin: 0;
-  opacity: 0.75;
 }
 
 /** Loading state */

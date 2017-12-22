@@ -4,19 +4,19 @@
   flex: 2;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
+  padding: calc(2 * var(--spacing));
 }
 
 /** Errors */
 .Home-errors {
   left: 0;
-  padding: 1rem 1rem 0;
+  padding: calc(2 * var(--spacing)) calc(2 * var(--spacing)) 0;
   position: fixed;
   top: 0;
   width: 100%;
 }
 .Home-errors .ErrorAlert + .ErrorAlert {
-  margin-top: .5rem;
+  margin-top: var(--spacing);
 }
 
 /** Alerts */
@@ -24,7 +24,7 @@
   border-left: thin solid var(--border-color);
   display: flex;
   flex-direction: column;
-  padding-left: 1rem;
+  padding-left: calc(2 * var(--spacing));
   width: 33.33%;
 }
 
@@ -33,6 +33,6 @@
   display: flex;
   flex: 2;
   flex-direction: column;
-  padding-right: 1rem;
+  padding-right: calc(2 * var(--spacing));
 }
 

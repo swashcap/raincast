@@ -10,12 +10,13 @@
 }
 
 .App-nav {
-  padding: .5rem;
+  padding: var(--spacing);
 }
 .App-nav a {
   color: inherit;
-  font-size: 75%;
-  line-height: 1.25;
+
+  font-size: var(--secondary-font-size);
+  line-height: var(--secondary-line-height);
   padding: 0.5em;
   text-decoration: none;
 }

@@ -1,13 +1,16 @@
 .ErrorAlert {
-  background: rgba(255, 0, 0, .2);
-  border-left: medium solid rgba(255, 0, 0, .5);
+  background: var(--error-background-color);
+  border-left: medium solid var(--border-color);
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: row;
-  font-size: 75%;
+  font-size: var(--secondary-text-color);
   justify-content: space-between;
-  line-height: 1.25;
-  padding: .75em .5em .75em 1em;
+  line-height: var(--secondary-line-height);
+  padding-bottom: calc(1.5 * var(--spacing));
+  padding-left: calc(2 * var(--spacing));
+  padding-right: var(--spacing);
+  padding-top: calc(1.5 * var(--spacing));
 }
 .ErrorAlert button {
   background: var(--text-color);
@@ -16,7 +19,7 @@
   color: var(--background-color);
   cursor: pointer;
   display: inline-block;
-  font-size: 133.3%;
+  font-size: 1rem;
   font-weight: 400;
   height: 1em;
   line-height: 1;

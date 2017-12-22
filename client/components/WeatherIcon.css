@@ -1,4 +1,3 @@
 .WeatherIcon {
-  opacity: .5;
-  width: 6em;
+  opacity: var(--icon-opacity);
 }
