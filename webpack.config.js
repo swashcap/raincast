@@ -31,6 +31,13 @@ module.exports = {
         ],
         loader: 'babel-loader',
         test: /\.js$/
+      },
+      {
+        include: [
+          path.resolve(__dirname, 'client')
+        ],
+        loader: 'file-loader',
+        test: /\.svg$/
       }
     ]
   },

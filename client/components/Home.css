@@ -1,12 +1,38 @@
 .Home {
+  align-items: stretch;
+  display: flex;
+  flex: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
-.Home-error-messages {
-  padding: .5rem;
+/** Errors */
+.Home-errors {
+  left: 0;
+  padding: 1rem 1rem 0;
   position: fixed;
   top: 0;
   width: 100%;
 }
-.Home-error-messages .ErrorAlert + .ErrorAlert {
+.Home-errors .ErrorAlert + .ErrorAlert {
   margin-top: .5rem;
 }
+
+/** Alerts */
+.Home .WeatherAlerts {
+  border-left: thin solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  width: 33.33%;
+}
+
+/** Weather */
+.Home .WeatherDays {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  padding-right: 1rem;
+}
+

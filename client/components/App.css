@@ -1,0 +1,37 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+.App-nav {
+  order: 2;
+}
+
+.App-nav {
+  padding: .5rem;
+}
+.App-nav a {
+  color: inherit;
+  font-size: 75%;
+  line-height: 1.25;
+  padding: 0.5em;
+  text-decoration: none;
+}
+.App-nav a.active {
+  font-weight: 700;
+}
+.App-nav a:active,
+.App-nav a:focus,
+.App-nav a:hover {
+  text-decoration: underline;
+}
+
+.App-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  flex: 2;
+}
+

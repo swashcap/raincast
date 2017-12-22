@@ -3,6 +3,7 @@
 :root {
   --background-color: #000;
   --border-radius: .125rem;
+  --border-color: rgba(255, 0, 0, .5);
   --text-color: #f00;
 }
 
@@ -18,3 +19,4 @@ html {
   font-family: sans-serif;
   line-height: 1.5;
 }
+

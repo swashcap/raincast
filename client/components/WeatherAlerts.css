@@ -1,2 +1,50 @@
 .WeatherAlerts {
+  display: flex;
+  flex-direction: column;
+}
+
+.WeatherAlerts .WeatherAlerts-item + .WeatherAlerts-item {
+  border-top: thin solid var(--border-color);
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.WeatherAlerts-item a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+.WeatherAlerts-item-name {
+  font-size: 100%;
+  line-height: inherit;
+  margin: 0 0 1rem;
+}
+.WeatherAlerts-item-meta {
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.WeatherAlerts-item-meta dd {
+  margin: 0;
+}
+.WeatherAlerts-item-meta time {
+  font-size: 120%;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.WeatherAlerts-item-meta dd span {
+  font-size: 62.5%;
+  opacity: 0.75;
+  padding-left: .5em;
+}
+
+.WeatherAlerts-item-area {
+  font-size: 75%;
+  line-height: 1.25;
+  margin: 0;
+  opacity: 0.75;
+}
+
+/** Loading state */
+.WeatherAlerts-loading {
+  justify-content: center;
 }

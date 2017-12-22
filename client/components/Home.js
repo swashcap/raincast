@@ -1,9 +1,9 @@
-/* global API_URL */
 import preact, { Component } from 'preact' // eslint-disable-line no-unused-vars
 
 import ErrorAlert from './ErrorAlert'
 import makeRequest from '../lib/makeRequest'
 import WeatherAlerts from './WeatherAlerts'
+import WeatherDays from './WeatherDays'
 import './Home.css'
 
 export default class Home extends Component {
@@ -35,10 +35,15 @@ export default class Home extends Component {
 
   handleRequestError (error) {
     console.error(error)
+
+    const message = !error.stack
+      ? 'Failed to fetch' // for Safari
+      : error.message
+
     this.setState({
       errors: this.state.errors.concat({
         date: Date.now(),
-        message: error.message
+        message
       })
     })
   }
@@ -58,7 +63,7 @@ export default class Home extends Component {
 
     if (errors.length) {
       return (
-        <div className='Home-error-messages'>
+        <div className='Home-errors'>
           {errors.map(({ date, message }, index) => (
             <ErrorAlert
               key={date}
@@ -71,27 +76,14 @@ export default class Home extends Component {
     }
   }
 
-  renderWeather () {
-    const {
-      weather: {
-        currently: {
-          icon,
-          temperature
-        }
-      }
-    } = this.state
-
-    return (
-      <div class='weather-forecast' />
-    )
-  }
-
   render () {
+    const { alerts, weather } = this.state
+
     return (
-      <div className='home'>
+      <div className='Home'>
         {this.renderErrors()}
-        <WeatherAlerts alerts={this.state.alerts} />
-        <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
+        <WeatherDays weather={weather} />
+        <WeatherAlerts alerts={alerts} />
       </div>
     )
   }

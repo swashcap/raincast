@@ -1,0 +1,27 @@
+.LoadingIndicator {
+  display: block;
+  text-align: center;
+}
+
+.LoadingIndicator svg {
+  animation: 1s linear infinite LoadingIndicator-spin;
+  margin-bottom: .75em;
+  opacity: .33;
+}
+
+.LoadingIndicator span {
+  display: block;
+  font-size: 75%;
+  line-height: 1.25;
+  opacity: .75;
+  padding-left: .5em;
+}
+
+@keyframes LoadingIndicator-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

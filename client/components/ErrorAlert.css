@@ -7,7 +7,7 @@
   font-size: 75%;
   justify-content: space-between;
   line-height: 1.25;
-  padding: .5em .5em .5em 1em;
+  padding: .75em .5em .75em 1em;
 }
 .ErrorAlert button {
   background: var(--text-color);
