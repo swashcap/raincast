@@ -5,6 +5,7 @@ import { Link } from 'preact-router/match'
 import createHashHistory from 'history/createHashHistory'
 
 import Admin from './Admin'
+import Cameras from './Cameras'
 import Home from './Home'
 import './App.css'
 
@@ -22,6 +23,12 @@ export default class App extends Component {
             </Link>
             <Link
               activeClassName='active'
+              href='/cameras'
+            >
+              Cameras
+            </Link>
+            <Link
+              activeClassName='active'
               href='/admin'
             >
               Admin
@@ -32,6 +39,7 @@ export default class App extends Component {
         <main className='App-content'>
           <Router history={createHashHistory()}>
             <Home path='/' />
+            <Cameras path='/cameras' />
             <Admin path='/admin' />
           </Router>
         </main>

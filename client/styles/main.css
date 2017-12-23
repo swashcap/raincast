@@ -29,7 +29,12 @@ html {
   background: var(--background-color);
   color: var(--text-color);
   font-family: var(--font-family);
+  height: 100%;
   line-height: 1.5;
+  overflow: hidden;
+}
+body {
+  height: 100%;
 }
 @media (min-width: 70em) {
   html {
