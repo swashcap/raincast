@@ -1,10 +1,11 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
-import moment from 'moment'
+const React = require('react') // eslint-disable-line no-unused-vars
+const moment = require('moment')
 
-import LoadingIndicator from './LoadingIndicator'
-import WeatherIcon from './WeatherIcon'
-import formatTemperature from '../lib/formatTemperature'
-import './WeatherDays.css'
+const LoadingIndicator = require('./LoadingIndicator')
+const WeatherIcon = require('./WeatherIcon')
+const formatTemperature = require('../lib/formatTemperature')
+
+require('./WeatherDays.css')
 
 const WeatherDays = ({ weather }) => {
   if (!weather) {
@@ -85,4 +86,4 @@ const WeatherDays = ({ weather }) => {
   )
 }
 
-export default WeatherDays
+module.exports = WeatherDays

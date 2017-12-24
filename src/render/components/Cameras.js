@@ -1,6 +1,6 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
 
-import './Cameras.css'
+require('./Cameras.css')
 
 const Cameras = () => {
   const now = Date.now()
@@ -38,4 +38,4 @@ const Cameras = () => {
   )
 }
 
-export default Cameras
+module.exports = Cameras

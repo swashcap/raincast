@@ -1,18 +1,18 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
 
-import './LoadingIndicator.css'
+require('./LoadingIndicator.css')
 
 /**
  * {@link https://codepen.io/aurer/pen/jEGbA?editors=1100}
  */
 const LoadingIndicator = () => {
   const svgProps = {
-    'xml:space': 'preserve',
     height: '40px',
     version: '1.1',
     viewBox: '0 0 50 50',
     width: '40px',
     x: '0px',
+    xmlSpace: 'preserve',
     y: '0px'
   }
 
@@ -29,4 +29,4 @@ const LoadingIndicator = () => {
   )
 }
 
-export default LoadingIndicator
+module.exports = LoadingIndicator

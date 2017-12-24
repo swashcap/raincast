@@ -1,6 +1,6 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
 
-import './ErrorAlert.css'
+require('./ErrorAlert.css')
 
 const ErrorAlert = ({ onClose, message }) => (
   <div className='ErrorAlert' role='alert'>
@@ -15,4 +15,4 @@ const ErrorAlert = ({ onClose, message }) => (
   </div>
 )
 
-export default ErrorAlert
+module.exports = ErrorAlert

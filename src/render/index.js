@@ -1,17 +1,8 @@
-/* global requestAnimationFrame */
-import preact, { render } from 'preact' // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
+const { render } = require('react-dom')
 
-import './styles/main.css'
+const App = require('./components/App')
 
-let root
+require('./styles/main.css')
 
-const init = () => {
-  const App = require('./components/App').default
-  root = render(<App />, document.getElementById('app'), root)
-}
-
-if (module.hot) {
-  module.hot.accept('./components/App', () => requestAnimationFrame(init))
-}
-
-init()
+render(<App />, document.getElementById('app'))

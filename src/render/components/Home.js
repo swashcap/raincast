@@ -1,12 +1,13 @@
-import preact, { Component } from 'preact' // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
 
-import ErrorAlert from './ErrorAlert'
-import makeRequest from '../lib/makeRequest'
-import WeatherAlerts from './WeatherAlerts'
-import WeatherDays from './WeatherDays'
-import './Home.css'
+const ErrorAlert = require('./ErrorAlert')
+const makeRequest = require('../lib/makeRequest')
+const WeatherAlerts = require('./WeatherAlerts')
+const WeatherDays = require('./WeatherDays')
 
-export default class Home extends Component {
+require('./Home.css')
+
+class Home extends React.Component {
   constructor (props, context) {
     super(props, context)
 
@@ -88,3 +89,5 @@ export default class Home extends Component {
     )
   }
 }
+
+module.exports = Home

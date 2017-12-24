@@ -1,49 +1,46 @@
 /* global API_URL */
-import preact, { Component } from 'preact' // eslint-disable-line no-unused-vars
-import { Router } from 'preact-router'
-import { Link } from 'preact-router/match'
-import createHashHistory from 'history/createHashHistory'
+const React = require('react') // eslint-disable-line no-unused-vars
+const { NavLink, BrowserRouter, Route } = require('react-router-dom')
 
-import Admin from './Admin'
-import Cameras from './Cameras'
-import Home from './Home'
-import './App.css'
+const Admin = require('./Admin')
+const Cameras = require('./Cameras')
+const Home = require('./Home')
 
-export default class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <header className='App-nav' role='banner'>
-          <nav role='navigation'>
-            <Link
-              activeClassName='active'
-              href='/'
-            >
-              Home
-            </Link>
-            <Link
-              activeClassName='active'
-              href='/cameras'
-            >
-              Cameras
-            </Link>
-            <Link
-              activeClassName='active'
-              href='/admin'
-            >
-              Admin
-            </Link>
-          </nav>
-          <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
-        </header>
-        <main className='App-content'>
-          <Router history={createHashHistory()}>
-            <Home path='/' />
-            <Cameras path='/cameras' />
-            <Admin path='/admin' />
-          </Router>
-        </main>
-      </div>
-    )
-  }
-}
+require('./App.css')
+
+const App = () => (
+  <BrowserRouter>
+    <div className='App'>
+      <header className='App-nav' role='banner'>
+        <nav role='navigation'>
+          <NavLink
+            activeClassName='active'
+            to='/'
+          >
+            Home
+          </NavLink>
+          <NavLink
+            activeClassName='active'
+            to='/cameras'
+          >
+            Cameras
+          </NavLink>
+          <NavLink
+            activeClassName='active'
+            to='/admin'
+          >
+            Admin
+          </NavLink>
+        </nav>
+        <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
+      </header>
+      <main className='App-content'>
+        <Route exact path='/' component={Home} />
+        <Route path='/cameras' component={Cameras} />
+        <Route path='/admin' component={Admin} />
+      </main>
+    </div>
+  </BrowserRouter>
+)
+
+module.exports = App

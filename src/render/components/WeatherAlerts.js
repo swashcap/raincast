@@ -1,8 +1,9 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
-import moment from 'moment'
+const React = require('react') // eslint-disable-line no-unused-vars
+const moment = require('moment')
 
-import LoadingIndicator from './LoadingIndicator'
-import './WeatherAlerts.css'
+const LoadingIndicator = require('./LoadingIndicator')
+
+require('./WeatherAlerts.css')
 
 const WeatherAlerts = ({ alerts }) => {
   if (!alerts.length) {
@@ -61,4 +62,4 @@ const WeatherAlerts = ({ alerts }) => {
   )
 }
 
-export default WeatherAlerts
+module.exports = WeatherAlerts

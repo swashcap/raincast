@@ -1,22 +1,23 @@
-import preact from 'preact' // eslint-disable-line no-unused-vars
+const react = require('react') // eslint-disable-line no-unused-vars
 
-import clear from '../img/clear.svg'
-import cloudy from '../img/cloudy.svg'
-import fog from '../img/fog.svg'
-import ntClear from '../img/nt_clear.svg'
-import ntCloudy from '../img/nt_cloudy.svg'
-import ntFog from '../img/nt_fog.svg'
-import ntPartlyCloudy from '../img/nt_partlycloudy.svg'
-import ntRain from '../img/nt_rain.svg'
-import ntSleet from '../img/nt_sleet.svg'
-import ntSnow from '../img/nt_snow.svg'
-import ntUnknown from '../img/nt_unknown.svg'
-import partlyCloudy from '../img/partlycloudy.svg'
-import rain from '../img/rain.svg'
-import sleet from '../img/sleet.svg'
-import snow from '../img/snow.svg'
-import unknown from '../img/unknown.svg'
-import './WeatherIcon.css'
+const clear = require('../img/clear.svg')
+const cloudy = require('../img/cloudy.svg')
+const fog = require('../img/fog.svg')
+const ntClear = require('../img/nt_clear.svg')
+const ntCloudy = require('../img/nt_cloudy.svg')
+const ntFog = require('../img/nt_fog.svg')
+const ntPartlyCloudy = require('../img/nt_partlycloudy.svg')
+const ntRain = require('../img/nt_rain.svg')
+const ntSleet = require('../img/nt_sleet.svg')
+const ntSnow = require('../img/nt_snow.svg')
+const ntUnknown = require('../img/nt_unknown.svg')
+const partlyCloudy = require('../img/partlycloudy.svg')
+const rain = require('../img/rain.svg')
+const sleet = require('../img/sleet.svg')
+const snow = require('../img/snow.svg')
+const unknown = require('../img/unknown.svg')
+
+require('./WeatherIcon.css')
 
 /**
  * Weather icon.
@@ -108,4 +109,4 @@ const WeatherIcon = ({ icon, isNight }) => {
   )
 }
 
-export default WeatherIcon
+module.exports = WeatherIcon

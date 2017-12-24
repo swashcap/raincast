@@ -10,4 +10,4 @@ const makeRequest = endpoint => fetch(`${API_URL}${endpoint}`)
     return response.json()
   })
 
-export default makeRequest
+module.exports = makeRequest
