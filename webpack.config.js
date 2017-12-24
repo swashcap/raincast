@@ -9,7 +9,7 @@ module.exports = {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true
   },
-  entry: './client/index.js',
+  entry: './src/render/index.js',
   module: {
     rules: [
       {
@@ -27,14 +27,14 @@ module.exports = {
       },
       {
         include: [
-          path.resolve(__dirname, 'client')
+          path.resolve(__dirname, 'src/render')
         ],
         loader: 'babel-loader',
         test: /\.js$/
       },
       {
         include: [
-          path.resolve(__dirname, 'client')
+          path.resolve(__dirname, 'src/render')
         ],
         loader: 'file-loader',
         test: /\.svg$/
@@ -54,8 +54,9 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'client/index.html'),
+      template: path.resolve(__dirname, 'src/render/index.html'),
       title: pkg.name
     })
-  ]
+  ],
+  target: 'electron-renderer'
 }
