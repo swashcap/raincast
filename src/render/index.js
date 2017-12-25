@@ -1,8 +1,15 @@
-const React = require('react') // eslint-disable-line no-unused-vars
+const React = require('react')
+const { HashRouter } = require('react-router-dom')
 const { render } = require('react-dom')
 
-const App = require('./components/App')
+const Root = require('./components/Root.js')
+const configureStore = require('./store/configureStore.js')
 
-require('./styles/main.css')
+const store = configureStore()
 
-render(<App />, document.getElementById('app'))
+render(
+  <HashRouter>
+    <Root store={store} />
+  </HashRouter>,
+  document.getElementById('app')
+)
