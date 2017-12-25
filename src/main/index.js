@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const electronDebug = require('electron-debug')
+const electronIsDev = require('electron-is-dev')
 const electronWindowState = require('electron-window-state')
 const path = require('path')
 const url = require('url')
@@ -23,7 +24,15 @@ const createWindow = () => {
     y
   })
 
-  win.loadURL('http://localhost:8080')
+  if (electronIsDev) {
+    win.loadURL('http://localhost:8080')
+  } else {
+    win.loadURL(url.format({
+      pathname: path.join(__dirname, '..', 'client', 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  }
 
   win.on('closed', () => {
     win = null
