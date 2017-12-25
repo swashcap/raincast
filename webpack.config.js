@@ -4,12 +4,11 @@ const path = require('path')
 const pkg = require('./package.json')
 const webpack = require('webpack')
 
-module.exports = {
+const baseConfig = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true
   },
-  entry: './src/render/index.js',
   module: {
     rules: [
       {
@@ -27,14 +26,14 @@ module.exports = {
       },
       {
         include: [
-          path.resolve(__dirname, 'src/render')
+          path.resolve(__dirname, 'src')
         ],
         loader: 'babel-loader',
         test: /\.js$/
       },
       {
         include: [
-          path.resolve(__dirname, 'src/render')
+          path.resolve(__dirname, 'src')
         ],
         loader: 'file-loader',
         test: /\.svg$/
@@ -42,21 +41,42 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      API_URL: JSON.stringify(
-        `http://${ip.address()}:${process.env.PORT || 3000}`
-      )
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/render/index.html'),
-      title: pkg.name
-    })
-  ],
-  target: 'electron-renderer'
+  }
 }
+
+module.exports = [
+  Object.assign({
+    entry: {
+      web: './src/web/index.js'
+    },
+    plugins: [
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src/web/index.html'),
+        title: pkg.name
+      })
+    ]
+  }, baseConfig),
+  Object.assign({
+    entry: {
+      electron: './src/render/index.js'
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        API_URL: JSON.stringify(
+          `http://${ip.address()}:${process.env.PORT || 3000}`
+        )
+      }),
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src/render/index.html'),
+        title: pkg.name
+      })
+    ],
+    target: 'electron-renderer'
+  }, baseConfig)
+]
