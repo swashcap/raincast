@@ -1,6 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
-const { Route } = require('react-router-dom')
+const { ConnectedRouter } = require('react-router-redux')
+const { Route } = require('react-router')
 const { Provider } = require('react-redux')
 
 const Admin = require('./Admin.js')
@@ -10,17 +11,20 @@ const Home = require('./Home.js')
 
 require('../styles/main.css')
 
-const Root = ({ store }) => (
+const Root = ({ history, store }) => (
   <Provider store={store}>
-    <App>
-      <Route exact path='/' component={Home} />
-      <Route path='/cameras' component={Cameras} />
-      <Route path='/admin' component={Admin} />
-    </App>
+    <ConnectedRouter history={history}>
+      <App>
+        <Route exact path='/' component={Home} />
+        <Route path='/cameras' component={Cameras} />
+        <Route path='/admin' component={Admin} />
+      </App>
+    </ConnectedRouter>
   </Provider>
 )
 
 Root.propTypes = {
+  history: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 }
 

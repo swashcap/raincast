@@ -1,15 +1,13 @@
 const React = require('react')
-const { HashRouter } = require('react-router-dom')
 const { render } = require('react-dom')
 
 const Root = require('./components/Root.js')
 const configureStore = require('./store/configureStore.js')
+const { history } = require('./middleware/router.js')
 
 const store = configureStore()
 
 render(
-  <HashRouter>
-    <Root store={store} />
-  </HashRouter>,
+  <Root history={history} store={store} />,
   document.getElementById('app')
 )
