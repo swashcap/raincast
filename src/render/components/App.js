@@ -1,4 +1,3 @@
-/* global API_URL */
 const React = require('react')
 const PropTypes = require('prop-types')
 const { NavLink, withRouter } = require('react-router-dom')
@@ -29,7 +28,6 @@ const App = ({ children }) => (
         Admin
       </NavLink>
       </nav>
-      <img alt='Admin QR code' src={`${API_URL}/qr-code.png`} />
     </header>
     <main className='App-content'>
       {children}
