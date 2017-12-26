@@ -2,13 +2,19 @@ const { app, BrowserWindow } = require('electron')
 const electronDebug = require('electron-debug')
 const electronIsDev = require('electron-is-dev')
 const electronWindowState = require('electron-window-state')
+const getPort = require('get-port')
+const http = require('http')
 const path = require('path')
 const url = require('url')
+
+const debug = require('./utils/debug')
+const webApp = require('./server/index.js')
 
 electronDebug({
   showDevTools: true
 })
 
+let server
 let win
 
 const createWindow = () => {
@@ -39,7 +45,15 @@ const createWindow = () => {
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+
+  getPort({ port: 3000 }).then((port) => {
+    server = http.createServer(webApp.callback()).listen(port)
+    debug('server listening on port: %d', port)
+  })
+})
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
@@ -49,5 +63,11 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (win === null) {
     createWindow()
+  }
+})
+
+app.on('will-quit', () => {
+  if (server) {
+    server.close()
   }
 })

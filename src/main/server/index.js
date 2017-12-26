@@ -35,7 +35,7 @@ app.use((ctx, next) => {
 
 app.use(get('/', (ctx) => {
   ctx.set('Content-Type', 'text/html')
-  ctx.body = fs.createReadStream(path.resolve(__dirname, '../web/index.html'))
+  ctx.body = fs.createReadStream(path.resolve(__dirname, '../../web/index.html'))
 }))
 
 app.use(get('/routes', (ctx) => {
@@ -54,11 +54,5 @@ app.use(get('/routes', (ctx) => {
 
 app.use(post('/routes/active', (ctx) => {
 }))
-
-if (!module.parent) {
-  const port = process.env.PORT || 3000
-  app.listen(port)
-  log(`listening on ${port}`)
-}
 
 module.exports = app
