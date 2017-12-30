@@ -1,0 +1,30 @@
+.Root {
+  margin: calc(.5 * var(--spacing));
+}
+
+.Root button {
+  background: var(--secondary-text-color);
+  border: none;
+  color: var(--background-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: var(--secondary-font-family);
+  font-size: var(--secondary-font-size);
+  line-height: var(--secondary-line-height);
+  margin: calc(.5 * var(--spacing));
+  padding: var(--spacing) calc(2 * var(--spacing));
+}
+.Root button:active,
+.Root button:focus,
+.Root button:hover {
+  opacity: .8;
+}
+
+.Root button.is-active {
+  text-decoration: underline;
+}
+
+/** Loading state */
+.Root-loading {
+}
+

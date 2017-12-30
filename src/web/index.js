@@ -1,9 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-const Web = () => <h1>Hello</h1>
+import Root from './components/Root'
+
+import '../shared/styles/main.css'
+
+if (!document.getElementById('app')) {
+  const el = document.createElement('div')
+  el.id = 'app'
+  document.body.appendChild(el)
+}
 
 render(
-  <Web />,
+  <Root />,
   document.getElementById('app')
 )
