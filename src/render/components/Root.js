@@ -9,8 +9,6 @@ const App = require('./App.js')
 const Cameras = require('./Cameras.js')
 const Home = require('./Home.js')
 
-require('../styles/main.css')
-
 const Root = ({ history, store }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
