@@ -8,23 +8,40 @@ const Admin = require('../components/Admin.js')
 const App = require('../components/App.js')
 const Cameras = require('../components/Cameras.js')
 const Home = require('../components/Home.js')
+const { fetchServerAddress } = require('../actions/config.js')
 
-const Root = ({ config, history, store }) => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App config={config}>
-        <Route exact path='/' component={Home} />
-        <Route path='/cameras' component={Cameras} />
-        <Route path='/admin' component={Admin} />
-      </App>
-    </ConnectedRouter>
-  </Provider>
-)
+class Root extends React.Component {
+  componentWillMount () {
+    this.props.fetchServerAddress()
+  }
+
+  render () {
+    const { config, history, store } = this.props
+
+    return (
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <App config={config}>
+            <Route exact path='/' component={Home} />
+            <Route path='/cameras' component={Cameras} />
+            <Route path='/admin' component={Admin} />
+          </App>
+        </ConnectedRouter>
+      </Provider>
+    )
+  }
+}
 
 Root.propTypes = {
   config: PropTypes.object.isRequired,
+  fetchServerAddress: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 }
 
-module.exports = connect(({ config }) => ({ config }))(Root)
+module.exports = connect(
+  ({ config }) => ({ config }),
+  {
+    fetchServerAddress
+  }
+)(Root)

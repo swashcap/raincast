@@ -5,15 +5,15 @@ const { configServerAddress } = require('../../shared/channels.js')
 const CONFIG_GET_SERVER_ADDRESS = 'CONFIG_GET_SERVER_ADDRESS'
 
 const getServerAddress = () => ({
-  action: CONFIG_GET_SERVER_ADDRESS,
-  payload: null
+  payload: null,
+  type: CONFIG_GET_SERVER_ADDRESS
 })
 
 const CONFIG_SET_SERVER_ADDRESS = 'CONFIG_SET_SERVER_ADDRESS'
 
 const setServerAddress = (serverAddress) => ({
-  action: CONFIG_SET_SERVER_ADDRESS,
-  payload: serverAddress
+  payload: serverAddress,
+  type: CONFIG_SET_SERVER_ADDRESS
 })
 
 const fetchServerAddress = () => (dispatch) => {
@@ -21,7 +21,7 @@ const fetchServerAddress = () => (dispatch) => {
 
   ipcRenderer.once(
     configServerAddress,
-    (address) => dispatch(setServerAddress(address))
+    (event, arg) => dispatch(setServerAddress(arg))
   )
   ipcRenderer.send(configServerAddress)
 }

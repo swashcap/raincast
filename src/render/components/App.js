@@ -29,7 +29,10 @@ const App = ({ children, config }) => (
         Admin
       </NavLink>
       </nav>
-      <QRImage address={config.address} />
+      <QRImage
+        address={config.serverAddress}
+        color={config.color}
+      />
     </header>
     <main className='App-content'>
       {children}
@@ -40,6 +43,7 @@ const App = ({ children, config }) => (
 App.propTypes = {
   children: PropTypes.node,
   config: PropTypes.shape({
+    color: PropTypes.string,
     serverAddress: PropTypes.string
   }).isRequired
 }

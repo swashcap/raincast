@@ -1,0 +1,12 @@
+.QRImage {
+
+}
+.QRImage a {
+  display: block;
+}
+
+.QRImage:not(.is-loading) svg {
+  height: 6em;
+  margin: 0 auto;
+  width: 6em;
+}

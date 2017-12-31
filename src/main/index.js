@@ -8,6 +8,7 @@ const url = require('url')
 
 const debug = require('./utils/debug.js')
 const getPort = require('./utils/get-port.js')
+const ipc = require('./services/ipc.js')
 const webApp = require('./server/index.js')
 
 electronDebug({
@@ -50,6 +51,8 @@ const createWindow = () => {
 app.on('ready', () => {
   createWindow()
 
+  ipc.on()
+
   getPort().then((port) => {
     server = http.createServer(webApp.callback()).listen(port)
     debug('server listening on port: %d', port)
@@ -69,6 +72,8 @@ app.on('activate', () => {
 })
 
 app.on('will-quit', () => {
+  ipc.off()
+
   if (server) {
     server.close()
   }
