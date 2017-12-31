@@ -2,12 +2,12 @@ const { app, BrowserWindow } = require('electron')
 const electronDebug = require('electron-debug')
 const electronIsDev = require('electron-is-dev')
 const electronWindowState = require('electron-window-state')
-const getPort = require('get-port')
 const http = require('http')
 const path = require('path')
 const url = require('url')
 
-const debug = require('./utils/debug')
+const debug = require('./utils/debug.js')
+const getPort = require('./utils/get-port.js')
 const webApp = require('./server/index.js')
 
 electronDebug({
@@ -18,7 +18,7 @@ let server
 let win
 
 const createWindow = () => {
-  const { height, width, x, y } = electronWindowState({
+  const { height, manage, width, x, y } = electronWindowState({
     defaultHeight: 600,
     defaultWidth: 800
   })
@@ -43,12 +43,14 @@ const createWindow = () => {
   win.on('closed', () => {
     win = null
   })
+
+  manage(win)
 }
 
 app.on('ready', () => {
   createWindow()
 
-  getPort({ port: 3000 }).then((port) => {
+  getPort().then((port) => {
     server = http.createServer(webApp.callback()).listen(port)
     debug('server listening on port: %d', port)
   })

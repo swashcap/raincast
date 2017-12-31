@@ -6,10 +6,12 @@ const fs = require('fs')
 const path = require('path')
 const { get, post } = require('koa-route')
 
+const { routePush } = require('../../shared/channels.js')
+
 const app = new Koa()
 const log = debug('raincast:server')
 
-const maybeIpc = (channel, arg) => {
+const sendIpcMessage = (channel, arg) => {
   log('webContents.send', channel, arg)
   if (process.versions.electron) {
     const electron = require('electron')
@@ -52,7 +54,19 @@ app.use(get('/routes', (ctx) => {
   }
 }))
 
+/**
+ * {@link https://github.com/koajs/bodyparser}
+ */
 app.use(post('/routes/active', (ctx) => {
+  const reqBody = ctx.request.body
+
+  if (reqBody && typeof reqBody === 'object' && 'active' in reqBody) {
+    const newRoute = reqBody.active
+    sendIpcMessage(routePush, newRoute)
+    ctx.body = newRoute
+  } else {
+    ctx.throw(400)
+  }
 }))
 
 module.exports = app

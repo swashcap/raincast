@@ -2,9 +2,10 @@ const React = require('react')
 const PropTypes = require('prop-types')
 const { NavLink, withRouter } = require('react-router-dom')
 
+const QRImage = require('./QRImage.js')
 require('./App.css')
 
-const App = ({ children }) => (
+const App = ({ children, config }) => (
   <div className='App'>
     <header className='App-nav' role='banner'>
       <nav role='navigation'>
@@ -28,6 +29,7 @@ const App = ({ children }) => (
         Admin
       </NavLink>
       </nav>
+      <QRImage address={config.address} />
     </header>
     <main className='App-content'>
       {children}
@@ -36,7 +38,10 @@ const App = ({ children }) => (
 )
 
 App.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  config: PropTypes.shape({
+    serverAddress: PropTypes.string
+  }).isRequired
 }
 
 module.exports = withRouter(App)
