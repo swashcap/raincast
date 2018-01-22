@@ -1,4 +1,4 @@
-/* global fetch */
+/* global Headers,fetch */
 import React, { Component } from 'react'
 
 import './Root.css'
@@ -33,7 +33,12 @@ class Root extends Component {
 
   postRoute (routeId) {
     fetch('/routes/active', {
-      body: JSON.stringify(routeId),
+      body: JSON.stringify({
+        active: routeId
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
       method: 'POST'
     })
       .then((response) => {

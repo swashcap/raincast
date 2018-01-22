@@ -42,14 +42,13 @@ app.use(get('/', (ctx) => {
 
 app.use(get('/routes', (ctx) => {
   ctx.body = {
-    active: 'home',
-    collection: {
-      cameras: {
-        name: 'Cameras'
-      },
-      home: {
-        name: 'Home'
-      }
+    cameras: {
+      active: false,
+      name: 'Cameras'
+    },
+    home: {
+      active: true,
+      name: 'Home'
     }
   }
 }))
@@ -68,5 +67,9 @@ app.use(post('/routes/active', (ctx) => {
     ctx.throw(400)
   }
 }))
+
+if (!module.parent) {
+  app.listen(3000)
+}
 
 module.exports = app
