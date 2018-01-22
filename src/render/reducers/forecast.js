@@ -1,33 +1,33 @@
 const {
-  CONFIG_ERROR,
-  CONFIG_REQUEST,
-  CONFIG_RESPONSE
-} = require('../actions/config.js')
+  FORECAST_ERROR,
+  FORECAST_REQUEST,
+  FORECAST_RESPONSE
+} = require('../actions/forecast.js')
 
 const reducer = (
   state = {
-    // TODO: Don't hard-code color
-    color: '#ff0000',
+    data: {},
     error: null,
     isLoading: false,
-    serverAddress: null
+    lastFetched: null
   },
   { payload, type }
 ) => {
   switch (type) {
-    case CONFIG_ERROR:
+    case FORECAST_ERROR:
       return Object.assign({}, state, {
         error: payload,
         isLoading: false
       })
-    case CONFIG_REQUEST:
+    case FORECAST_REQUEST:
       return Object.assign({}, state, {
         isLoading: true
       })
-    case CONFIG_RESPONSE:
+    case FORECAST_RESPONSE:
       return Object.assign({}, state, {
+        data: payload,
         isLoading: false,
-        serverAddress: payload
+        lastFetched: Date.now()
       })
     default:
       return state

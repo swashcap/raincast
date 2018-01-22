@@ -1,4 +1,5 @@
 const React = require('react') // eslint-disable-line no-unused-vars
+const PropTypes = require('prop-types')
 const moment = require('moment')
 
 const LoadingIndicator = require('./LoadingIndicator')
@@ -7,11 +8,21 @@ const formatTemperature = require('../lib/formatTemperature')
 
 require('./WeatherDays.css')
 
-const WeatherDays = ({ weather }) => {
-  if (!weather) {
+const WeatherDays = ({
+  data: weatherData,
+  error,
+  isLoading
+}) => {
+  if (isLoading || !Object.keys(weatherData).length) {
     return (
       <div className='WeatherDays WeatherDays-loading'>
         <LoadingIndicator />
+      </div>
+    )
+  } else if (error) {
+    return (
+      <div className='WeatherDays WeatherDays-error'>
+        {error}
       </div>
     )
   }
@@ -26,7 +37,7 @@ const WeatherDays = ({ weather }) => {
       data,
       summary: dailySummary
     }
-  } = weather
+  } = weatherData
   const hours = new Date().getHours()
 
   return (
@@ -68,13 +79,13 @@ const WeatherDays = ({ weather }) => {
               <p className='WeatherDays-item-summary'>{summary}</p>
               <div className='WeatherDays-item-high'>
                 <h2>{formatTemperature(temperatureHigh)}</h2>
-                <time datetime={highTime.format()}>
+                <time dateTime={highTime.format()}>
                   {highTime.format('HH:ss')}
                 </time>
               </div>
               <div className='WeatherDays-item-high'>
                 <h2>{formatTemperature(temperatureLow)}</h2>
-                <time datetime={lowTime.format()}>
+                <time dateTime={lowTime.format()}>
                   {lowTime.format('HH:ss')}
                 </time>
               </div>
@@ -84,6 +95,13 @@ const WeatherDays = ({ weather }) => {
       </div>
     </div>
   )
+}
+
+WeatherDays.propTypes = {
+  data: PropTypes.object.isRequired,
+  error: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+  lastFetched: PropTypes.number
 }
 
 module.exports = WeatherDays

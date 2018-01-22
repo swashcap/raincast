@@ -1,33 +1,39 @@
 const { ipcRenderer } = require('electron')
 
-const { configServerAddress } = require('../../shared/channels.js')
+const channels = require('../../shared/channels.js')
 
-const CONFIG_GET_SERVER_ADDRESS = 'CONFIG_GET_SERVER_ADDRESS'
+const CONFIG_ERROR = 'CONFIG_ERROR'
 
-const getServerAddress = () => ({
+const configError = error => ({
+  payload: error,
+  type: CONFIG_ERROR
+})
+
+const CONFIG_REQUEST = 'CONFIG_REQUEST'
+
+const configRequest = () => ({
   payload: null,
-  type: CONFIG_GET_SERVER_ADDRESS
+  type: CONFIG_REQUEST
 })
 
-const CONFIG_SET_SERVER_ADDRESS = 'CONFIG_SET_SERVER_ADDRESS'
+const CONFIG_RESPONSE = 'CONFIG_RESPONSE'
 
-const setServerAddress = (serverAddress) => ({
-  payload: serverAddress,
-  type: CONFIG_SET_SERVER_ADDRESS
+const configResponse = data => ({
+  payload: data,
+  type: CONFIG_RESPONSE
 })
 
-const fetchServerAddress = () => (dispatch) => {
-  dispatch(getServerAddress())
-
-  ipcRenderer.once(
-    configServerAddress,
-    (event, arg) => dispatch(setServerAddress(arg))
-  )
-  ipcRenderer.send(configServerAddress)
+const fetchConfig = () => (dispatch) => {
+  dispatch(configRequest())
+  ipcRenderer.send(channels.serverConfigRequest)
 }
 
 module.exports = {
-  CONFIG_GET_SERVER_ADDRESS,
-  CONFIG_SET_SERVER_ADDRESS,
-  fetchServerAddress
+  CONFIG_ERROR,
+  CONFIG_REQUEST,
+  CONFIG_RESPONSE,
+  configError,
+  configRequest,
+  configResponse,
+  fetchConfig
 }

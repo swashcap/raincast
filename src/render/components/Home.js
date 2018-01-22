@@ -1,66 +1,32 @@
 const React = require('react') // eslint-disable-line no-unused-vars
+const PropTypes = require('prop-types')
+const { connect } = require('react-redux')
 
 const ErrorAlert = require('./ErrorAlert')
-const makeRequest = require('../lib/makeRequest')
 const WeatherAlerts = require('./WeatherAlerts')
 const WeatherDays = require('./WeatherDays')
+const { fetchForecast } = require('../actions/forecast.js')
+const { fetchWeatherAlerts } = require('../actions/weather-alerts.js')
 
 require('./Home.css')
 
 class Home extends React.Component {
-  constructor (props, context) {
-    super(props, context)
-
-    this.state = {
-      alerts: [],
-      errors: [],
-      weather: null
-    }
-
-    this.handleRequestError = this.handleRequestError.bind(this)
-  }
-
   componentWillMount () {
-    return Promise.all([
-      makeRequest('/api/alerts').catch(this.handleRequestError),
-      makeRequest('/api/weather').catch(this.handleRequestError)
-    ])
-      .then(([alerts, weather]) => {
-        this.setState({
-          alerts: Array.isArray(alerts) ? alerts : this.state.alerts,
-          errors: this.state.errors,
-          weather: weather || this.state.weather
-        })
-      })
-  }
-
-  handleRequestError (error) {
-    console.error(error)
-
-    const message = !error.stack
-      ? 'Failed to fetch' // for Safari
-      : error.message
-
-    this.setState({
-      errors: this.state.errors.concat({
-        date: Date.now(),
-        message
-      })
-    })
-  }
-
-  removeError (index) {
-    this.setState({
-      errors: this.state.errors.filter((_, i) => i !== index)
-    })
-  }
-
-  setState (newState) {
-    super.setState(Object.assign(this.state, newState))
+    this.props.fetchForecast()
+    this.props.fetchWeatherAlerts()
   }
 
   renderErrors () {
-    const { errors } = this.state
+    const { forecast, weatherAlerts } = this.props
+
+    const errors = []
+
+    if (forecast.error) {
+      errors.push(forecast.error)
+    }
+    if (weatherAlerts.error) {
+      errors.push(weatherAlerts.error)
+    }
 
     if (errors.length) {
       return (
@@ -78,16 +44,39 @@ class Home extends React.Component {
   }
 
   render () {
-    const { alerts, weather } = this.state
+    const { forecast, weatherAlerts } = this.props
 
     return (
       <div className='Home'>
         {this.renderErrors()}
-        <WeatherDays weather={weather} />
-        <WeatherAlerts alerts={alerts} />
+        <WeatherDays {...forecast} />
+        <WeatherAlerts {...weatherAlerts} />
       </div>
     )
   }
 }
 
-module.exports = Home
+Home.propTypes = {
+  fetchForecast: PropTypes.func.isRequired,
+  fetchWeatherAlerts: PropTypes.func.isRequired,
+  forecast: PropTypes.shape({
+    data: PropTypes.object.isRequired,
+    error: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
+    lastFetched: PropTypes.number
+  }),
+  weatherAlerts: PropTypes.shape({
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    error: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
+    lastFetched: PropTypes.number
+  })
+}
+
+module.exports = connect(
+  ({ forecast, weatherAlerts }) => ({ forecast, weatherAlerts }),
+  {
+    fetchForecast,
+    fetchWeatherAlerts
+  }
+)(Home)

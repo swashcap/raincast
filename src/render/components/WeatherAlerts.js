@@ -1,28 +1,35 @@
 const React = require('react') // eslint-disable-line no-unused-vars
+const PropTypes = require('prop-types')
 const moment = require('moment')
 
 const LoadingIndicator = require('./LoadingIndicator')
 
 require('./WeatherAlerts.css')
 
-const WeatherAlerts = ({ alerts }) => {
-  if (!alerts.length) {
+const WeatherAlerts = ({ data, error, isLoading }) => {
+  if (isLoading || !data.length) {
     return (
       <aside className='WeatherAlerts WeatherAlerts-loading'>
         <LoadingIndicator />
       </aside>
     )
-  } else if (alerts.length === 1 && !alerts[0]['cap:event']) {
+  } else if (error) {
+    return (
+      <aside className='WeatherAlerts WeatherAlerts-error'>
+        {error}
+      </aside>
+    )
+  } else if (data.length === 1 && !data[0]['cap:event']) {
     return (
       <aside className='WeatherAlerts WeatherAlerts-empty'>
-        <p>{alerts[0].title[0]}</p>
+        <p>{data[0].title[0]}</p>
       </aside>
     )
   }
 
   return (
     <aside className='WeatherAlerts'>
-      {alerts.map(({
+      {data.map(({
         'cap:areaDesc': [areaDesc],
         'cap:effective': [effective],
         'cap:event': [name],
@@ -60,6 +67,13 @@ const WeatherAlerts = ({ alerts }) => {
       })}
     </aside>
   )
+}
+
+WeatherAlerts.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  error: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+  lastFetched: PropTypes.number
 }
 
 module.exports = WeatherAlerts

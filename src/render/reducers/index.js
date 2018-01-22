@@ -1,15 +1,15 @@
 const { combineReducers } = require('redux')
 const { routerReducer } = require('react-router-redux')
 
-const alerts = require('./alerts.js')
 const config = require('./config.js')
-const weather = require('./weather.js')
+const forecast = require('./forecast.js')
+const weatherAlerts = require('./weather-alerts.js')
 
 const rootReducer = combineReducers({
-  alerts,
   config,
+  forecast,
   router: routerReducer,
-  weather
+  weatherAlerts
 })
 
 module.exports = rootReducer

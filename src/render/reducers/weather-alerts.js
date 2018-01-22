@@ -1,8 +1,8 @@
 const {
-  ALERTS_REQUEST_END,
-  ALERTS_REQUEST_ERROR,
-  ALERTS_REQUEST_START
-} = require('../actions/alerts.js')
+  WEATHER_ALERTS_ERROR,
+  WEATHER_ALERTS_REQUEST,
+  WEATHER_ALERTS_RESPONSE
+} = require('../actions/weather-alerts.js')
 
 const reducer = (
   state = {
@@ -11,21 +11,21 @@ const reducer = (
     isLoading: false,
     lastFetched: null
   },
-  { action, payload }
+  { payload, type }
 ) => {
-  switch (action) {
-    case ALERTS_REQUEST_END:
+  switch (type) {
+    case WEATHER_ALERTS_RESPONSE:
       return Object.assign({}, state, {
         data: payload,
         isLoading: false,
         lastFetched: Date.now()
       })
-    case ALERTS_REQUEST_ERROR:
+    case WEATHER_ALERTS_ERROR:
       return Object.assign({}, state, {
         error: payload,
         isLoading: false
       })
-    case ALERTS_REQUEST_START:
+    case WEATHER_ALERTS_REQUEST:
       return Object.assign({}, state, { isLoading: true })
     default:
       return state

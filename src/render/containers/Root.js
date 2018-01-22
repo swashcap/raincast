@@ -8,11 +8,11 @@ const Admin = require('../components/Admin.js')
 const App = require('../components/App.js')
 const Cameras = require('../components/Cameras.js')
 const Home = require('../components/Home.js')
-const { fetchServerAddress } = require('../actions/config.js')
+const { fetchConfig } = require('../actions/config.js')
 
 class Root extends React.Component {
   componentWillMount () {
-    this.props.fetchServerAddress()
+    this.props.fetchConfig()
   }
 
   render () {
@@ -34,7 +34,7 @@ class Root extends React.Component {
 
 Root.propTypes = {
   config: PropTypes.object.isRequired,
-  fetchServerAddress: PropTypes.func.isRequired,
+  fetchConfig: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 }
@@ -42,6 +42,6 @@ Root.propTypes = {
 module.exports = connect(
   ({ config }) => ({ config }),
   {
-    fetchServerAddress
+    fetchConfig
   }
 )(Root)

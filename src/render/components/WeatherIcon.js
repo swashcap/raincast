@@ -1,4 +1,4 @@
-const react = require('react') // eslint-disable-line no-unused-vars
+const React = require('react') // eslint-disable-line no-unused-vars
 
 const clear = require('../img/clear.svg')
 const cloudy = require('../img/cloudy.svg')
