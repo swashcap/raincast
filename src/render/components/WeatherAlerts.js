@@ -47,14 +47,14 @@ const WeatherAlerts = ({ data, error, isLoading }) => {
               <dl className='WeatherAlerts-item-meta'>
                 <dt>Effective:</dt>
                 <dd>
-                  <time datetime={effective}>
+                  <time dateTime={effective}>
                     {effectiveTime.fromNow()}
                     <span>{effectiveTime.format('YYYY-MM-DD HH:mm')}</span>
                   </time>
                 </dd>
                 <dt>Expires:</dt>
                 <dd>
-                  <time datetime={expires}>
+                  <time dateTime={expires}>
                     {expiresTime.fromNow()}
                     <span>{expiresTime.format('YYYY-MM-DD HH:mm')}</span>
                   </time>
