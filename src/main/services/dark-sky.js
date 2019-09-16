@@ -13,6 +13,6 @@ const darkSky = ({
     gzip: true,
     url: `https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}`
   })
-  .then((response) => JSON.parse(response))
+    .then((response) => JSON.parse(response))
 
 module.exports = darkSky

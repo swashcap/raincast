@@ -35,7 +35,7 @@ const WeatherAlerts = ({ data, error, isLoading }) => {
         'cap:event': [name],
         'cap:expires': [expires],
         id: [id],
-        link: [{ '$': { href } }]
+        link: [{ $: { href } }]
       }) => {
         const effectiveTime = moment(effective)
         const expiresTime = moment(expires)

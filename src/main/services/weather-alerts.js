@@ -15,7 +15,7 @@ const weatherAlerts = ({
     },
     url: `https://alerts.weather.gov/cap/wwaatmget.php?x=${x}&y=${y}`
   })
-  .then(parseXml)
-  .then(({ feed }) => feed.entry ? feed.entry : [])
+    .then(parseXml)
+    .then(({ feed }) => feed.entry ? feed.entry : [])
 
 module.exports = weatherAlerts

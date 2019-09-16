@@ -13,21 +13,21 @@ const App = ({ children, config }) => (
           activeClassName='active'
           exact
           to='/'
-      >
+        >
         Home
-      </NavLink>
+        </NavLink>
         <NavLink
           activeClassName='active'
           to='/cameras'
-      >
+        >
         Cameras
-      </NavLink>
+        </NavLink>
         <NavLink
           activeClassName='active'
           to='/admin'
-      >
+        >
         Admin
-      </NavLink>
+        </NavLink>
       </nav>
       <QRImage
         address={config.serverAddress}

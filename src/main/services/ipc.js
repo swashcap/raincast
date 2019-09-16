@@ -16,7 +16,7 @@ const weatherAlerts = require('./weather-alerts.js')
 const handlers = new Map()
 
 const setHandler =
-  ([ requestChannel, responseChannel, errorChannel ], handler) => {
+  ([requestChannel, responseChannel, errorChannel], handler) => {
     handlers.set(requestChannel, (event) => {
       debug('request: %s', requestChannel)
       handler()

@@ -9,7 +9,7 @@ const ErrorAlert = ({ onClose, message }) => (
       aria-label='Close'
       type='button'
       onClick={onClose}
-     >
+    >
       <span aria-hidden='true'>&times;</span>
     </button>
   </div>
