@@ -34,7 +34,7 @@
     "koa-cors": "0.0.16",
     "koa-route": "^3.2.0",
     "koa-send": "^5.0.0",
-    "moment": "^2.20.1",
+    "moment": "^2.24.0",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.7.2",
     "qr-image": "^3.2.0",
