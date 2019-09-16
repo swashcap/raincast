@@ -1,9 +1,9 @@
-const pify = require('pify')
+const { promisify } = require('util')
 const { parseString } = require('xml2js')
 
 const request = require('../utils/request.js')
 
-const parseXml = pify(parseString)
+const parseXml = promisify(parseString)
 
 const weatherAlerts = ({
   x = 'ORZ006',
