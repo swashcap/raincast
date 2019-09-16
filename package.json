@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && mkdirp dist && webpack -p",
     "clean": "rimraf dist",
-    "electron": "electron .",
+    "electron": "wait-on http://localhost:8080 && electron .",
     "lint": "standard '**/*.js'",
     "precommit": "npm run lint && npm test",
     "start": "run-p wds electron",
@@ -69,6 +69,7 @@
     "rimraf": "^3.0.0",
     "standard": "^14.3.0",
     "style-loader": "^1.0.0",
+    "wait-on": "^3.3.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0"
