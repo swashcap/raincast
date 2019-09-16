@@ -67,7 +67,7 @@
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
     "rimraf": "^3.0.0",
-    "standard": "^10.0.3",
+    "standard": "^14.3.0",
     "style-loader": "^1.0.0",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8",
