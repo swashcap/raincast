@@ -4,7 +4,7 @@
   "description": "Weather and statistics widgets for Portland, Oregon.",
   "main": "src/main/index.js",
   "scripts": {
-    "build": "npm run clean && mkdirp dist && webpack -p",
+    "build": "npm run clean && mkdirp dist && NODE_ENV=production webpack",
     "clean": "rimraf dist",
     "electron": "wait-on http://localhost:8080 && electron .",
     "lint": "standard '**/*.js'",

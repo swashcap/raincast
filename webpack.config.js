@@ -9,6 +9,7 @@ const baseConfig = {
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true
   },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   module: {
     rules: [
       {
