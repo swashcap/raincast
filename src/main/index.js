@@ -28,7 +28,10 @@ const createWindow = () => {
     height,
     width,
     x,
-    y
+    y,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
 
   if (electronIsDev) {
