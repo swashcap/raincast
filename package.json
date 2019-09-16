@@ -21,6 +21,7 @@
   "author": "swashcap",
   "license": "MIT",
   "dependencies": {
+    "@koa/cors": "^3.0.0",
     "debug": "^4.1.1",
     "electron": "^6.0.9",
     "electron-debug": "^3.0.1",
@@ -31,7 +32,6 @@
     "ip": "^1.1.5",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
-    "koa-cors": "0.0.16",
     "koa-route": "^3.2.0",
     "koa-send": "^5.0.0",
     "moment": "^2.24.0",
