@@ -1,5 +1,5 @@
 const { ipcRenderer } = require('electron')
-const { push } = require('react-router-redux')
+const { push } = require('connected-react-router')
 
 const { forecastError, forecastResponse } = require('../actions/forecast.js')
 const { configError, configResponse } = require('../actions/config.js')

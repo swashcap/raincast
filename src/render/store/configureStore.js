@@ -1,16 +1,16 @@
 const { applyMiddleware, createStore } = require('redux')
+const { routerMiddleware } = require('connected-react-router')
 const logger = require('redux-logger').default
 const thunk = require('redux-thunk').default
 
 const electronMiddleware = require('../middleware/electron.js')
-const routerMiddleware = require('../middleware/router.js')
-const rootReducer = require('../reducers/index.js')
+const createRootReducer = require('../reducers/index.js')
 
-const configureStore = preloadedState => {
+const configureStore = (history, preloadedState) => {
   const store = createStore(
-    rootReducer,
+    createRootReducer(history),
     preloadedState,
-    applyMiddleware(thunk, electronMiddleware, routerMiddleware, logger)
+    applyMiddleware(routerMiddleware(history), thunk, electronMiddleware, logger)
   )
 
   if (module.hot) {

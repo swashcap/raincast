@@ -1,14 +1,14 @@
 const { combineReducers } = require('redux')
-const { routerReducer } = require('react-router-redux')
+const { connectRouter } = require('connected-react-router')
 
 const config = require('./config.js')
 const forecast = require('./forecast.js')
 const weatherAlerts = require('./weather-alerts.js')
 
-const rootReducer = combineReducers({
+const rootReducer = (history) => combineReducers({
   config,
   forecast,
-  router: routerReducer,
+  router: connectRouter(history),
   weatherAlerts
 })
 
