@@ -60,7 +60,8 @@ module.exports = [
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/web/index.html'),
+        filename: 'web.html',
+        template: path.resolve(__dirname, 'src/web/web.html'),
         title: pkg.name
       })
     ]

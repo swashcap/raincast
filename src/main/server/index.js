@@ -37,7 +37,7 @@ app.use((ctx, next) => {
 
 app.use(get('/', (ctx) => {
   ctx.set('Content-Type', 'text/html')
-  ctx.body = fs.createReadStream(path.resolve(__dirname, '../../web/index.html'))
+  ctx.body = fs.createReadStream(path.resolve(__dirname, '../../web/web.html'))
 }))
 
 app.use(get('/routes', (ctx) => {
