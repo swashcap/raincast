@@ -1,13 +1,13 @@
 const React = require('react')
 const PropTypes = require('prop-types')
-const { ConnectedRouter } = require('connected-react-router')
 const { Route, Switch } = require('react-router-dom')
-const { Provider, connect } = require('react-redux')
+const { connect } = require('react-redux')
 
 const Admin = require('../components/Admin.js')
 const App = require('../components/App.js')
 const Cameras = require('../components/Cameras.js')
 const Home = require('../components/Home.js')
+const SharedRoot = require('../../shared/containers/Root')
 const { fetchConfig } = require('../actions/config.js')
 
 class Root extends React.Component {
@@ -19,17 +19,16 @@ class Root extends React.Component {
     const { config, history, store } = this.props
 
     return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App config={config}>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/cameras' component={Cameras} />
-              <Route path='/admin' component={Admin} />
-            </Switch>
-          </App>
-        </ConnectedRouter>
-      </Provider>
+      <SharedRoot history={history} store={store}>
+        <App config={config}>
+          <Button color='primary'>This is a test</Button>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/cameras' component={Cameras} />
+            <Route path='/admin' component={Admin} />
+          </Switch>
+        </App>
+      </SharedRoot>
     )
   }
 }

@@ -1,7 +1,7 @@
 /* global Headers,fetch */
 import React, { Component } from 'react'
 
-import './Root.css'
+import SharedRoot from '../../shared/containers/Root'
 
 class Root extends Component {
   constructor (...args) {
@@ -54,30 +54,32 @@ class Root extends Component {
   }
 
   render () {
+    const { history, store } = this.props
     const { routes } = this.state
+    // let content = <div className='Root Root-loading' />
 
-    if (!routes) {
-      return (
-        <div className='Root Root-loading' />
-      )
-    }
+    // if (routes) {
+    //   content = (
+    //     Object.keys(routes).map((routeId) => {
+    //       const route = routes[routeId]
+    //       return (
+    //         <button
+    //           className={route.active ? 'is-active' : ''}
+    //           key={routeId}
+    //           onClick={() => this.postRoute(routeId)}
+    //           type='button'
+    //         >
+    //           {route.name}
+    //         </button>
+    //       )
+    //     })
+    //   )
+    // }
 
     return (
-      <div className='Root'>
-        {Object.keys(routes).map((routeId) => {
-          const route = routes[routeId]
-          return (
-            <button
-              className={route.active ? 'is-active' : ''}
-              key={routeId}
-              onClick={() => this.postRoute(routeId)}
-              type='button'
-            >
-              {route.name}
-            </button>
-          )
-        })}
-      </div>
+      <SharedRoot history={history} store={store}>
+        {/* <div>wat</div> */}
+      </SharedRoot>
     )
   }
 }

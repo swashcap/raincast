@@ -5,8 +5,6 @@ const { render } = require('react-dom')
 const Root = require('./containers/Root.js')
 const configureStore = require('./store/configureStore.js')
 
-require('../shared/styles/main.css')
-
 const history = createBrowserHistory()
 const store = configureStore(history)
 

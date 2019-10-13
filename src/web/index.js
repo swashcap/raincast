@@ -1,17 +1,11 @@
 import React from 'react'
+import { createHashHistory } from 'history'
 import { render } from 'react-dom'
 
 import Root from './components/Root'
+import createStore from '../shared/store/createStore'
 
-import '../shared/styles/main.css'
+const history = createHashHistory()
+const store = createStore(history)
 
-if (!document.getElementById('app')) {
-  const el = document.createElement('div')
-  el.id = 'app'
-  document.body.appendChild(el)
-}
-
-render(
-  <Root />,
-  document.getElementById('app')
-)
+render(<Root history={history} store={store} />, document.getElementById('app'))
