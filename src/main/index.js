@@ -3,6 +3,7 @@ const electronDebug = require('electron-debug')
 const electronIsDev = require('electron-is-dev')
 const electronWindowState = require('electron-window-state')
 const http = require('http')
+const os = require('os')
 const path = require('path')
 const url = require('url')
 
@@ -36,6 +37,10 @@ const createWindow = () => {
 
   if (electronIsDev) {
     win.loadURL('http://localhost:8080')
+    BrowserWindow.addDevToolsExtension(path.join(
+      os.homedir(),
+      'Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.2.0_0'
+    ))
   } else {
     win.loadURL(url.format({
       pathname: path.join(__dirname, '..', 'client', 'index.html'),
