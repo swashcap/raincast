@@ -30,6 +30,8 @@
     "electron-settings": "^3.2.0",
     "electron-window-state": "^5.0.3",
     "get-port": "^5.0.0",
+    "grommet": "^2.7.9",
+    "grommet-icons": "^4.3.0",
     "history": "^4.10.1",
     "ip": "^1.1.5",
     "koa": "^2.10.0",
@@ -48,6 +50,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^4.4.0",
     "xml2js": "^0.4.22"
   },
   "devDependencies": {
@@ -56,6 +59,7 @@
     "@babel/preset-react": "^7.6.3",
     "ava": "^2.4.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",

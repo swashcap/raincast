@@ -1,15 +1,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ip = require('ip')
 const path = require('path')
-const pkg = require('./package.json')
 const postcssPresetEnv = require('postcss-preset-env')
 const webpack = require('webpack')
+
+const pkg = require('./package.json')
 
 const isEnvProduction = process.env.NODE_ENV === 'production'
 
 const baseConfig = {
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
     hot: true
   },
   mode: isEnvProduction ? 'production' : 'development',
@@ -21,35 +21,30 @@ const baseConfig = {
             test: /\.css$/,
             use: [
               'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1
-                }
-              },
+              'css-loader',
               {
                 loader: 'postcss-loader',
                 options: {
-                  plugins: [
-                    postcssPresetEnv()
-                  ],
+                  plugins: [postcssPresetEnv()],
                   sourceMaps: !isEnvProduction
                 }
               }
             ]
           },
           {
-            include: [
-              path.resolve(__dirname, 'src')
-            ],
-            loader: 'babel-loader',
-            options: {
-              cacheDirectory: true
-            },
-            test: /\.js$/
+            exclude: /node_modules/,
+            test: /\.js$/,
+            use: [
+              {
+                loader: 'babel-loader',
+                options: {
+                  cacheDirectory: true
+                }
+              }
+            ]
           },
           {
-            exclude: [/\.html$/, /\.js$/],
+            exclude: [/\.js$/, /\.html$/],
             loader: 'file-loader'
           }
         ]
@@ -57,13 +52,18 @@ const baseConfig = {
     ]
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    chunkFilename: `[name]${isEnvProduction ? '.[contenthash]' : ''}.chunk.js`,
+    filename: `[name]${isEnvProduction ? '.[contenthash]' : ''}.bundle.js`,
+    path: path.join(__dirname, 'dist')
   },
   plugins: [
-    !isEnvProduction && new webpack.NamedModulesPlugin(),
-    !isEnvProduction && new webpack.HotModuleReplacementPlugin(),
-  ].filter(Boolean)
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(
+         `http://${ip.address()}:${process.env.PORT || 3000}`
+      )
+    })
+  ]
 }
 
 module.exports = [
@@ -75,8 +75,9 @@ module.exports = [
     plugins: [
       ...baseConfig.plugins,
       new HtmlWebpackPlugin({
+        chunks: ['web'],
         filename: 'web.html',
-        template: path.resolve(__dirname, 'src/web/web.html'),
+        template: path.join(__dirname, 'src/web/web.html'),
         title: pkg.name
       })
     ]
@@ -88,13 +89,9 @@ module.exports = [
     },
     plugins: [
       ...baseConfig.plugins,
-      new webpack.DefinePlugin({
-        API_URL: JSON.stringify(
-          `http://${ip.address()}:${process.env.PORT || 3000}`
-        )
-      }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/render/index.html'),
+        chunks: ['electron'],
+        template: path.join(__dirname, 'src/render/index.html'),
         title: pkg.name
       })
     ],

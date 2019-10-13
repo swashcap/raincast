@@ -21,13 +21,13 @@ class Root extends React.Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App config={config}>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/cameras' component={Cameras} />
-                <Route path='/admin' component={Admin} />
-              </Switch>
-            </App>
+          <App config={config}>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/cameras' component={Cameras} />
+              <Route path='/admin' component={Admin} />
+            </Switch>
+          </App>
         </ConnectedRouter>
       </Provider>
     )
