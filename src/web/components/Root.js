@@ -1,5 +1,6 @@
-/* global Headers,fetch */
+/* global API_URL,Headers,fetch */
 import React, { Component } from 'react'
+import { Button, Box } from 'grommet'
 
 import SharedRoot from '../../shared/containers/Root'
 
@@ -15,7 +16,7 @@ class Root extends Component {
   }
 
   componentWillMount () {
-    fetch('/routes')
+    fetch(`${API_URL}/routes`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
@@ -32,7 +33,7 @@ class Root extends Component {
   }
 
   postRoute (routeId) {
-    fetch('/routes/active', {
+    fetch(`${API_URL}/routes/active`, {
       body: JSON.stringify({
         active: routeId
       }),
@@ -47,6 +48,19 @@ class Root extends Component {
             `Error with request: ${response.status} ${response.statusText}`
           )
         }
+
+        return response.json()
+      })
+      .then(({ active }) => {
+        this.setState({
+          routes: Object.keys(this.state.routes).reduce((memo, routeId) => {
+            memo[routeId] = {
+              active: routeId === active,
+              name: this.state.routes[routeId].name
+            }
+            return memo
+          }, {})
+        })
       })
       .catch((error) => {
         console.error(error)
@@ -56,29 +70,28 @@ class Root extends Component {
   render () {
     const { history, store } = this.props
     const { routes } = this.state
-    // let content = <div className='Root Root-loading' />
+    let content
 
-    // if (routes) {
-    //   content = (
-    //     Object.keys(routes).map((routeId) => {
-    //       const route = routes[routeId]
-    //       return (
-    //         <button
-    //           className={route.active ? 'is-active' : ''}
-    //           key={routeId}
-    //           onClick={() => this.postRoute(routeId)}
-    //           type='button'
-    //         >
-    //           {route.name}
-    //         </button>
-    //       )
-    //     })
-    //   )
-    // }
+    if (routes) {
+      content = Object.keys(routes).map((routeId) => {
+        const route = routes[routeId]
+        return (
+          <Box align='center' key={routeId} pad='small'>
+            <Button
+              label={route.name}
+              onClick={() => this.postRoute(routeId)}
+              primary={!!route.active}
+            />
+          </Box>
+        )
+      })
+    }
 
     return (
       <SharedRoot history={history} store={store}>
-        {/* <div>wat</div> */}
+        <Box pad='small'>
+          {content}
+        </Box>
       </SharedRoot>
     )
   }

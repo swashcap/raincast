@@ -7,7 +7,7 @@ const Admin = require('../components/Admin.js')
 const App = require('../components/App.js')
 const Cameras = require('../components/Cameras.js')
 const Home = require('../components/Home.js')
-const SharedRoot = require('../../shared/containers/Root')
+const SharedRoot = require('../../shared/containers/Root').default
 const { fetchConfig } = require('../actions/config.js')
 
 class Root extends React.Component {
@@ -21,7 +21,6 @@ class Root extends React.Component {
     return (
       <SharedRoot history={history} store={store}>
         <App config={config}>
-          <Button color='primary'>This is a test</Button>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/cameras' component={Cameras} />

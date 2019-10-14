@@ -13,10 +13,7 @@ export default class Root extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Grommet full theme={dark}>
-            <>
-
-              {children}
-            </>
+            {children}
           </Grommet>
         </ConnectedRouter>
       </Provider>
