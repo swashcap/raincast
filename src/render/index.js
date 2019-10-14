@@ -1,11 +1,11 @@
 const React = require('react')
-const { createBrowserHistory } = require('history')
+const { createHashHistory } = require('history')
 const { render } = require('react-dom')
 
 const Root = require('./containers/Root.js')
 const configureStore = require('./store/configureStore.js')
 
-const history = createBrowserHistory()
+const history = createHashHistory()
 const store = configureStore(history)
 
 render(
