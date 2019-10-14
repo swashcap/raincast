@@ -62,7 +62,9 @@ app.use(post('/routes/active', (ctx) => {
   if (reqBody && typeof reqBody === 'object' && 'active' in reqBody) {
     const newRoute = reqBody.active
     sendIpcMessage(routePush, newRoute)
-    ctx.body = newRoute
+    ctx.body = {
+      active: newRoute
+    }
   } else {
     ctx.throw(400)
   }
