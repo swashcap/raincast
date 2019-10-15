@@ -1,11 +1,11 @@
-const React = require('react') // eslint-disable-line no-unused-vars
+import React from 'react'
 
-require('./LoadingIndicator.css')
+import './LoadingIndicator.css'
 
 /**
  * {@link https://codepen.io/aurer/pen/jEGbA?editors=1100}
  */
-const LoadingIndicator = () => {
+export const LoadingIndicator = () => {
   const svgProps = {
     height: '40px',
     version: '1.1',
@@ -28,5 +28,3 @@ const LoadingIndicator = () => {
     </div>
   )
 }
-
-module.exports = LoadingIndicator

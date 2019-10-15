@@ -1,14 +1,15 @@
-const { ipcRenderer } = require('electron')
-const { push } = require('connected-react-router')
+import { ipcRenderer } from 'electron'
+import { push } from 'connected-react-router'
 
-const { forecastError, forecastResponse } = require('../actions/forecast.js')
-const { configError, configResponse } = require('../actions/config.js')
-const {
+import { forecastError, forecastResponse } from '../actions/forecast'
+import { configError, configResponse } from '../actions/config'
+
+import channels from '../../shared/channels'
+
+import {
   weatherAlertsError,
   weatherAlertsResponse
-} = require('../actions/weather-alerts.js')
-
-const channels = require('../../shared/channels.js')
+} from '../actions/weather-alerts.js'
 
 const handlers = new Map([
   [channels.forecastError, forecastError],
@@ -22,7 +23,7 @@ const handlers = new Map([
 
 const listeners = []
 
-const electronMiddleware = ({ dispatch }) => next => action => {
+export const electronMiddleware = ({ dispatch }) => next => action => {
   if (!listeners.length) {
     // Wire up channels to actions
     handlers.forEach((actionHandler, channel) => {
@@ -34,5 +35,3 @@ const electronMiddleware = ({ dispatch }) => next => action => {
 
   return next(action)
 }
-
-module.exports = electronMiddleware

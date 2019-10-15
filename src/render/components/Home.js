@@ -1,16 +1,14 @@
-const React = require('react') // eslint-disable-line no-unused-vars
-const PropTypes = require('prop-types')
-const { connect } = require('react-redux')
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-const ErrorAlert = require('./ErrorAlert')
-const WeatherAlerts = require('./WeatherAlerts')
-const WeatherDays = require('./WeatherDays')
-const { fetchForecast } = require('../actions/forecast.js')
-const { fetchWeatherAlerts } = require('../actions/weather-alerts.js')
+import { ErrorAlert } from './ErrorAlert'
+import { WeatherAlerts } from './WeatherAlerts'
+import { WeatherDays } from './WeatherDays'
+import { fetchForecast } from '../actions/forecast'
+import { fetchWeatherAlerts } from '../actions/weather-alerts'
 
-require('./Home.css')
-
-class Home extends React.Component {
+class _Home extends React.Component {
   componentWillMount () {
     this.props.fetchForecast()
     this.props.fetchWeatherAlerts()
@@ -56,7 +54,7 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+_Home.propTypes = {
   fetchForecast: PropTypes.func.isRequired,
   fetchWeatherAlerts: PropTypes.func.isRequired,
   forecast: PropTypes.shape({
@@ -73,10 +71,10 @@ Home.propTypes = {
   })
 }
 
-module.exports = connect(
+export const Home = connect(
   ({ forecast, weatherAlerts }) => ({ forecast, weatherAlerts }),
   {
     fetchForecast,
     fetchWeatherAlerts
   }
-)(Home)
+)(_Home)

@@ -1,14 +1,12 @@
-const React = require('react') // eslint-disable-line no-unused-vars
-const PropTypes = require('prop-types')
-const moment = require('moment')
+import React from 'react' // eslint-disable-line no-unused-vars
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
-const LoadingIndicator = require('./LoadingIndicator')
-const WeatherIcon = require('./WeatherIcon')
-const formatTemperature = require('../lib/formatTemperature')
+import { LoadingIndicator } from './LoadingIndicator'
+import { WeatherIcon } from './WeatherIcon'
+import { formatTemperature } from '../lib/formatTemperature'
 
-require('./WeatherDays.css')
-
-const WeatherDays = ({
+export const WeatherDays = ({
   data: weatherData,
   error,
   isLoading
@@ -103,5 +101,3 @@ WeatherDays.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   lastFetched: PropTypes.number
 }
-
-module.exports = WeatherDays

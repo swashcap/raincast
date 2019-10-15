@@ -1,37 +1,27 @@
-const { ipcRenderer } = require('electron')
+import { ipcRenderer } from 'electron'
 
-const channels = require('../../shared/channels.js')
+import channels from '../../shared/channels'
 
-const FORECAST_ERROR = 'FORECAST_ERROR'
-const FORECAST_REQUEST = 'FORECAST_REQUEST'
-const FORECAST_RESPONSE = 'FORECAST_RESPONSE'
+export const FORECAST_ERROR = 'FORECAST_ERROR'
+export const FORECAST_REQUEST = 'FORECAST_REQUEST'
+export const FORECAST_RESPONSE = 'FORECAST_RESPONSE'
 
-const forecastError = error => ({
+export const forecastError = error => ({
   payload: error,
   type: FORECAST_ERROR
 })
 
-const forecastRequest = () => ({
+export const forecastRequest = () => ({
   payload: null,
   type: FORECAST_REQUEST
 })
 
-const forecastResponse = data => ({
+export const forecastResponse = data => ({
   payload: data,
   type: FORECAST_RESPONSE
 })
 
-const fetchForecast = () => (dispatch) => {
+export const fetchForecast = () => (dispatch) => {
   dispatch(forecastRequest())
   ipcRenderer.send(channels.forecastRequest)
-}
-
-module.exports = {
-  FORECAST_ERROR,
-  FORECAST_REQUEST,
-  FORECAST_RESPONSE,
-  fetchForecast,
-  forecastError,
-  forecastRequest,
-  forecastResponse
 }

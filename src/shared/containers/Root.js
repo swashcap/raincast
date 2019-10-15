@@ -1,11 +1,11 @@
-const PropTypes = require('prop-types')
-const React = require('react')
-const { ConnectedRouter } = require('connected-react-router')
-const { Grommet } = require('grommet')
-const { Provider } = require('react-redux')
-const { dark } = require('grommet/themes')
+import PropTypes from 'prop-types'
+import React from 'react'
+import { ConnectedRouter } from 'connected-react-router'
+import { Grommet } from 'grommet'
+import { Provider } from 'react-redux'
+import { dark } from 'grommet/themes'
 
-export default class Root extends React.Component {
+export class Root extends React.Component {
   render () {
     const { children, history, store } = this.props
 

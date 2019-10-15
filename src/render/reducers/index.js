@@ -1,11 +1,9 @@
-const config = require('./config.js')
-const forecast = require('./forecast.js')
-const weatherAlerts = require('./weather-alerts.js')
+import { config } from './config'
+import { forecast } from './forecast'
+import { weatherAlerts } from './weather-alerts'
 
-const rootReducer = {
+export default {
   config,
   forecast,
   weatherAlerts
 }
-
-module.exports = rootReducer

@@ -1,12 +1,11 @@
-const React = require('react')
-const PropTypes = require('prop-types')
-const qr = require('qr-image')
-const { shell } = require('electron')
+import React from 'react'
+import PropTypes from 'prop-types'
+import qr from 'qr-image'
+import { shell } from 'electron'
 
-const LoadingIndicator = require('./LoadingIndicator.js')
-require('./QRImage.css')
+import { LoadingIndicator } from './LoadingIndicator'
 
-class QRImage extends React.Component {
+export class QRImage extends React.Component {
   constructor (props, context) {
     super(props, context)
     this.handleClick = this.handleClick.bind(this)
@@ -54,5 +53,3 @@ QRImage.propTypes = {
   address: PropTypes.string,
   color: PropTypes.string
 }
-
-module.exports = QRImage

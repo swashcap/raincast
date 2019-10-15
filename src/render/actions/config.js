@@ -1,39 +1,29 @@
-const { ipcRenderer } = require('electron')
+import { ipcRenderer } from 'electron'
 
-const channels = require('../../shared/channels.js')
+import channels from '../../shared/channels'
 
-const CONFIG_ERROR = 'CONFIG_ERROR'
+export const CONFIG_ERROR = 'CONFIG_ERROR'
 
-const configError = error => ({
+export const configError = error => ({
   payload: error,
   type: CONFIG_ERROR
 })
 
-const CONFIG_REQUEST = 'CONFIG_REQUEST'
+export const CONFIG_REQUEST = 'CONFIG_REQUEST'
 
-const configRequest = () => ({
+export const configRequest = () => ({
   payload: null,
   type: CONFIG_REQUEST
 })
 
-const CONFIG_RESPONSE = 'CONFIG_RESPONSE'
+export const CONFIG_RESPONSE = 'CONFIG_RESPONSE'
 
-const configResponse = data => ({
+export const configResponse = data => ({
   payload: data,
   type: CONFIG_RESPONSE
 })
 
-const fetchConfig = () => (dispatch) => {
+export const fetchConfig = () => (dispatch) => {
   dispatch(configRequest())
   ipcRenderer.send(channels.serverConfigRequest)
-}
-
-module.exports = {
-  CONFIG_ERROR,
-  CONFIG_REQUEST,
-  CONFIG_RESPONSE,
-  configError,
-  configRequest,
-  configResponse,
-  fetchConfig
 }

@@ -1,14 +1,12 @@
-const thunk = require('redux-thunk').default
+import thunk from 'redux-thunk'
 
-const electronMiddleware = require('../middleware/electron.js')
-const createStore = require('../../shared/store/createStore')
-const reducers = require('../reducers/index.js')
+import { electronMiddleware } from '../middleware/electron'
+import { createStore } from '../../shared/store/createStore'
+import rootReducer from '../reducers/index'
 
-const configureStore = (history) => createStore(
+export const configureStore = (history) => createStore(
   history,
-  reducers,
-  '../reducers/index.js',
+  rootReducer,
+  () => require('../reducers/index').rootReducer,
   [thunk, electronMiddleware]
 )
-
-module.exports = configureStore

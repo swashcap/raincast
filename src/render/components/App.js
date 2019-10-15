@@ -1,34 +1,14 @@
-const React = require('react')
-const PropTypes = require('prop-types')
-const { NavLink, withRouter } = require('react-router-dom')
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-const QRImage = require('./QRImage.js')
-require('./App.css')
+import { Navigation } from './Navigation'
+import { QRImage } from './QRImage'
 
-const App = ({ children, config }) => (
+const _App = ({ children, config, dispatch, router }) => (
   <div className='App'>
     <header className='App-nav' role='banner'>
-      <nav role='navigation'>
-        <NavLink
-          activeClassName='active'
-          exact
-          to='/'
-        >
-        Home
-        </NavLink>
-        <NavLink
-          activeClassName='active'
-          to='/cameras'
-        >
-        Cameras
-        </NavLink>
-        <NavLink
-          activeClassName='active'
-          to='/admin'
-        >
-        Admin
-        </NavLink>
-      </nav>
+      <Navigation dispatch={dispatch} router={router} />
       <QRImage
         address={config.serverAddress}
         color={config.color}
@@ -40,7 +20,7 @@ const App = ({ children, config }) => (
   </div>
 )
 
-App.propTypes = {
+_App.propTypes = {
   children: PropTypes.node,
   config: PropTypes.shape({
     color: PropTypes.string,
@@ -48,4 +28,4 @@ App.propTypes = {
   }).isRequired
 }
 
-module.exports = withRouter(App)
+export const App = connect(({ router }) => ({ router }))(_App)

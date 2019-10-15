@@ -1,8 +1,6 @@
-const React = require('react') // eslint-disable-line no-unused-vars
+import React from 'react'
 
-require('./Cameras.css')
-
-const Cameras = () => {
+export const Cameras = () => {
   const now = Date.now()
   const items = [{
     alt: 'Wells Fargo',
@@ -37,5 +35,3 @@ const Cameras = () => {
     </div>
   )
 }
-
-module.exports = Cameras

@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { Button, Box } from 'grommet'
 
-import SharedRoot from '../../shared/containers/Root'
+import { Root as SharedRoot } from '../../shared/containers/Root'
 
 class Root extends Component {
   constructor (...args) {

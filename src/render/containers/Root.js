@@ -1,16 +1,15 @@
-const React = require('react')
-const PropTypes = require('prop-types')
-const { Route, Switch } = require('react-router-dom')
-const { connect } = require('react-redux')
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const Admin = require('../components/Admin.js')
-const App = require('../components/App.js')
-const Cameras = require('../components/Cameras.js')
-const Home = require('../components/Home.js')
-const SharedRoot = require('../../shared/containers/Root').default
-const { fetchConfig } = require('../actions/config.js')
+import { App } from '../components/App'
+import { Cameras } from '../components/Cameras'
+import { Home } from '../components/Home'
+import { Root as SharedRoot } from '../../shared/containers/Root'
+import { fetchConfig } from '../actions/config'
 
-class Root extends React.Component {
+class _Root extends React.Component {
   componentWillMount () {
     this.props.fetchConfig()
   }
@@ -24,7 +23,6 @@ class Root extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/cameras' component={Cameras} />
-            <Route path='/admin' component={Admin} />
           </Switch>
         </App>
       </SharedRoot>
@@ -32,16 +30,16 @@ class Root extends React.Component {
   }
 }
 
-Root.propTypes = {
+_Root.propTypes = {
   config: PropTypes.object.isRequired,
   fetchConfig: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   store: PropTypes.object.isRequired
 }
 
-module.exports = connect(
+export const Root = connect(
   ({ config }) => ({ config }),
   {
     fetchConfig
   }
-)(Root)
+)(_Root)

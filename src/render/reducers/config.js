@@ -1,10 +1,10 @@
-const {
+import {
   CONFIG_ERROR,
   CONFIG_REQUEST,
   CONFIG_RESPONSE
-} = require('../actions/config.js')
+} from '../actions/config'
 
-const reducer = (
+export const config = (
   state = {
     // TODO: Don't hard-code color
     color: '#ff0000',
@@ -33,5 +33,3 @@ const reducer = (
       return state
   }
 }
-
-module.exports = reducer

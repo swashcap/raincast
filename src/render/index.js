@@ -1,9 +1,9 @@
-const React = require('react')
-const { createHashHistory } = require('history')
-const { render } = require('react-dom')
+import React from 'react'
+import { createHashHistory } from 'history'
+import { render } from 'react-dom'
 
-const Root = require('./containers/Root.js')
-const configureStore = require('./store/configureStore.js')
+import { Root } from './containers/Root'
+import { configureStore } from './store/configureStore'
 
 const history = createHashHistory()
 const store = configureStore(history)

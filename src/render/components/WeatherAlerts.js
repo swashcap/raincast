@@ -1,12 +1,10 @@
-const React = require('react') // eslint-disable-line no-unused-vars
-const PropTypes = require('prop-types')
-const moment = require('moment')
+import React from 'react'
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
-const LoadingIndicator = require('./LoadingIndicator')
+import { LoadingIndicator } from './LoadingIndicator'
 
-require('./WeatherAlerts.css')
-
-const WeatherAlerts = ({ data, error, isLoading }) => {
+export const WeatherAlerts = ({ data, error, isLoading }) => {
   if (isLoading || !data.length) {
     return (
       <aside className='WeatherAlerts WeatherAlerts-loading'>
@@ -75,5 +73,3 @@ WeatherAlerts.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   lastFetched: PropTypes.number
 }
-
-module.exports = WeatherAlerts

@@ -1,10 +1,10 @@
-const {
+import {
   WEATHER_ALERTS_ERROR,
   WEATHER_ALERTS_REQUEST,
   WEATHER_ALERTS_RESPONSE
-} = require('../actions/weather-alerts.js')
+} from '../actions/weather-alerts'
 
-const reducer = (
+export const weatherAlerts = (
   state = {
     data: [],
     error: null,
@@ -31,5 +31,3 @@ const reducer = (
       return state
   }
 }
-
-module.exports = reducer

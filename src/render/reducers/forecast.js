@@ -1,10 +1,10 @@
-const {
+import {
   FORECAST_ERROR,
   FORECAST_REQUEST,
   FORECAST_RESPONSE
-} = require('../actions/forecast.js')
+} from '../actions/forecast'
 
-const reducer = (
+export const forecast = (
   state = {
     data: {},
     error: null,
@@ -33,5 +33,3 @@ const reducer = (
       return state
   }
 }
-
-module.exports = reducer

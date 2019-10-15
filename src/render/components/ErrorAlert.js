@@ -1,8 +1,6 @@
-const React = require('react') // eslint-disable-line no-unused-vars
+import React from 'react'
 
-require('./ErrorAlert.css')
-
-const ErrorAlert = ({ onClose, message }) => (
+export const ErrorAlert = ({ onClose, message }) => (
   <div className='ErrorAlert' role='alert'>
     {message}
     <button
@@ -14,5 +12,3 @@ const ErrorAlert = ({ onClose, message }) => (
     </button>
   </div>
 )
-
-module.exports = ErrorAlert
