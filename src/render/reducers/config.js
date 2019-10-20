@@ -6,11 +6,11 @@ import {
 
 export const config = (
   state = {
-    // TODO: Don't hard-code color
-    color: '#ff0000',
     error: null,
     isLoading: false,
-    serverAddress: null
+    orientation: 'horizontal',
+    serverAddress: null,
+    theme: 'dark'
   },
   { payload, type }
 ) => {

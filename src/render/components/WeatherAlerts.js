@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
-import { LoadingIndicator } from './LoadingIndicator'
+import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
 
 export const WeatherAlerts = ({ data, error, isLoading }) => {
   if (isLoading || !data.length) {

@@ -1,23 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import qr from 'qr-image'
 import { shell } from 'electron'
-import { ThemeContext } from 'grommet'
 
-import { LoadingIndicator } from './LoadingIndicator'
+import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
+import { QRAddressImage } from '../../shared/components/QRAddressImage'
 
 export const QRImage = ({ address }) => {
-  const theme = useContext(ThemeContext)
-
   if (!address) {
-    return (
-      <div className='QRImage is-loading'>
-        <LoadingIndicator />
-      </div>
-    )
+    return <LoadingIndicator />
   }
-
-  const { path, size } = qr.svgObject(address)
 
   return (
     <a
@@ -33,9 +24,7 @@ export const QRImage = ({ address }) => {
         display: 'block'
       }}
     >
-      <svg height={size} width={size} viewBox={`0 0 ${size} ${size}`}>
-        <path fill={theme.global.colors['accent-4']} d={path} />
-      </svg>
+      <QRAddressImage address={address} />
     </a>
   )
 }

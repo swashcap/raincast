@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { ErrorAlert } from './ErrorAlert'
+import { Alert } from '../../shared/components/Alert'
 import { WeatherAlerts } from './WeatherAlerts'
 import { WeatherDays } from './WeatherDays'
 import { fetchForecast } from '../actions/forecast'
@@ -30,10 +30,11 @@ class _Home extends React.Component {
       return (
         <div className='Home-errors'>
           {errors.map(({ date, message }, index) => (
-            <ErrorAlert
+            <Alert
               key={date}
-              onClose={() => this.removeError(index)}
               message={message}
+              onClose={() => this.removeError(index)}
+              status='error'
             />
           ))}
         </div>

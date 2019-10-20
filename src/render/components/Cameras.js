@@ -1,7 +1,11 @@
 import React from 'react'
+import { Grid } from 'grommet'
+
+import { ImageCard } from '../../shared/components/ImageCard'
 
 export const Cameras = () => {
-  const now = Date.now()
+  const now = new Date()
+
   const items = [{
     alt: 'Wells Fargo',
     link: 'http://www.kgw.com/weather/live-cameras/portland-skyline-wells-fargo',
@@ -25,13 +29,24 @@ export const Cameras = () => {
   }]
 
   return (
-    <div className='Cameras'>
+    <Grid
+      fill
+      gap='small'
+      columns={{
+        count: 2,
+        size: 'auto'
+      }}
+    >
       {items.map(({ alt, link, name, src }) => (
-        <a href={link} key={link}>
-          <img alt={alt} src={src} />
-          <p>{name}</p>
-        </a>
+        <ImageCard
+          imageAlt={alt}
+          imageSaveDate={now}
+          imageSrc={src}
+          key={link}
+          link={link}
+          name={name}
+        />
       ))}
-    </div>
+    </Grid>
   )
 }

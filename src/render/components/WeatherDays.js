@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
-import { LoadingIndicator } from './LoadingIndicator'
+import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
 import { WeatherIcon } from './WeatherIcon'
 import { formatTemperature } from '../lib/formatTemperature'
 
