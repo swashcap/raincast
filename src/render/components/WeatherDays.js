@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 
 import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
-import { WeatherIcon } from './WeatherIcon'
+import { getIcon } from '../../shared/components/WeatherIcon/WeatherIcon'
 import { formatTemperature } from '../lib/formatTemperature'
 
 export const WeatherDays = ({
@@ -73,7 +73,7 @@ export const WeatherDays = ({
               <h1 className='WeatherDays-item-date'>
                 {moment(time * 1000).format('YYYY-MM-DD')}
               </h1>
-              <WeatherIcon icon={icon} />
+              {getIcon(icon)}
               <p className='WeatherDays-item-summary'>{summary}</p>
               <div className='WeatherDays-item-high'>
                 <h2>{formatTemperature(temperatureHigh)}</h2>
