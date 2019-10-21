@@ -3,7 +3,8 @@ import React from 'react'
 import { ConnectedRouter } from 'connected-react-router'
 import { Grommet } from 'grommet'
 import { Provider } from 'react-redux'
-import { dark } from 'grommet/themes'
+
+import { theme } from '../theme'
 
 export class Root extends React.Component {
   render () {
@@ -12,7 +13,7 @@ export class Root extends React.Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <Grommet full theme={dark}>
+          <Grommet full theme={theme}>
             {children}
           </Grommet>
         </ConnectedRouter>
