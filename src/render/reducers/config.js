@@ -9,6 +9,15 @@ export const config = (
     error: null,
     isLoading: false,
     orientation: 'horizontal',
+    routes: [{
+      href: '/',
+      icon: 'Home',
+      label: 'Home'
+    }, {
+      href: '/cameras',
+      icon: 'Camera',
+      label: 'Cameras'
+    }],
     serverAddress: null,
     theme: 'dark'
   },
