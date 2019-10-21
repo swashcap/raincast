@@ -1,20 +1,9 @@
 import React from 'react'
 import { Box, Heading, Image, Text } from 'grommet'
 
-import { useCurrentDate } from '../hooks/useCurrentDate'
 import { ExternalLink } from './ExternalLink'
-
-const getDateDiff = (a, b) => {
-  const diff = a.getTime() - b.getTime()
-
-  if (diff > 60 * 60 * 1000) {
-    return <>{Math.round(diff / 60 / 60 / 1000)}<abbr title='hours'>h</abbr></>
-  } else if (diff > 60 * 1000) {
-    return <>{Math.round(diff / 60 / 1000)}<abbr title='minutes'>m</abbr></>
-  }
-
-  return <>{Math.round(diff / 1000)}<abbr title='seconds'>s</abbr></>
-}
+import { TimeFromNow } from './TimeFromNow'
+import { useCurrentDate } from '../hooks/useCurrentDate'
 
 export const ImageCard = ({
   imageAlt,
@@ -48,7 +37,11 @@ export const ImageCard = ({
       <Box direction='row' gap='small'>
         {!!link && <ExternalLink href={link} />}
         <Text as='time' color='light-6' dateTime={imageSaveDate.toISOString()} size='small'>
-          Updated {getDateDiff(currentDate, imageSaveDate)} ago
+          Updated
+          {' '}
+          <TimeFromNow from={imageSaveDate} now={currentDate} />
+          {' '}
+          ago
         </Text>
       </Box>
     </Box>
