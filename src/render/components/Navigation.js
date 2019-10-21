@@ -3,7 +3,8 @@ import { Box, Button } from 'grommet'
 import { push } from 'connected-react-router'
 import { Camera, Home } from 'grommet-icons'
 
-import { QRImage } from './QRImage'
+import { QRImageLink } from './QRImageLink'
+import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
 
 export const Navigation = ({ config, dispatch, router }) => (
   <Box align='center' as='nav' direction='row' justify='between'>
@@ -31,8 +32,8 @@ export const Navigation = ({ config, dispatch, router }) => (
         primary={router.location.pathname === '/cameras'}
       />
     </Box>
-    <Box margin='small'>
-      <QRImage address={config.serverAddress} />
+    <Box margin='xsmall'>
+      {config.serverAddress ? <QRImageLink address={config.serverAddress} /> : <LoadingIndicator />}
     </Box>
   </Box>
 )
