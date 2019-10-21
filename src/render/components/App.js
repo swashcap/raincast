@@ -1,18 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Box } from 'grommet'
 import { connect } from 'react-redux'
 
 import { Navigation } from './Navigation'
 
 const _App = ({ children, config, dispatch, router }) => (
-  <div className='App'>
-    <header className='App-nav' role='banner'>
-      <Navigation config={config} dispatch={dispatch} router={router} />
-    </header>
-    <main className='App-content'>
+  <Box fill justify='stretch'>
+    <main>
       {children}
     </main>
-  </div>
+    <Navigation
+      config={config}
+      dispatch={dispatch}
+      router={router}
+      style={{
+        bottom: 0,
+        left: 0,
+        position: 'fixed',
+        width: '100%'
+      }}
+    />
+  </Box>
 )
 
 _App.propTypes = {
