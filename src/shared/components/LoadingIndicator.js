@@ -22,11 +22,11 @@ const Rotate = styled.svg`
  *
  * {@link https://codepen.io/aurer/pen/jEGbA?editors=1100}
  */
-export const LoadingIndicator = (props) => {
+export const LoadingIndicator = ({ showText = false, ...rest }) => {
   const theme = useTheme()
 
   return (
-    <Box a11yTitle='Content loading' align='center' gap='small' margin='medium' {...props}>
+    <Box a11yTitle='Content loading' align='center' gap='small' margin='medium' {...rest}>
       <Rotate
         height='40px'
         version='1.1'
@@ -38,7 +38,7 @@ export const LoadingIndicator = (props) => {
       >
         <path fill={theme.global.colors.brand} d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' />
       </Rotate>
-      <Text color='light-6' size='small'>Loading…</Text>
+      {!!showText && <Text color='light-6' size='small'>Loading…</Text>}
     </Box>
   )
 }
