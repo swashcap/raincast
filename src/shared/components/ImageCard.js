@@ -45,11 +45,11 @@ export const ImageCard = ({
       >
         {name}
       </Heading>
-      <Box direction='row' justify='between'>
-        <Text as='time' dateTime={imageSaveDate.toISOString()}>
+      <Box direction='row' gap='small'>
+        {!!link && <ExternalLink href={link} />}
+        <Text as='time' color='light-6' dateTime={imageSaveDate.toISOString()} size='small'>
           Updated {getDateDiff(currentDate, imageSaveDate)} ago
         </Text>
-        {!!link && <ExternalLink href={link} />}
       </Box>
     </Box>
   )
