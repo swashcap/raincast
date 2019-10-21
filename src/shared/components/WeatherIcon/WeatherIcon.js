@@ -5,7 +5,6 @@ import { WeatherIconClear } from './WeatherIconClear'
 import { WeatherIconCloudy } from './WeatherIconCloudy'
 import { WeatherIconFog } from './WeatherIconFog'
 import { WeatherIconNightTimeClear } from './WeatherIconNightTimeClear'
-import { WeatherIconNightTimeCloudy } from './WeatherIconNightTimeCloudy'
 import { WeatherIconNightTimePartlyCloudy } from './WeatherIconNightTimePartlyCloudy'
 import { WeatherIconPartlyCloudy } from './WeatherIconPartlyCloudy'
 import { WeatherIconRain } from './WeatherIconRain'
@@ -23,8 +22,16 @@ import { WeatherIconUnknown } from './WeatherIconUnknown'
  * {@link https://github.com/manifestinteractive/weather-underground-icons}
  */
 const BaseIcon = style.div`
+  width: 100%;
+
   > svg > * {
-    fill: ${({ color, theme: { global: { colors } } }) => color || colors.brand}
+    fill: ${({ theme: { global: { colors } } }) => colors['light-1']}
+  }
+  > svg .accent-1 {
+    fill: ${({ theme: { global: { colors } } }) => colors['accent-4']}
+  }
+  > svg .accent-2 {
+    fill: ${({ theme: { global: { colors } } }) => colors['accent-3']}
   }
 `
 
@@ -73,12 +80,12 @@ export const Fog = ({ night, ...rest }) => (
   </BaseIcon>
 )
 
-export const Cloudy = ({ night = false, ...rest }) => (
+export const Cloudy = ({ night, ...rest }) => (
   <BaseIcon
-    title={night ? 'Night cloudy' : 'Cloudy'}
+    title='Cloudy'
     {...rest}
   >
-    {night ? <WeatherIconNightTimeCloudy /> : <WeatherIconCloudy />}
+    <WeatherIconCloudy />
   </BaseIcon>
 )
 
@@ -108,25 +115,25 @@ export const PartlyCloudy = ({ night = false, ...rest }) => (
 export const getIcon = (icon) => {
   switch (icon) {
     case 'clear-day':
-      return Clear
+      return <Clear />
     case 'clear-night':
-      return (props) => <Clear night {...props} />
+      return <Clear night />
     case 'partly-cloudy-day':
-      return PartlyCloudy
+      return <PartlyCloudy />
     case 'partly-cloudy-night':
-      return (props) => <PartlyCloudy night {...props} />
+      return <PartlyCloudy night />
     case 'cloudy':
-      return Cloudy
+      return <Cloudy />
     case 'fog':
     case 'wind':
-      return Fog
+      return <Fog />
     case 'rain':
-      return Rain
+      return <Rain />
     case 'sleet':
-      return Sleet
+      return <Sleet />
     case 'snow':
-      return Snow
+      return <Snow />
     default:
-      return Unknown
+      return <Unknown />
   }
 }
