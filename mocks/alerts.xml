@@ -16,26 +16,209 @@ xmlns = 'http://www.w3.org/2005/Atom'
 xmlns:cap = 'urn:oasis:names:tc:emergency:cap:1.1'
 xmlns:ha = 'http://www.alerting.net/namespace/index_1.0'
 >
-<!-- TZN = <> -->
-<!-- TZO = <> -->
-<!-- http-date = Mon, 10 Oct 2019 02:52:43 GMT -->
-<id>https://alerts.weather.gov/cap/wwaatmget.php?x=ORZ006&amp;y=0</id>
+<!-- http-date = Tue, 29 Oct 2019 01:33:00 GMT -->
+<id>https://alerts.weather.gov/cap/or.php?x=0</id>
+<logo>http://alerts.weather.gov/images/xml_logo.gif</logo>
 <generator>NWS CAP Server</generator>
-<updated>2019-10-21T02:52:43+00:00</updated>
+<updated>2019-10-28T18:33:00-07:00</updated>
 <author>
 <name>w-nws.webmaster@noaa.gov</name>
 </author>
-<title>Current Watches, Warnings and Advisories for Greater Portland Metro Area (ORZ006) Oregon Issued by the National Weather Service</title>
-<link href="https://alerts.weather.gov/cap/wwaatmget.php?x=ORZ006&amp;y=0"/>
-
-  	<entry>
-  	<id>https://alerts.weather.gov/cap/wwaatmget.php?x=ORZ006&amp;y=0</id>
-  	<updated>2019-10-21T02:52:43+00:00</updated>
-  	<author>
-  	<name>w-nws.webmaster@noaa.gov</name>
-  	</author>
-  	<title>There are no active watches, warnings or advisories</title>
-  	<link href="https://alerts.weather.gov/cap/wwaatmget.php?x=ORZ006&amp;y=0"/>
-  	</entry>
-  	</feed>
-  	
+<title>Current Watches, Warnings and Advisories for Oregon Issued by the National Weather Service</title>
+<link href="https://alerts.weather.gov/cap/or.php?x=0"/>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D171CAB34.SpecialWeatherStatement.125D171E4C00OR.PDTSPSPDT.55a3d92e4624b2143298f35d0b1c874b</id>
+<updated>2019-10-28T18:33:00-07:00</updated>
+<published>2019-10-28T18:33:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Special Weather Statement issued October 28 at 6:33PM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D171CAB34.SpecialWeatherStatement.125D171E4C00OR.PDTSPSPDT.55a3d92e4624b2143298f35d0b1c874b"/>
+<summary>...BLUSTERY NORTHEAST WINDS AND FRIGID WIND CHILLS TONIGHT AND EARLY TUESDAY... A powerful cold front will surge southward later tonight, bringing gusty winds and much colder and drier air to the region. Most areas will observe north to northeast winds of 10 to 20 mph, but winds sustained at 15 to 25 mph gusting to 40 mph can be</summary>
+<cap:event>Special Weather Statement</cap:event>
+<cap:effective>2019-10-29T03:00:00-07:00</cap:effective>
+<cap:expires>2019-10-29T05:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Minor</cap:severity>
+<cap:certainty>Observed</cap:certainty>
+<cap:areaDesc>Central Oregon; East Columbia River Gorge; East Slopes of the Oregon Cascades; Foothills of the Northern Blue Mountains of Oregon; Foothills of the Southern Blue Mountains of Oregon; Grande Ronde Valley; John Day Basin; Lower Columbia Basin of Oregon; North Central Oregon; Northern Blue Mountains of Oregon; Ochoco-John Day Highlands; Southern Blue Mountains of Oregon; Wallowa County</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041013 041017 041021 041023 041031 041049 041055 041059 041061 041063 041065 041069</value>
+<valueName>UGC</valueName>
+<value>ORZ041 ORZ044 ORZ049 ORZ050 ORZ502 ORZ503 ORZ505 ORZ506 ORZ507 ORZ508 ORZ509 ORZ510 ORZ511</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value></value>
+</cap:parameter>
+</entry>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FreezeWarning.125D171EE840OR.MFRNPWMFR.1c664e25dbbe8309bfb4cdc2bf6bc4c3</id>
+<updated>2019-10-28T14:51:00-07:00</updated>
+<published>2019-10-28T14:51:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Freeze Warning issued October 28 at 2:51PM PDT until October 29 at 9:00AM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FreezeWarning.125D171EE840OR.MFRNPWMFR.1c664e25dbbe8309bfb4cdc2bf6bc4c3"/>
+<summary>...FREEZE WARNING IN EFFECT FROM 3 AM TO 9 AM PDT TUESDAY... * WHAT...Sub-freezing temperatures as low as 29 expected. * WHERE...Central Douglas County County. * WHEN...From 3 AM to 9 AM PDT Tuesday. * IMPACTS...Frost and freeze conditions will kill crops, other sensitive vegetation and possibly damage unprotected outdoor</summary>
+<cap:event>Freeze Warning</cap:event>
+<cap:effective>2019-10-29T03:00:00-07:00</cap:effective>
+<cap:expires>2019-10-29T09:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Moderate</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:areaDesc>Central Douglas County</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041011 041019</value>
+<valueName>UGC</valueName>
+<value>ORZ023</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value>/O.UPG.KMFR.FZ.A.0010.191029T0900Z-191029T1500Z/
+/O.NEW.KMFR.FZ.W.0020.191029T1000Z-191029T1600Z/</value>
+</cap:parameter>
+</entry>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FrostAdvisory.125D171EE840OR.MFRNPWMFR.a8c3102cc8c07cec3afc98692ce75fd5</id>
+<updated>2019-10-28T14:51:00-07:00</updated>
+<published>2019-10-28T14:51:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Frost Advisory issued October 28 at 2:51PM PDT until October 29 at 9:00AM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FrostAdvisory.125D171EE840OR.MFRNPWMFR.a8c3102cc8c07cec3afc98692ce75fd5"/>
+<summary>...FROST ADVISORY IN EFFECT FROM 3 AM TO 9 AM PDT TUESDAY... ...FREEZE WATCH IN EFFECT FROM LATE TUESDAY NIGHT THROUGH WEDNESDAY MORNING... * WHAT...For the Frost Advisory, temperatures as low as 34 will result in frost formation. For the Freeze Watch, sub-freezing temperatures as low as 30 possible.</summary>
+<cap:event>Frost Advisory</cap:event>
+<cap:effective>2019-10-29T03:00:00-07:00</cap:effective>
+<cap:expires>2019-10-29T09:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Minor</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:areaDesc>South Central Oregon Coast</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041011</value>
+<valueName>UGC</valueName>
+<value>ORZ021</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value>/O.NEW.KMFR.FR.Y.0026.191029T1000Z-191029T1600Z/
+/O.NEW.KMFR.FZ.A.0011.191030T1000Z-191030T1600Z/</value>
+</cap:parameter>
+</entry>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FreezeWatch.125D172E2A80OR.MFRNPWMFR.1de54bae76a5f5a728fdba84cc2f2ead</id>
+<updated>2019-10-28T14:51:00-07:00</updated>
+<published>2019-10-28T14:51:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Freeze Watch issued October 28 at 2:51PM PDT until October 30 at 9:00AM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107D3C.FreezeWatch.125D172E2A80OR.MFRNPWMFR.1de54bae76a5f5a728fdba84cc2f2ead"/>
+<summary>...FROST ADVISORY IN EFFECT FROM 3 AM TO 9 AM PDT TUESDAY... ...FREEZE WATCH IN EFFECT FROM LATE TUESDAY NIGHT THROUGH WEDNESDAY MORNING... * WHAT...For the Frost Advisory, temperatures as low as 34 will result in frost formation. For the Freeze Watch, sub-freezing temperatures as low as 30 possible.</summary>
+<cap:event>Freeze Watch</cap:event>
+<cap:effective>2019-10-30T03:00:00-07:00</cap:effective>
+<cap:expires>2019-10-30T09:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Future</cap:urgency>
+<cap:severity>Moderate</cap:severity>
+<cap:certainty>Possible</cap:certainty>
+<cap:areaDesc>South Central Oregon Coast</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041011</value>
+<valueName>UGC</valueName>
+<value>ORZ021</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value>/O.NEW.KMFR.FR.Y.0026.191029T1000Z-191029T1600Z/
+/O.NEW.KMFR.FZ.A.0011.191030T1000Z-191030T1600Z/</value>
+</cap:parameter>
+</entry>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107A80.RedFlagWarning.125D172F3BF0OR.MFRRFWMFR.492f025860104b88d8a9304c558ae356</id>
+<updated>2019-10-28T14:44:00-07:00</updated>
+<published>2019-10-28T14:44:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Red Flag Warning issued October 28 at 2:44PM PDT until October 30 at 4:00PM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17107A80.RedFlagWarning.125D172F3BF0OR.MFRRFWMFR.492f025860104b88d8a9304c558ae356"/>
+<summary>...Gusty Northeast Winds and Low RH expected Tuesday into Wednesday... .A dry cold front moving through tonight into Tuesday morning will cause north winds to increase across the ridges tonight. Tuesday morning through Wednesday morning winds will become northeast and then east, mixing down to lower elevations, at times. Low relative humidities are expected Tuesday through Wednesday at all</summary>
+<cap:event>Red Flag Warning</cap:event>
+<cap:effective>2019-10-29T08:00:00-07:00</cap:effective>
+<cap:expires>2019-10-30T16:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Severe</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:areaDesc>Southern Oregon Coast</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041015</value>
+<valueName>UGC</valueName>
+<value>ORZ618</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value>/O.NEW.KMFR.FW.W.0013.191029T1500Z-191030T2300Z/</value>
+</cap:parameter>
+</entry>
+<entry>
+<id>https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17101F18.WindAdvisory.125D172C07A0OR.PQRNPWPQR.ac52fa0cea541331c26fe1ff029a94bb</id>
+<updated>2019-10-28T12:10:00-07:00</updated>
+<published>2019-10-28T12:10:00-07:00</published>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Wind Advisory issued October 28 at 12:10PM PDT until October 29 at 7:00PM PDT by NWS</title>
+<link href="https://alerts.weather.gov/cap/wwacapget.php?x=OR125D17101F18.WindAdvisory.125D172C07A0OR.PQRNPWPQR.ac52fa0cea541331c26fe1ff029a94bb"/>
+<summary>...WIND ADVISORY REMAINS IN EFFECT FROM 10 PM THIS EVENING TO 7 PM PDT TUESDAY... * WHAT...East wind 15 to 25 mph with gusts of 40 to 50 mph. * WHERE...In Washington, Greater Vancouver Area. In Oregon, Greater Portland Metro Area. * WHEN...From 10 PM this evening to 7 PM PDT Tuesday. Peak wind</summary>
+<cap:event>Wind Advisory</cap:event>
+<cap:effective>2019-10-28T22:00:00-07:00</cap:effective>
+<cap:expires>2019-10-29T19:00:00-07:00</cap:expires>
+<cap:status>Actual</cap:status>
+<cap:msgType>Alert</cap:msgType>
+<cap:category>Met</cap:category>
+<cap:urgency>Expected</cap:urgency>
+<cap:severity>Minor</cap:severity>
+<cap:certainty>Likely</cap:certainty>
+<cap:areaDesc>Greater Portland Metro Area</cap:areaDesc>
+<cap:polygon></cap:polygon>
+<cap:geocode>
+<valueName>FIPS6</valueName>
+<value>041005 041051 041067</value>
+<valueName>UGC</valueName>
+<value>ORZ006</value>
+</cap:geocode>
+<cap:parameter>
+<valueName>VTEC</valueName>
+<value>/O.CON.KPQR.WI.Y.0006.191029T0500Z-191030T0200Z/</value>
+</cap:parameter>
+</entry>
+</feed>
