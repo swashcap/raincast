@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { Alert } from '../../shared/components/Alert'
-import { WeatherAlerts } from './WeatherAlerts'
 import { WeatherDays } from './WeatherDays'
 import { fetchForecast } from '../actions/forecast'
 import { fetchWeatherAlerts } from '../actions/weather-alerts'
+import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
 
 class _Home extends React.Component {
   componentWillMount () {
@@ -49,7 +49,7 @@ class _Home extends React.Component {
       <div className='Home'>
         {this.renderErrors()}
         <WeatherDays {...forecast} />
-        <WeatherAlerts {...weatherAlerts} />
+        <WeatherAlertList {...weatherAlerts} />
       </div>
     )
   }
