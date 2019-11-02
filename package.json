@@ -8,7 +8,6 @@
     "clean": "rimraf dist",
     "electron": "wait-on http://localhost:8080 && electron .",
     "lint": "standard '**/*.js'",
-    "precommit": "npm run lint && npm test",
     "start": "run-p wds electron",
     "storybook": "start-storybook",
     "test": "NODE_ENV=test ava",
