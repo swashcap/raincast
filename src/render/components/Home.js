@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { Alert } from '../../shared/components/Alert'
-import { WeatherDays } from './WeatherDays'
+import { Forecast } from '../../shared/components/Forecast'
 import { fetchForecast } from '../actions/forecast'
 import { fetchWeatherAlerts } from '../actions/weather-alerts'
 import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
@@ -48,7 +48,7 @@ class _Home extends React.Component {
     return (
       <div className='Home'>
         {this.renderErrors()}
-        <WeatherDays {...forecast} />
+        <Forecast {...forecast} />
         <WeatherAlertList {...weatherAlerts} />
       </div>
     )

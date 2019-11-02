@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Box } from 'grommet'
 
-import { ForecastCurrent } from '../../shared/components/ForecastCurrent'
-import { ForecastDay } from '../../shared/components/ForecastDay'
-import { ForecastSummary } from '../../shared/components/ForecastSummary'
-import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
+import { ForecastCurrent } from './ForecastCurrent'
+import { ForecastDay } from './ForecastDay'
+import { ForecastSummary } from './ForecastSummary'
+import { LoadingIndicator } from './LoadingIndicator'
 
-export const WeatherDays = ({
+export const Forecast = ({
   data: weatherData,
   error,
   isLoading
@@ -62,7 +62,7 @@ export const WeatherDays = ({
   )
 }
 
-WeatherDays.propTypes = {
+Forecast.propTypes = {
   data: PropTypes.object.isRequired,
   error: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
