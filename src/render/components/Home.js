@@ -8,7 +8,7 @@ import { fetchForecast } from '../actions/forecast'
 import { fetchWeatherAlerts } from '../actions/weather-alerts'
 import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
 
-class _Home extends React.Component {
+export class _Home extends React.Component {
   componentWillMount () {
     this.props.fetchForecast()
     this.props.fetchWeatherAlerts()
