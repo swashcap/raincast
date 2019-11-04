@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Box } from 'grommet'
 
 import { Alert } from '../../shared/components/Alert'
 import { Forecast } from '../../shared/components/Forecast'
@@ -46,11 +47,13 @@ export class _Home extends React.Component {
     const { forecast, weatherAlerts } = this.props
 
     return (
-      <div className='Home'>
+      <>
         {this.renderErrors()}
-        <Forecast {...forecast} />
-        <WeatherAlertList {...weatherAlerts} />
-      </div>
+        <Box direction='row' gap='medium' pad='medium'>
+          <Forecast {...forecast} />
+          <WeatherAlertList {...weatherAlerts} />
+        </Box>
+      </>
     )
   }
 }
