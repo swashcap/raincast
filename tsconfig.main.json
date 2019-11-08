@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "outDir": "dist",
+    "target": "ES2018"
+  },
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/main/**/*"
+  ]
+}

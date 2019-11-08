@@ -7,7 +7,6 @@ const webpack = require('webpack')
 const pkg = require('./package.json')
 
 const isEnvProduction = process.env.NODE_ENV === 'production'
-
 const baseConfig = {
   devServer: {
     hot: true
@@ -33,7 +32,7 @@ const baseConfig = {
           },
           {
             exclude: /node_modules/,
-            test: /\.js$/,
+            test: /\.tsx?$/,
             use: [
               {
                 loader: 'babel-loader',
@@ -44,7 +43,7 @@ const baseConfig = {
             ]
           },
           {
-            exclude: [/\.js$/, /\.html$/],
+            exclude: [/\.(js|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             loader: 'file-loader'
           }
         ]
@@ -63,14 +62,17 @@ const baseConfig = {
          `http://${ip.address()}:${process.env.PORT || 3000}`
       )
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.mjs', '.js', '.json']
+  }
 }
 
 module.exports = [
   {
     ...baseConfig,
     entry: {
-      web: './src/web/index.js'
+      web: './src/web/index.tsx'
     },
     plugins: [
       ...baseConfig.plugins,
@@ -85,12 +87,12 @@ module.exports = [
   {
     ...baseConfig,
     entry: {
-      electron: './src/render/index.js'
+      electronRender: './src/render/index.tsx'
     },
     plugins: [
       ...baseConfig.plugins,
       new HtmlWebpackPlugin({
-        chunks: ['electron'],
+        chunks: ['electronRender'],
         template: path.join(__dirname, 'src/render/index.html'),
         title: pkg.name
       })
