@@ -8,11 +8,11 @@ import { Alert, statuses } from './Alert'
 export default {
   component: Alert,
   decorators: [withKnobs],
-  title: 'Components|Alert'
+  title: 'Components|Alert',
 }
 
 export const Default = () => (
-  <Box pad='small'>
+  <Box pad="small">
     <Alert
       message={text('message', 'Something eventful happened!')}
       onClose={action('clicked')}
@@ -24,11 +24,11 @@ export const Default = () => (
 export const StatusVariants = () => (
   <>
     {Object.keys(statuses).map(status => (
-      <Box key={status} pad='small'>
+      <Box key={status} pad="small">
         <Alert
-          heading='An error occurred'
+          heading="An error occurred"
           key={status}
-          message='Network unreachable'
+          message="Network unreachable"
           onClose={action('clicked')}
           status={status}
         />

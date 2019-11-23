@@ -4,7 +4,7 @@ import { deepMerge } from 'grommet/utils'
 export const theme = deepMerge({}, dark, {
   global: {
     font: {
-      family: '-apple-system, BlinkMacSystemFont, sans-serif'
-    }
-  }
+      family: '-apple-system, BlinkMacSystemFont, sans-serif',
+    },
+  },
 })

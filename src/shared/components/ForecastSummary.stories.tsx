@@ -4,7 +4,7 @@ import { ForecastSummary } from './ForecastSummary'
 
 export default {
   component: ForecastSummary,
-  title: 'Components|ForecastSummary'
+  title: 'Components|ForecastSummary',
 }
 
 export const Default = () => (

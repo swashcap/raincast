@@ -7,14 +7,14 @@ import { Box, Heading, Text, Paragraph, BoxProps } from 'grommet'
 import { ExternalLink } from './ExternalLink'
 import { WeatherAlert as WeatherAlertType } from '../../main/services/weather-alerts'
 
-export const WeatherAlertTimes = style.dl`
+export const WeatherAlertTimes = (style.dl`
   display: flex;
   flex-direction: row;
   margin: 0;
-` as unknown as React.FC<React.HTMLAttributes<HTMLDListElement>> & {
-    Label: React.FC<React.HTMLAttributes<HTMLDataListElement>>;
-    Time: React.FC<React.HTMLAttributes<HTMLDataListElement>>;
-  }
+` as unknown) as React.FC<React.HTMLAttributes<HTMLDListElement>> & {
+  Label: React.FC<React.HTMLAttributes<HTMLDataListElement>>
+  Time: React.FC<React.HTMLAttributes<HTMLDataListElement>>
+}
 
 WeatherAlertTimes.Label = style.dt`
   :after {
@@ -36,51 +36,52 @@ export const WeatherAlert: React.FC<BoxProps & WeatherAlertType> = ({
   'cap:effective': [effective],
   'cap:event': [name],
   'cap:expires': [expires],
-  link: [{ $: { href } }],
+  link: [
+    {
+      $: { href },
+    },
+  ],
   ...rest
 }) => {
   const effectiveTime = moment(effective)
   const expiresTime = moment(expires)
 
   return (
-    <Box as='article' direction='row' gap='medium' {...rest}>
+    <Box as="article" direction="row" gap="medium" {...rest}>
       <Box
         margin={{
-          top: 'small'
+          top: 'small',
         }}
       >
-        <Alert
-          color='accent-4'
-          size='medium'
-        />
+        <Alert color="accent-4" size="medium" />
       </Box>
       <Box>
         <Heading
           margin={{
             bottom: 'small',
-            top: 'none'
+            top: 'none',
           }}
-          size='small'
+          size="small"
         >
           {name}
         </Heading>
         <WeatherAlertTimes>
           <WeatherAlertTimes.Label>Effective</WeatherAlertTimes.Label>
           <WeatherAlertTimes.Time>
-            <Text as='time' dateTime={effectiveTime.format()} weight='bold'>
+            <Text as="time" dateTime={effectiveTime.format()} weight="bold">
               {effectiveTime.fromNow()}
             </Text>
           </WeatherAlertTimes.Time>
           <WeatherAlertTimes.Label>Expires</WeatherAlertTimes.Label>
           <WeatherAlertTimes.Time>
-            <Text as='time' dateTime={expiresTime.format()} weight='bold'>
+            <Text as="time" dateTime={expiresTime.format()} weight="bold">
               {expiresTime.fromNow()}
             </Text>
           </WeatherAlertTimes.Time>
         </WeatherAlertTimes>
         <Paragraph
           margin={{
-            vertical: 'small'
+            vertical: 'small',
           }}
         >
           {areaDesc}

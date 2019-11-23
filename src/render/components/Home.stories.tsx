@@ -6,7 +6,7 @@ import weatherAlertListStories from '../../shared/components/WeatherAlertList.st
 
 export default {
   component: Home,
-  title: 'Pages|Home'
+  title: 'Pages|Home',
 }
 
 export const Default = () => (
@@ -14,10 +14,10 @@ export const Default = () => (
     fetchForecast={() => undefined}
     fetchWeatherAlerts={() => undefined}
     forecast={{
-      data: forecastStories._data
+      data: forecastStories._data,
     }}
     weatherAlerts={{
-      data: []
+      data: [],
     }}
   />
 )
@@ -27,10 +27,10 @@ export const WithWeatherAlerts = () => (
     fetchForecast={() => undefined}
     fetchWeatherAlerts={() => undefined}
     forecast={{
-      data: forecastStories._data
+      data: forecastStories._data,
     }}
     weatherAlerts={{
-      data: weatherAlertListStories._data
+      data: weatherAlertListStories._data,
     }}
   />
 )

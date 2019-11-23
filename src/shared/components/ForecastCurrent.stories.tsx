@@ -5,7 +5,7 @@ import forecastStories from './Forecast.stories'
 
 export default {
   component: ForecastCurrent,
-  title: 'Components|ForecastCurrent'
+  title: 'Components|ForecastCurrent',
 }
 
 export const Default = () => (

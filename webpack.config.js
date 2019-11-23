@@ -9,7 +9,7 @@ const pkg = require('./package.json')
 const isEnvProduction = process.env.NODE_ENV === 'production'
 const baseConfig = {
   devServer: {
-    hot: true
+    hot: true,
   },
   mode: isEnvProduction ? 'production' : 'development',
   module: {
@@ -25,10 +25,10 @@ const baseConfig = {
                 loader: 'postcss-loader',
                 options: {
                   plugins: [postcssPresetEnv()],
-                  sourceMaps: !isEnvProduction
-                }
-              }
-            ]
+                  sourceMaps: !isEnvProduction,
+                },
+              },
+            ],
           },
           {
             exclude: /node_modules/,
@@ -37,42 +37,42 @@ const baseConfig = {
               {
                 loader: 'babel-loader',
                 options: {
-                  cacheDirectory: true
-                }
-              }
-            ]
+                  cacheDirectory: true,
+                },
+              },
+            ],
           },
           {
             exclude: [/\.(js|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-            loader: 'file-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
   },
   output: {
     chunkFilename: `[name]${isEnvProduction ? '.[contenthash]' : ''}.chunk.js`,
     filename: `[name]${isEnvProduction ? '.[contenthash]' : ''}.bundle.js`,
-    path: path.join(__dirname, 'dist')
+    path: path.join(__dirname, 'dist'),
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       API_URL: JSON.stringify(
-         `http://${ip.address()}:${process.env.PORT || 3000}`
-      )
-    })
+        `http://${ip.address()}:${process.env.PORT || 3000}`
+      ),
+    }),
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.mjs', '.js', '.json']
-  }
+    extensions: ['.tsx', '.ts', '.mjs', '.js', '.json'],
+  },
 }
 
 module.exports = [
   {
     ...baseConfig,
     entry: {
-      web: './src/web/index.tsx'
+      web: './src/web/index.tsx',
     },
     plugins: [
       ...baseConfig.plugins,
@@ -80,23 +80,23 @@ module.exports = [
         chunks: ['web'],
         filename: 'web.html',
         template: path.join(__dirname, 'src/web/web.html'),
-        title: pkg.name
-      })
-    ]
+        title: pkg.name,
+      }),
+    ],
   },
   {
     ...baseConfig,
     entry: {
-      electronRender: './src/render/index.tsx'
+      electronRender: './src/render/index.tsx',
     },
     plugins: [
       ...baseConfig.plugins,
       new HtmlWebpackPlugin({
         chunks: ['electronRender'],
         template: path.join(__dirname, 'src/render/index.html'),
-        title: pkg.name
-      })
+        title: pkg.name,
+      }),
     ],
-    target: 'electron-renderer'
-  }
+    target: 'electron-renderer',
+  },
 ]

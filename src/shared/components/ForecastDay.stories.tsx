@@ -4,11 +4,13 @@ import { ForecastDay } from './ForecastDay'
 import forecastStories from './Forecast.stories'
 
 export default {
-  title: 'Components|ForecastDay'
+  title: 'Components|ForecastDay',
 }
 
 export const Default = () => (
   <>
-    {forecastStories._data.daily.data.map((props) => <ForecastDay key={props.time} {...props} />)}
+    {forecastStories._data.daily.data.map(props => (
+      <ForecastDay key={props.time} {...props} />
+    ))}
   </>
 )

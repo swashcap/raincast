@@ -10,14 +10,14 @@ import {
   Rain,
   Sleet,
   Snow,
-  Unknown
+  Unknown,
 } from './WeatherIcon'
 
 const getIcons = (props?: BaseIconProps) => (
   <Grid
     columns={{
       count: 6,
-      size: 'auto'
+      size: 'auto',
     }}
   >
     <Box>
@@ -48,7 +48,7 @@ const getIcons = (props?: BaseIconProps) => (
 )
 
 export default {
-  title: 'Components|WeatherIcon'
+  title: 'Components|WeatherIcon',
 }
 
 export const Default = () => getIcons()

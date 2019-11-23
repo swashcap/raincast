@@ -11,43 +11,37 @@ export const ImageCard: React.FC<BoxProps & {
   imageSrc: string
   link?: string
   name: string
-}> = ({
-  imageAlt,
-  imageSaveDate,
-  imageSrc,
-  link,
-  name,
-  ...rest
-}) => {
+}> = ({ imageAlt, imageSaveDate, imageSrc, link, name, ...rest }) => {
   const currentDate = useCurrentDate()
 
   return (
-    <Box pad='medium' {...rest}>
+    <Box pad="medium" {...rest}>
       <Image
         alt={imageAlt}
-        fit='contain'
+        fit="contain"
         margin={{
-          bottom: 'small'
+          bottom: 'small',
         }}
         src={imageSrc}
       />
       <Heading
         margin={{
           bottom: 'small',
-          top: 'none'
+          top: 'none',
         }}
-        size='small'
+        size="small"
       >
         {name}
       </Heading>
-      <Box direction='row' gap='small'>
+      <Box direction="row" gap="small">
         {!!link && <ExternalLink href={link} />}
-        <Text as='time' color='light-6' dateTime={imageSaveDate.toISOString()} size='small'>
-          Updated
-          {' '}
-          <TimeFromNow from={imageSaveDate} now={currentDate} />
-          {' '}
-          ago
+        <Text
+          as="time"
+          color="light-6"
+          dateTime={imageSaveDate.toISOString()}
+          size="small"
+        >
+          Updated <TimeFromNow from={imageSaveDate} now={currentDate} /> ago
         </Text>
       </Box>
     </Box>

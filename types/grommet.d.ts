@@ -1,7 +1,8 @@
-export * from "grommet";
+export * from 'grommet'
 
-import { TextProps } from "grommet/components/Text";
+import { TextProps } from 'grommet/components/Text'
 
-declare module "grommet" {
-  export const Text: React.FC<TextProps & Omit<React.AllHTMLAttributes<any>, 'size'>>
+declare module 'grommet' {
+  export const Text: React.FC<TextProps &
+    Omit<React.AllHTMLAttributes<any>, 'size'>>
 }

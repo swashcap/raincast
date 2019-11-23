@@ -8,7 +8,4 @@ import { configureStore } from './store/configureStore'
 const history = createHashHistory()
 const store = configureStore(history)
 
-render(
-  <Root history={history} store={store} />,
-  document.getElementById('app')
-)
+render(<Root history={history} store={store} />, document.getElementById('app'))

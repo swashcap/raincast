@@ -3,7 +3,7 @@ import { Reducer } from 'redux'
 import {
   CONFIG_ERROR,
   CONFIG_REQUEST,
-  CONFIG_RESPONSE
+  CONFIG_RESPONSE,
 } from '../actions/config'
 
 export interface ConfigState {
@@ -13,9 +13,9 @@ export interface ConfigState {
   routes: Array<{
     href: string
     icon: string
-    label: string;
+    label: string
   }>
-  serverAddress: string | null;
+  serverAddress: string | null
   theme: 'dark'
 }
 
@@ -24,17 +24,20 @@ export const config: Reducer<ConfigState> = (
     error: null,
     isLoading: false,
     orientation: 'horizontal',
-    routes: [{
-      href: '/',
-      icon: 'Home',
-      label: 'Home'
-    }, {
-      href: '/cameras',
-      icon: 'Camera',
-      label: 'Cameras'
-    }],
+    routes: [
+      {
+        href: '/',
+        icon: 'Home',
+        label: 'Home',
+      },
+      {
+        href: '/cameras',
+        icon: 'Camera',
+        label: 'Cameras',
+      },
+    ],
     serverAddress: null,
-    theme: 'dark'
+    theme: 'dark',
   },
   { payload, type }
 ) => {
@@ -42,16 +45,16 @@ export const config: Reducer<ConfigState> = (
     case CONFIG_ERROR:
       return Object.assign({}, state, {
         error: payload,
-        isLoading: false
+        isLoading: false,
       })
     case CONFIG_REQUEST:
       return Object.assign({}, state, {
-        isLoading: true
+        isLoading: true,
       })
     case CONFIG_RESPONSE:
       return Object.assign({}, state, {
         isLoading: false,
-        serverAddress: payload
+        serverAddress: payload,
       })
     default:
       return state

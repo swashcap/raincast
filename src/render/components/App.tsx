@@ -16,11 +16,14 @@ export interface AppStateProps {
   router: RouterState
 }
 
-const _App: React.FC<AppOwnProps & AppStateProps> = ({ children, config, dispatch, router }) => (
-  <Box fill justify='stretch'>
-    <main>
-      {children}
-    </main>
+const _App: React.FC<AppOwnProps & AppStateProps> = ({
+  children,
+  config,
+  dispatch,
+  router,
+}) => (
+  <Box fill justify="stretch">
+    <main>{children}</main>
     <Navigation
       config={config}
       dispatch={dispatch}
@@ -29,7 +32,7 @@ const _App: React.FC<AppOwnProps & AppStateProps> = ({ children, config, dispatc
         bottom: 0,
         left: 0,
         position: 'fixed',
-        width: '100%'
+        width: '100%',
       }}
     />
   </Box>

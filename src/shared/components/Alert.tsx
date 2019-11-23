@@ -6,7 +6,7 @@ import {
   StatusGood,
   StatusInfo,
   StatusUnknown,
-  StatusWarning
+  StatusWarning,
 } from 'grommet-icons'
 
 import { CloseButton, CloseButtonProps } from './CloseButton'
@@ -14,55 +14,64 @@ import { CloseButton, CloseButtonProps } from './CloseButton'
 export const statuses = {
   disabled: {
     color: 'status-disabled',
-    icon: StatusDisabled
+    icon: StatusDisabled,
   },
   error: {
     color: 'status-critical',
-    icon: StatusCritical
+    icon: StatusCritical,
   },
   info: {
     color: undefined,
-    icon: StatusInfo
+    icon: StatusInfo,
   },
   okay: {
     color: 'status-ok',
-    icon: StatusGood
+    icon: StatusGood,
   },
   warning: {
     color: 'status-warning',
-    icon: StatusWarning
+    icon: StatusWarning,
   },
   unknown: {
     color: 'status-unknown',
-    icon: StatusUnknown
-  }
+    icon: StatusUnknown,
+  },
 }
 
 export interface AlertProps {
-  heading?: any;
-  onClose?: CloseButtonProps['onClick'];
-  message?: any;
-  status?: keyof typeof statuses | string;
+  heading?: any
+  onClose?: CloseButtonProps['onClick']
+  message?: any
+  status?: keyof typeof statuses | string
 }
 
-export const Alert: React.FC<AlertProps> = ({ heading, onClose, message, status }) => {
+export const Alert: React.FC<AlertProps> = ({
+  heading,
+  onClose,
+  message,
+  status,
+}) => {
   const { color, icon: Icon } = statuses[status] || statuses.unknown
 
   return (
-    <Stack anchor='right' role='alert'>
+    <Stack anchor="right" role="alert">
       <Box
-        align='center'
-        border='horizontal'
-        direction='row'
+        align="center"
+        border="horizontal"
+        direction="row"
         pad={{
           left: 'small',
           right: 'large',
-          vertical: 'small'
+          vertical: 'small',
         }}
       >
-        <Icon color={color} size='large' />
+        <Icon color={color} size="large" />
         <Box flex pad={{ left: 'medium' }}>
-          {!!heading && <Heading level={1} margin='none' size='small'>{heading}</Heading>}
+          {!!heading && (
+            <Heading level={1} margin="none" size="small">
+              {heading}
+            </Heading>
+          )}
           <Text>{message}</Text>
         </Box>
       </Box>

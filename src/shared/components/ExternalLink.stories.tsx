@@ -6,7 +6,7 @@ import { ExternalLink } from './ExternalLink'
 export default {
   component: ExternalLink,
   decorators: [withKnobs],
-  title: 'Components|ExternalLink'
+  title: 'Components|ExternalLink',
 }
 
 export const Default = () => (

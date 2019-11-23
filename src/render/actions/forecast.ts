@@ -8,20 +8,20 @@ export const FORECAST_RESPONSE = 'FORECAST_RESPONSE'
 
 export const forecastError = error => ({
   payload: error,
-  type: FORECAST_ERROR
+  type: FORECAST_ERROR,
 })
 
 export const forecastRequest = () => ({
   payload: null,
-  type: FORECAST_REQUEST
+  type: FORECAST_REQUEST,
 })
 
 export const forecastResponse = data => ({
   payload: data,
-  type: FORECAST_RESPONSE
+  type: FORECAST_RESPONSE,
 })
 
-export const fetchForecast = () => (dispatch) => {
+export const fetchForecast = () => dispatch => {
   dispatch(forecastRequest())
   ipcRenderer.send(channels.forecastRequest)
 }

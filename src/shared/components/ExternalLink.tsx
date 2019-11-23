@@ -8,10 +8,10 @@ export const ExternalLink = ({ href, ...rest }) => {
 
   return (
     <Anchor
-      icon={<Link size='small' />}
+      icon={<Link size="small" />}
       label={label}
       href={href}
-      size='small'
+      size="small"
       {...rest}
     />
   )

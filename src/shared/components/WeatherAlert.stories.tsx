@@ -10,10 +10,10 @@ export default {
       markdown: `# Weather Alert
 
 This component displays an alert from [alerts.weather.gov](https://alerts.weather.gov).
-      `
-    }
+      `,
+    },
   },
-  title: 'Components|WeatherAlert'
+  title: 'Components|WeatherAlert',
 }
 
 export const Default = () => (

@@ -14,7 +14,7 @@ export interface RootProps {
 }
 
 export class Root extends React.Component<RootProps> {
-  render () {
+  render() {
     const { children, history, store } = this.props
 
     return (
@@ -28,4 +28,3 @@ export class Root extends React.Component<RootProps> {
     )
   }
 }
-

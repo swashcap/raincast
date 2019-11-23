@@ -23,20 +23,22 @@ export interface RootDispatchProps {
   fetchConfig: () => any
 }
 
-class _Root extends React.Component<RootOwnProps & RootStateProps & RootDispatchProps> {
-  componentWillMount () {
+class _Root extends React.Component<
+  RootOwnProps & RootStateProps & RootDispatchProps
+> {
+  componentWillMount() {
     this.props.fetchConfig()
   }
 
-  render () {
+  render() {
     const { config, history, store } = this.props
 
     return (
       <SharedRoot history={history} store={store}>
         <App config={config}>
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/cameras' component={Cameras} />
+            <Route exact path="/" component={Home} />
+            <Route path="/cameras" component={Cameras} />
           </Switch>
         </App>
       </SharedRoot>
@@ -44,9 +46,11 @@ class _Root extends React.Component<RootOwnProps & RootStateProps & RootDispatch
   }
 }
 
-export const Root = connect<RootStateProps, RootDispatchProps, RootOwnProps, any>(
-  ({ config }) => ({ config }),
-  {
-    fetchConfig
-  }
-)(_Root)
+export const Root = connect<
+  RootStateProps,
+  RootDispatchProps,
+  RootOwnProps,
+  any
+>(({ config }) => ({ config }), {
+  fetchConfig,
+})(_Root)

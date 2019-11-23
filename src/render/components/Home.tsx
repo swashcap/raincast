@@ -10,21 +10,21 @@ import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
 
 export interface HomeStateProps {
   forecast: any
-  weatherAlerts: any;
+  weatherAlerts: any
 }
 
 export interface HomeDispatchProps {
-  fetchForecast: () => void;
-  fetchWeatherAlerts: () => void;
+  fetchForecast: () => void
+  fetchWeatherAlerts: () => void
 }
 
 export class _Home extends React.Component<HomeStateProps & HomeDispatchProps> {
-  componentWillMount () {
+  componentWillMount() {
     this.props.fetchForecast()
     this.props.fetchWeatherAlerts()
   }
 
-  renderErrors () {
+  renderErrors() {
     const { forecast, weatherAlerts } = this.props
 
     const errors = []
@@ -38,26 +38,22 @@ export class _Home extends React.Component<HomeStateProps & HomeDispatchProps> {
 
     if (errors.length) {
       return (
-        <div className='Home-errors'>
+        <div className="Home-errors">
           {errors.map(({ date, message }, index) => (
-            <Alert
-              key={date}
-              message={message}
-              status='error'
-            />
+            <Alert key={date} message={message} status="error" />
           ))}
         </div>
       )
     }
   }
 
-  render () {
+  render() {
     const { forecast, weatherAlerts } = this.props
 
     return (
       <>
         {this.renderErrors()}
-        <Box direction='row' gap='medium' pad='medium'>
+        <Box direction="row" gap="medium" pad="medium">
           <Forecast {...forecast} />
           <WeatherAlertList {...weatherAlerts} />
         </Box>
@@ -70,6 +66,6 @@ export const Home = connect<HomeStateProps, HomeDispatchProps, {}, any>(
   ({ forecast, weatherAlerts }) => ({ forecast, weatherAlerts }),
   {
     fetchForecast,
-    fetchWeatherAlerts
+    fetchWeatherAlerts,
   }
 )(_Home)

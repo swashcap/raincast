@@ -1,9 +1,9 @@
-import { Reducer } from 'redux';
+import { Reducer } from 'redux'
 
 import {
   WEATHER_ALERTS_ERROR,
   WEATHER_ALERTS_REQUEST,
-  WEATHER_ALERTS_RESPONSE
+  WEATHER_ALERTS_RESPONSE,
 } from '../actions/weather-alerts'
 
 export interface WeatherAlertsState {
@@ -18,7 +18,7 @@ export const weatherAlerts: Reducer<WeatherAlertsState> = (
     data: [],
     error: null,
     isLoading: false,
-    lastFetched: null
+    lastFetched: null,
   },
   { payload, type }
 ) => {
@@ -27,12 +27,12 @@ export const weatherAlerts: Reducer<WeatherAlertsState> = (
       return Object.assign({}, state, {
         data: payload,
         isLoading: false,
-        lastFetched: Date.now()
+        lastFetched: Date.now(),
       })
     case WEATHER_ALERTS_ERROR:
       return Object.assign({}, state, {
         error: payload,
-        isLoading: false
+        isLoading: false,
       })
     case WEATHER_ALERTS_REQUEST:
       return Object.assign({}, state, { isLoading: true })

@@ -21,23 +21,28 @@ export const getDiff = (a, b) => {
   if (diff > 60 * 60 * 1000) {
     return {
       diff: Math.round(diff / 60 / 60 / 1000),
-      units: 'hours'
+      units: 'hours',
     }
   } else if (diff > 60 * 1000) {
     return {
       diff: Math.round(diff / 60 / 1000),
-      units: 'minutes'
+      units: 'minutes',
     }
   }
 
   return {
     diff: '<1',
-    units: 'minutes'
+    units: 'minutes',
   }
 }
 
 export const TimeFromNow = ({ from, now, ...rest }) => {
   const { diff, units } = getDiff(now, from)
 
-  return <>{diff}{getAbbreviation(diff, units)}</>
+  return (
+    <>
+      {diff}
+      {getAbbreviation(diff, units)}
+    </>
+  )
 }

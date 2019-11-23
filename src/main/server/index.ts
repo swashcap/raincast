@@ -21,7 +21,7 @@ const sendIpcMessage = (channel, arg) => {
     const webContents = electron.webContents.getAllWebContents()
 
     // Should only be 1 window
-    webContents.forEach((contents) => {
+    webContents.forEach(contents => {
       contents.send(channel, arg)
     })
   }
@@ -35,40 +35,48 @@ app.use((ctx, next) => {
   return next()
 })
 
-app.use(get('/', (ctx) => {
-  ctx.set('Content-Type', 'text/html')
-  ctx.body = fs.createReadStream(path.resolve(__dirname, '../../web/web.html'))
-}))
+app.use(
+  get('/', ctx => {
+    ctx.set('Content-Type', 'text/html')
+    ctx.body = fs.createReadStream(
+      path.resolve(__dirname, '../../web/web.html')
+    )
+  })
+)
 
-app.use(get('/routes', (ctx) => {
-  ctx.body = {
-    cameras: {
-      active: false,
-      name: 'Cameras'
-    },
-    home: {
-      active: true,
-      name: 'Home'
+app.use(
+  get('/routes', ctx => {
+    ctx.body = {
+      cameras: {
+        active: false,
+        name: 'Cameras',
+      },
+      home: {
+        active: true,
+        name: 'Home',
+      },
     }
-  }
-}))
+  })
+)
 
 /**
  * {@link https://github.com/koajs/bodyparser}
  */
-app.use(post('/routes/active', (ctx) => {
-  const reqBody = ctx.request.body
+app.use(
+  post('/routes/active', ctx => {
+    const reqBody = ctx.request.body
 
-  if (reqBody && typeof reqBody === 'object' && 'active' in reqBody) {
-    const newRoute = reqBody.active
-    sendIpcMessage(routePush, newRoute)
-    ctx.body = {
-      active: newRoute
+    if (reqBody && typeof reqBody === 'object' && 'active' in reqBody) {
+      const newRoute = reqBody.active
+      sendIpcMessage(routePush, newRoute)
+      ctx.body = {
+        active: newRoute,
+      }
+    } else {
+      ctx.throw(400)
     }
-  } else {
-    ctx.throw(400)
-  }
-}))
+  })
+)
 
 if (!module.parent) {
   app.listen(3000)

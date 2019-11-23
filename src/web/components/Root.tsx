@@ -16,19 +16,19 @@ export interface RootState {
 }
 
 class Root extends Component<RootProps, RootState> {
-  constructor (props: RootProps) {
+  constructor(props: RootProps) {
     super(props)
 
     this.state = {
-      routes: null
+      routes: null,
     }
 
     this.postRoute = this.postRoute.bind(this)
   }
 
-  componentWillMount () {
+  componentWillMount() {
     fetch(`${API_URL}/routes`)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error(
             `Error with request: ${response.status} ${response.statusText}`
@@ -38,22 +38,22 @@ class Root extends Component<RootProps, RootState> {
         return response.json()
       })
       .then(routes => this.setState({ routes }))
-      .catch((error) => {
+      .catch(error => {
         console.error(error)
       })
   }
 
-  postRoute (routeId) {
+  postRoute(routeId) {
     fetch(`${API_URL}/routes/active`, {
       body: JSON.stringify({
-        active: routeId
+        active: routeId,
       }),
       headers: new Headers({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }),
-      method: 'POST'
+      method: 'POST',
     })
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error(
             `Error with request: ${response.status} ${response.statusText}`
@@ -67,27 +67,27 @@ class Root extends Component<RootProps, RootState> {
           routes: Object.keys(this.state.routes).reduce((memo, routeId) => {
             memo[routeId] = {
               active: routeId === active,
-              name: this.state.routes[routeId].name
+              name: this.state.routes[routeId].name,
             }
             return memo
-          }, {})
+          }, {}),
         })
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error)
       })
   }
 
-  render () {
+  render() {
     const { history, store } = this.props
     const { routes } = this.state
     let content
 
     if (routes) {
-      content = Object.keys(routes).map((routeId) => {
+      content = Object.keys(routes).map(routeId => {
         const route = routes[routeId]
         return (
-          <Box align='center' key={routeId} pad='small'>
+          <Box align="center" key={routeId} pad="small">
             <Button
               label={route.name}
               onClick={() => this.postRoute(routeId)}
@@ -100,9 +100,7 @@ class Root extends Component<RootProps, RootState> {
 
     return (
       <SharedRoot history={history} store={store}>
-        <Box pad='small'>
-          {content}
-        </Box>
+        <Box pad="small">{content}</Box>
       </SharedRoot>
     )
   }

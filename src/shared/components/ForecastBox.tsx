@@ -6,9 +6,15 @@ export interface ForecastBoxProps extends BoxProps {
   icon?: any
 }
 
-export const ForecastBox: React.FC<ForecastBoxProps> = ({ children, icon, ...rest }) => (
-  <Box align='center' direction='row' gap='medium' {...rest}>
-    <Box align='center' width='small'>{icon}</Box>
+export const ForecastBox: React.FC<ForecastBoxProps> = ({
+  children,
+  icon,
+  ...rest
+}) => (
+  <Box align="center" direction="row" gap="medium" {...rest}>
+    <Box align="center" width="small">
+      {icon}
+    </Box>
     <Box fill>{children}</Box>
   </Box>
 )

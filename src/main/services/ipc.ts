@@ -15,38 +15,36 @@ import { weatherAlerts } from './weather-alerts'
 
 export const handlers = new Map()
 
-const setHandler =
-  ([requestChannel, responseChannel, errorChannel], handler) => {
-    handlers.set(requestChannel, (event) => {
-      debug('request: %s', requestChannel)
-      handler()
-        .then((response) => {
-          debug('response: %s', responseChannel)
-          event.sender.send(responseChannel, response)
-        })
-        .catch((error) => {
-          debug('error: %s %O', errorChannel)
-          console.error(error)
-          event.sender.send(errorChannel, error.message)
-        })
-    })
-  }
+const setHandler = (
+  [requestChannel, responseChannel, errorChannel],
+  handler
+) => {
+  handlers.set(requestChannel, event => {
+    debug('request: %s', requestChannel)
+    handler()
+      .then(response => {
+        debug('response: %s', responseChannel)
+        event.sender.send(responseChannel, response)
+      })
+      .catch(error => {
+        debug('error: %s %O', errorChannel)
+        console.error(error)
+        event.sender.send(errorChannel, error.message)
+      })
+  })
+}
 
 setHandler(
   [
     channels.serverConfigRequest,
     channels.serverConfigResponse,
-    channels.serverConfigError
+    channels.serverConfigError,
   ],
-  () => getPort().then((port) => `http://${ip.address()}:${port}`)
+  () => getPort().then(port => `http://${ip.address()}:${port}`)
 )
 
 setHandler(
-  [
-    channels.forecastRequest,
-    channels.forecastResponse,
-    channels.forecastError
-  ],
+  [channels.forecastRequest, channels.forecastResponse, channels.forecastError],
   () => {
     const apiKey = electronSettings.get('apiKey')
 
@@ -62,7 +60,7 @@ setHandler(
   [
     channels.weatherAlertsRequest,
     channels.weatherAlertsResponse,
-    channels.weatherAlertsError
+    channels.weatherAlertsError,
   ],
   () => weatherAlerts({})
 )

@@ -21,47 +21,42 @@ export const ForecastDay = ({
   const today = moment(time * 1000)
 
   return (
-    <ForecastBox
-      icon={
-        <Box width='xsmall'>{getIcon(icon)}</Box>
-      }
-      {...rest}
-    >
-      <Grid
-        columns={['1fr', '1fr', '1fr']}
-        fill='horizontal'
-        gap='medium'
-      >
-        <Heading
-          margin='none'
-          size='medium'
-        >
-          {today.format('ddd')}
-          {' '}
-          <Text
-            color='light-6'
-            size='xxlarge'
-            weight='normal'
-          >
+    <ForecastBox icon={<Box width="xsmall">{getIcon(icon)}</Box>} {...rest}>
+      <Grid columns={['1fr', '1fr', '1fr']} fill="horizontal" gap="medium">
+        <Heading margin="none" size="medium">
+          {today.format('ddd')}{' '}
+          <Text color="light-6" size="xxlarge" weight="normal">
             {today.format('MMM D')}
           </Text>
         </Heading>
         <Box>
-          <Heading level='2' margin='none' size='large'>
-            {formatTemperature(temperatureHigh)}
-            {' '}
-            <Text as='time' color='light-6' dateTime={highTime.format()} weight='normal'>{highTime.format('HH:ss')}</Text>
+          <Heading level="2" margin="none" size="large">
+            {formatTemperature(temperatureHigh)}{' '}
+            <Text
+              as="time"
+              color="light-6"
+              dateTime={highTime.format()}
+              weight="normal"
+            >
+              {highTime.format('HH:ss')}
+            </Text>
           </Heading>
         </Box>
         <Box>
-          <Heading level='2' margin='none' size='large'>
-            {formatTemperature(temperatureLow)}
-            {' '}
-            <Text as='time' color='light-6' dateTime={highTime.format()} weight='normal'>{lowTime.format('HH:ss')}</Text>
+          <Heading level="2" margin="none" size="large">
+            {formatTemperature(temperatureLow)}{' '}
+            <Text
+              as="time"
+              color="light-6"
+              dateTime={highTime.format()}
+              weight="normal"
+            >
+              {lowTime.format('HH:ss')}
+            </Text>
           </Heading>
         </Box>
       </Grid>
-      <Paragraph size='large'>{summary}</Paragraph>
+      <Paragraph size="large">{summary}</Paragraph>
     </ForecastBox>
   )
 }

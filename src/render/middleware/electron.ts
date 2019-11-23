@@ -8,7 +8,7 @@ import * as channels from '../../shared/channels'
 
 import {
   weatherAlertsError,
-  weatherAlertsResponse
+  weatherAlertsResponse,
 } from '../actions/weather-alerts'
 
 const handlers = new Map([
@@ -18,7 +18,7 @@ const handlers = new Map([
   [channels.serverConfigError, configError],
   [channels.serverConfigResponse, configResponse],
   [channels.weatherAlertsError, weatherAlertsError],
-  [channels.weatherAlertsResponse, weatherAlertsResponse]
+  [channels.weatherAlertsResponse, weatherAlertsResponse],
 ])
 
 const listeners = []
