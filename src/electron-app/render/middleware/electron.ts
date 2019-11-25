@@ -1,15 +1,18 @@
 import { ipcRenderer } from 'electron'
 import { push } from 'connected-react-router'
 
-import { forecastError, forecastResponse } from '../actions/forecast'
-import { configError, configResponse } from '../actions/config'
+import {
+  forecastError,
+  forecastResponse,
+} from '../../../shared/actions/forecast'
+import { configError, configResponse } from '../../../shared/actions/config'
 
-import * as channels from '../../shared/channels'
+import * as channels from '../../../shared/channels'
 
 import {
   weatherAlertsError,
   weatherAlertsResponse,
-} from '../actions/weather-alerts'
+} from '../../../shared/actions/weather-alerts'
 
 const handlers = new Map([
   [channels.forecastError, forecastError],

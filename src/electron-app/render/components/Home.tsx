@@ -4,8 +4,8 @@ import { Box } from 'grommet'
 
 import { Alert } from '../../shared/components/Alert'
 import { Forecast } from '../../shared/components/Forecast'
-import { fetchForecast } from '../actions/forecast'
-import { fetchWeatherAlerts } from '../actions/weather-alerts'
+import { fetchForecast } from '../../../shared/actions/forecast'
+import { fetchWeatherAlerts } from '../../../shared/actions/weather-alerts'
 import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
 
 export interface HomeStateProps {

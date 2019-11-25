@@ -8,7 +8,7 @@ import { Store } from 'redux'
 import { theme } from '../theme'
 
 export interface RootProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   history: History
   store: Store
 }

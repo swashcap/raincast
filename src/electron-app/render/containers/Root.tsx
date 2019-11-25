@@ -7,8 +7,9 @@ import { Store } from 'redux'
 import { App } from '../components/App'
 import { Cameras } from '../components/Cameras'
 import { Home } from '../components/Home'
-import { Root as SharedRoot } from '../../shared/containers/Root'
-import { fetchConfig } from '../actions/config'
+import { Root as SharedRoot } from '../../../shared/containers/Root'
+import { fetchConfig } from '../../../shared/actions/config'
+import { ElectronRenderState } from '../configureStore'
 
 export interface RootOwnProps {
   history: History
@@ -46,11 +47,6 @@ class _Root extends React.Component<
   }
 }
 
-export const Root = connect<
-  RootStateProps,
-  RootDispatchProps,
-  RootOwnProps,
-  any
->(({ config }) => ({ config }), {
+export const Root = connect(({ config }: ElectronRenderState) => ({ config }), {
   fetchConfig,
 })(_Root)

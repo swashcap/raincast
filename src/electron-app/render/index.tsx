@@ -3,7 +3,7 @@ import { createHashHistory } from 'history'
 import { render } from 'react-dom'
 
 import { Root } from './containers/Root'
-import { configureStore } from './store/configureStore'
+import { configureStore } from './configureStore'
 
 const history = createHashHistory()
 const store = configureStore(history)

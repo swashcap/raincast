@@ -4,7 +4,7 @@ import moment from 'moment'
 
 import { ForecastBox } from './ForecastBox'
 import { getIcon } from './WeatherIcon/WeatherIcon'
-import { formatTemperature } from '../../render/lib/formatTemperature'
+import { formatTemperature } from '../utils/formatTemperature'
 
 export const ForecastDay = ({
   icon,
