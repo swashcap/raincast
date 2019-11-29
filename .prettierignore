@@ -1,2 +1,4 @@
 dist
 mocks
+src/**/*.js
+src/**/*.jsx
