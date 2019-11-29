@@ -1,0 +1,21 @@
+enum LayoutDirection {
+  LTR
+  RTL
+}
+
+enum Layout {
+  HORIZONTAL_2
+  HORIZONTAL_3
+  SINGLE
+  VERTICAL_2
+  VERTICAL_3
+}
+
+type Window {
+  layout: Layout!
+  layoutDirection: LayoutDirection!
+  # Human-readable name
+  name: String!
+  # Route-able URL
+  url: String!
+}

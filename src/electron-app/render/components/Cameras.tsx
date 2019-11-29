@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from 'grommet'
 
-import { ImageCard } from '../../shared/components/ImageCard'
+import { ImageCard } from '../../../shared/components/ImageCard'
 
 export const Cameras = () => {
   const now = new Date()

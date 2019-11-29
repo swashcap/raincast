@@ -1,7 +1,7 @@
 import React from 'react'
 import { shell } from 'electron'
 
-import { QRAddressImage } from '../../shared/components/QRAddressImage'
+import { QRAddressImage } from '../../../shared/components/QRAddressImage'
 
 export const QRImageLink: React.FC<{ address: string }> = ({ address }) => (
   <a

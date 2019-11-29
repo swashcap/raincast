@@ -1,0 +1,25 @@
+type WeatherAlertCAP {
+  areaDesc: String!
+  category: String!
+  certainty: String!
+  effective: String!
+  event: String!
+  expires: String!
+  geoCode: [String!]!
+  msgType: String!
+  parameter: [String!]!
+  severity: String!
+  status: String!
+  urgency: String!
+}
+
+type WeatherAlert {
+  author: String!
+  cap: WeatherAlertCAP!
+  id: ID!
+  link: String!
+  published: String!
+  summary: String!
+  title: String!
+  updated: String!
+}

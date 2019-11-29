@@ -3,14 +3,14 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Grommet } from 'grommet'
 import { Provider } from 'react-redux'
 import { History } from 'history'
-import { Store } from 'redux'
+import { Store, AnyAction } from 'redux'
 
 import { theme } from '../theme'
 
 export interface RootProps {
   children?: React.ReactNode
   history: History
-  store: Store
+  store: Store<any, any>
 }
 
 export class Root extends React.Component<RootProps> {

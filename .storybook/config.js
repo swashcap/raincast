@@ -12,6 +12,10 @@ import { theme } from '../src/shared/theme'
  * Add a global Storybook decorator to enable app styling:
  * {@link https://storybook.js.org/docs/addons/introduction/#storybook-decorators}
  */
-addDecorator(storyFn => <Grommet full theme={theme}>{storyFn()}</Grommet>)
+addDecorator(storyFn => (
+  <Grommet full theme={theme}>
+    {storyFn()}
+  </Grommet>
+))
 
-configure(require.context('../src', true, /\.stories\.js$/), module)
+configure(require.context('../src', true, /\.stories\.tsx$/), module)

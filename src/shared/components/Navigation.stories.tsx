@@ -20,25 +20,23 @@ export const Default = () => {
 
   return (
     <Navigation
-      config={{
-        routes: [
-          {
-            href: '/',
-            icon: 'Home',
-            label: 'Home',
-          },
-          {
-            href: '/cameras',
-            icon: 'Camera',
-            label: 'Cameras',
-          },
-          {
-            href: '/satellites',
-            icon: 'Satellite',
-            label: 'Satellites',
-          },
-        ],
-      }}
+      routes={[
+        {
+          href: '/',
+          icon: 'Home',
+          label: 'Home',
+        },
+        {
+          href: '/cameras',
+          icon: 'Camera',
+          label: 'Cameras',
+        },
+        {
+          href: '/satellites',
+          icon: 'Satellite',
+          label: 'Satellites',
+        },
+      ]}
       dispatch={dispatch as Dispatch}
       router={
         {

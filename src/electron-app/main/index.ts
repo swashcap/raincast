@@ -2,15 +2,11 @@ import { app, BrowserWindow } from 'electron'
 import electronDebug from 'electron-debug'
 import electronIsDev from 'electron-is-dev'
 import electronWindowState from 'electron-window-state'
-import http from 'http'
 import os from 'os'
 import path from 'path'
 import url from 'url'
 
-import debug from './utils/debug'
-import getPort from './utils/get-port'
 import * as ipc from './services/ipc'
-import webApp from './server/index'
 
 electronDebug({
   showDevTools: true,
@@ -63,12 +59,7 @@ const createWindow = () => {
 app.on('ready', () => {
   createWindow()
 
-  ipc.on()
-
-  getPort().then(port => {
-    server = http.createServer(webApp.callback()).listen(port)
-    debug('server listening on port: %d', port)
-  })
+  ipc.addListeners()
 })
 
 app.on('window-all-closed', () => {
@@ -84,7 +75,7 @@ app.on('activate', () => {
 })
 
 app.on('will-quit', () => {
-  ipc.off()
+  ipc.removeListeners()
 
   if (server) {
     server.close()

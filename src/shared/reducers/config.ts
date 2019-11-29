@@ -1,10 +1,6 @@
 import { Reducer } from 'redux'
 
-import {
-  CONFIG_ERROR,
-  CONFIG_REQUEST,
-  CONFIG_RESPONSE,
-} from '../actions/config'
+import { ConfigAction, actions } from '../actions/config'
 
 export interface ConfigState {
   error: null
@@ -19,7 +15,7 @@ export interface ConfigState {
   theme: 'dark'
 }
 
-export const config: Reducer<ConfigState> = (
+export const config: Reducer<ConfigState, ConfigAction> = (
   state = {
     error: null,
     isLoading: false,
@@ -42,16 +38,16 @@ export const config: Reducer<ConfigState> = (
   { payload, type }
 ) => {
   switch (type) {
-    case CONFIG_ERROR:
+    case actions.CONFIG_ERROR:
       return Object.assign({}, state, {
         error: payload,
         isLoading: false,
       })
-    case CONFIG_REQUEST:
+    case actions.CONFIG_REQUEST:
       return Object.assign({}, state, {
         isLoading: true,
       })
-    case CONFIG_RESPONSE:
+    case actions.CONFIG_RESPONSE:
       return Object.assign({}, state, {
         isLoading: false,
         serverAddress: payload,

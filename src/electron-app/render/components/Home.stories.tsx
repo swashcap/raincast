@@ -1,36 +1,41 @@
 import React from 'react'
 
-import { _Home as Home } from './Home'
-import forecastStories from '../../shared/components/Forecast.stories'
-import weatherAlertListStories from '../../shared/components/WeatherAlertList.stories'
+import { _Home as Home, HomeStateProps } from './Home'
+import forecastStories from '../../../shared/components/Forecast.stories'
+import weatherAlertListStories from '../../../shared/components/WeatherAlertList.stories'
+import { Dispatch } from 'redux'
 
 export default {
   component: Home,
   title: 'Pages|Home',
 }
 
+const dispatch = console.log as Dispatch
+
 export const Default = () => (
   <Home
-    fetchForecast={() => undefined}
-    fetchWeatherAlerts={() => undefined}
-    forecast={{
-      data: forecastStories._data,
-    }}
-    weatherAlerts={{
-      data: [],
-    }}
+    dispatch={dispatch}
+    {...({
+      forecast: {
+        data: forecastStories._data,
+      },
+      weatherAlerts: {
+        data: [],
+      },
+    } as HomeStateProps)}
   />
 )
 
 export const WithWeatherAlerts = () => (
   <Home
-    fetchForecast={() => undefined}
-    fetchWeatherAlerts={() => undefined}
-    forecast={{
-      data: forecastStories._data,
-    }}
-    weatherAlerts={{
-      data: weatherAlertListStories._data,
-    }}
+    dispatch={dispatch}
+    {...({
+      forecast: {
+        data: forecastStories._data,
+      },
+      weatherAlerts: {
+        data: weatherAlertListStories._data,
+      },
+    } as HomeStateProps)}
   />
 )

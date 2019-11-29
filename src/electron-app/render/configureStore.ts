@@ -2,11 +2,7 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { History } from 'history'
-import {
-  connectRouter,
-  routerMiddleware,
-  RouterState,
-} from 'connected-react-router'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 
 import reducers from './reducers'
 import { electronMiddleware } from './middleware/electron'

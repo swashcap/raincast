@@ -6,8 +6,13 @@ import { ForecastCurrent } from './ForecastCurrent'
 import { ForecastDay } from './ForecastDay'
 import { ForecastSummary } from './ForecastSummary'
 import { LoadingIndicator } from './LoadingIndicator'
+import { ForecastState } from '../reducers/forecast'
 
-export const Forecast = ({ data: weatherData, error, isLoading }) => {
+export const Forecast = ({
+  data: weatherData,
+  error,
+  isLoading,
+}: ForecastState) => {
   if (isLoading || !Object.keys(weatherData).length) {
     return (
       <div className="WeatherDays WeatherDays-loading">

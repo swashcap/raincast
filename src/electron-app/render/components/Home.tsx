@@ -2,26 +2,28 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Box } from 'grommet'
 
-import { Alert } from '../../shared/components/Alert'
-import { Forecast } from '../../shared/components/Forecast'
-import { fetchForecast } from '../../../shared/actions/forecast'
-import { fetchWeatherAlerts } from '../../../shared/actions/weather-alerts'
-import { WeatherAlertList } from '../../shared/components/WeatherAlertList'
+import { Alert } from '../../../shared/components/Alert'
+import { Forecast } from '../../../shared/components/Forecast'
+import { WeatherAlertList } from '../../../shared/components/WeatherAlertList'
+import { weatherAlertsRequest } from '../../../shared/actions/weatherAlerts'
+import { Dispatch } from 'redux'
+import { ElectronRenderState } from '../configureStore'
+import { forecastRequest } from '../../../shared/actions/forecast'
 
-export interface HomeStateProps {
-  forecast: any
-  weatherAlerts: any
-}
+export type HomeStateProps = Pick<
+  ElectronRenderState,
+  'forecast' | 'weatherAlerts'
+>
 
 export interface HomeDispatchProps {
-  fetchForecast: () => void
-  fetchWeatherAlerts: () => void
+  dispatch: Dispatch
 }
 
 export class _Home extends React.Component<HomeStateProps & HomeDispatchProps> {
   componentWillMount() {
-    this.props.fetchForecast()
-    this.props.fetchWeatherAlerts()
+    const { dispatch } = this.props
+    dispatch(weatherAlertsRequest())
+    dispatch(forecastRequest())
   }
 
   renderErrors() {
@@ -62,10 +64,9 @@ export class _Home extends React.Component<HomeStateProps & HomeDispatchProps> {
   }
 }
 
-export const Home = connect<HomeStateProps, HomeDispatchProps, {}, any>(
-  ({ forecast, weatherAlerts }) => ({ forecast, weatherAlerts }),
-  {
-    fetchForecast,
-    fetchWeatherAlerts,
-  }
-)(_Home)
+export const Home = connect<
+  HomeStateProps,
+  HomeDispatchProps,
+  {},
+  ElectronRenderState
+>(({ forecast, weatherAlerts }) => ({ forecast, weatherAlerts }))(_Home)

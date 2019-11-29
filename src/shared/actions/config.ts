@@ -1,29 +1,30 @@
-import { ipcRenderer } from 'electron'
+import { Action, ErrorAction } from '../types'
 
-import * as channels from '../../shared/channels'
-
-export const CONFIG_ERROR = 'CONFIG_ERROR'
-
-export const configError = error => ({
-  payload: error,
-  type: CONFIG_ERROR,
-})
-
-export const CONFIG_REQUEST = 'CONFIG_REQUEST'
-
-export const configRequest = () => ({
-  payload: null,
-  type: CONFIG_REQUEST,
-})
-
-export const CONFIG_RESPONSE = 'CONFIG_RESPONSE'
-
-export const configResponse = data => ({
-  payload: data,
-  type: CONFIG_RESPONSE,
-})
-
-export const fetchConfig = () => dispatch => {
-  dispatch(configRequest())
-  ipcRenderer.send(channels.serverConfigRequest)
+export enum actions {
+  CONFIG_ERROR = 'CONFIG_ERROR',
+  CONFIG_REQUEST = 'CONFIG_REQUEST',
+  CONFIG_RESPONSE = 'CONFIG_RESPONSE',
 }
+
+export const configError = (
+  error: Error
+): ErrorAction<actions.CONFIG_ERROR> => ({
+  error: true,
+  payload: error,
+  type: actions.CONFIG_ERROR,
+})
+
+export const configRequest = (): Action<actions.CONFIG_REQUEST> => ({
+  payload: null,
+  type: actions.CONFIG_REQUEST,
+})
+
+export const configResponse = (data): Action<actions.CONFIG_RESPONSE> => ({
+  payload: data,
+  type: actions.CONFIG_RESPONSE,
+})
+
+export type ConfigAction =
+  | ReturnType<typeof configError>
+  | ReturnType<typeof configRequest>
+  | ReturnType<typeof configResponse>

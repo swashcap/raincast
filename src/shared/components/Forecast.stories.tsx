@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Forecast } from './Forecast'
+import { ForecastState } from '../reducers/forecast'
 
 const data = {
   currently: {
@@ -48,4 +49,4 @@ export default {
   title: 'Components|Forecast',
 }
 
-export const Default = () => <Forecast data={data} />
+export const Default = () => <Forecast {...({ data } as ForecastState)} />

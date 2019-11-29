@@ -1,27 +1,32 @@
-import { ipcRenderer } from 'electron'
+import { Action, ErrorAction } from '../types'
 
-import * as channels from '../../shared/channels'
-
-export const FORECAST_ERROR = 'FORECAST_ERROR'
-export const FORECAST_REQUEST = 'FORECAST_REQUEST'
-export const FORECAST_RESPONSE = 'FORECAST_RESPONSE'
-
-export const forecastError = error => ({
-  payload: error,
-  type: FORECAST_ERROR,
-})
-
-export const forecastRequest = () => ({
-  payload: null,
-  type: FORECAST_REQUEST,
-})
-
-export const forecastResponse = data => ({
-  payload: data,
-  type: FORECAST_RESPONSE,
-})
-
-export const fetchForecast = () => dispatch => {
-  dispatch(forecastRequest())
-  ipcRenderer.send(channels.forecastRequest)
+export enum actions {
+  FORECAST_ERROR = 'FORECAST_ERROR',
+  FORECAST_REQUEST = 'FORECAST_REQUEST',
+  FORECAST_RESPONSE = 'FORECAST_RESPONSE',
 }
+
+export const forecastError = (
+  error: Error
+): ErrorAction<actions.FORECAST_ERROR> => ({
+  error: true,
+  payload: error,
+  type: actions.FORECAST_ERROR,
+})
+
+export const forecastRequest = (): Action<actions.FORECAST_REQUEST> => ({
+  payload: null,
+  type: actions.FORECAST_REQUEST,
+})
+
+export const forecastResponse = (
+  data: any
+): Action<actions.FORECAST_RESPONSE> => ({
+  payload: data,
+  type: actions.FORECAST_RESPONSE,
+})
+
+export type ForecastActions =
+  | ReturnType<typeof forecastError>
+  | ReturnType<typeof forecastRequest>
+  | ReturnType<typeof forecastResponse>

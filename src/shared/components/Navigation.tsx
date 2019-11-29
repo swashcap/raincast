@@ -1,28 +1,31 @@
-import * as React from 'react'
-import { Box, Button } from 'grommet'
-import { push, RouterState } from 'connected-react-router'
+import React from 'react'
 import * as Icons from 'grommet-icons'
+import { Box, Button } from 'grommet'
 import { Dispatch } from 'redux'
+import { push, RouterState } from 'connected-react-router'
 
-import { QRImageLink } from './QRImageLink'
-import { LoadingIndicator } from '../../shared/components/LoadingIndicator'
-import { UnwrapReactFC } from '../../shared/types'
+import { UnwrapReactFC } from '../types'
 
 export interface NavigationProps extends UnwrapReactFC<typeof Box> {
-  config: any
   dispatch: Dispatch
   router: RouterState
+  routes: {
+    href: string
+    icon: string
+    label: string
+  }[]
 }
 
 export const Navigation: React.FC<NavigationProps> = ({
-  config,
+  children,
   dispatch,
+  routes,
   router,
   ...rest
 }) => (
   <Box align="end" as="nav" direction="row" justify="between" {...rest}>
     <Box direction="row" margin="small" gap="small">
-      {config.routes.map(({ href, icon, label }) => (
+      {routes.map(({ href, icon, label }) => (
         <Button
           href={href}
           icon={Icons[icon] && React.createElement(Icons[icon])}
@@ -36,12 +39,6 @@ export const Navigation: React.FC<NavigationProps> = ({
         />
       ))}
     </Box>
-    <Box margin="xsmall">
-      {config.serverAddress ? (
-        <QRImageLink address={config.serverAddress} />
-      ) : (
-        <LoadingIndicator />
-      )}
-    </Box>
+    {!!children && <Box margin="xsmall">{children}</Box>}
   </Box>
 )

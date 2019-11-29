@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron'
+import { ipcRenderer, IpcRenderer } from 'electron'
 import { push } from 'connected-react-router'
 
 import {
@@ -7,19 +7,22 @@ import {
 } from '../../../shared/actions/forecast'
 import { configError, configResponse } from '../../../shared/actions/config'
 
-import * as channels from '../../../shared/channels'
+import * as channels from '../../shared/channels'
 
 import {
   weatherAlertsError,
   weatherAlertsResponse,
-} from '../../../shared/actions/weather-alerts'
+} from '../../../shared/actions/weatherAlerts'
+import { Action, ErrorAction } from '../../../shared/types'
 
-const handlers = new Map([
+type HandlerReturnValue = Action | ErrorAction<any>
+
+const handlers = new Map<string, (arg: any) => HandlerReturnValue>([
   [channels.forecastError, forecastError],
   [channels.forecastResponse, forecastResponse],
   [channels.routePush, push],
-  [channels.serverConfigError, configError],
-  [channels.serverConfigResponse, configResponse],
+  [channels.configError, configError],
+  [channels.configResponse, configResponse],
   [channels.weatherAlertsError, weatherAlertsError],
   [channels.weatherAlertsResponse, weatherAlertsResponse],
 ])

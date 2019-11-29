@@ -1,10 +1,6 @@
 import { Reducer } from 'redux'
 
-import {
-  FORECAST_ERROR,
-  FORECAST_REQUEST,
-  FORECAST_RESPONSE,
-} from '../actions/forecast'
+import { ForecastActions, actions } from '../actions/forecast'
 
 export interface ForecastState {
   data: any
@@ -13,7 +9,7 @@ export interface ForecastState {
   lastFetched: Date | null
 }
 
-export const forecast: Reducer<ForecastState> = (
+export const forecast: Reducer<ForecastState, ForecastActions> = (
   state = {
     data: {},
     error: null,
@@ -23,16 +19,16 @@ export const forecast: Reducer<ForecastState> = (
   { payload, type }
 ) => {
   switch (type) {
-    case FORECAST_ERROR:
+    case actions.FORECAST_ERROR:
       return Object.assign({}, state, {
         error: payload,
         isLoading: false,
       })
-    case FORECAST_REQUEST:
+    case actions.FORECAST_REQUEST:
       return Object.assign({}, state, {
         isLoading: true,
       })
-    case FORECAST_RESPONSE:
+    case actions.FORECAST_RESPONSE:
       return Object.assign({}, state, {
         data: payload,
         isLoading: false,

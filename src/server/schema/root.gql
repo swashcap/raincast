@@ -1,0 +1,5 @@
+type Query {
+  config: Config!
+  forecast: Forecast!
+  weatherAlerts: [WeatherAlert!]!
+}

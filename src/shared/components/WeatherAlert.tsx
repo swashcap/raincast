@@ -5,7 +5,7 @@ import { Alert } from 'grommet-icons'
 import { Box, Heading, Text, Paragraph, BoxProps } from 'grommet'
 
 import { ExternalLink } from './ExternalLink'
-import { WeatherAlert as WeatherAlertType } from '../../main/services/weather-alerts'
+import { WeatherAlertsEntry } from '../../server/services/weatherAlerts'
 
 export const WeatherAlertTimes = (style.dl`
   display: flex;
@@ -31,7 +31,11 @@ WeatherAlertTimes.Time = style.dd`
   }
 `
 
-export const WeatherAlert: React.FC<BoxProps & WeatherAlertType> = ({
+export const WeatherAlert: React.FC<BoxProps &
+  Pick<
+    WeatherAlertsEntry,
+    'cap:areaDesc' | 'cap:effective' | 'cap:event' | 'cap:expires' | 'link'
+  >> = ({
   'cap:areaDesc': [areaDesc],
   'cap:effective': [effective],
   'cap:event': [name],

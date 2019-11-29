@@ -1,0 +1,15 @@
+type ConfigLocation {
+  latitude: Float!
+  longitude: Float!
+}
+
+enum ConfigTheme {
+  DARK
+  LIGHT
+}
+
+type Config {
+  location: ConfigLocation!
+  theme: ConfigTheme!
+  windows: [Window!]!
+}

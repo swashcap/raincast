@@ -11,7 +11,8 @@ import debug from './debug'
 export type RequestOptions =
   | string
   | (ClientRequestConstructorOptions & {
-      headers: Record<string, string | string[]>
+      body?: string
+      headers?: Record<string, string | string[]>
     })
 
 /**
@@ -80,5 +81,27 @@ export const request = (options: RequestOptions): Promise<string> =>
         statusCode,
       })
     })
+
+    if (typeof options === 'object' && options.body) {
+      req.write(options.body)
+    }
+
     req.end()
   })
+
+export interface RequestGraphQLOptions {
+  query: string
+  variables?: Record<string, any>
+}
+
+export const requestGraphQL = async <T = any>(
+  options: RequestGraphQLOptions
+): Promise<T> => {
+  const response = await request({
+    body: JSON.stringify(options),
+    method: 'POST',
+    url: '/graphql',
+  })
+
+  return JSON.parse(response)
+}

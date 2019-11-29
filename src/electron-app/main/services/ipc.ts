@@ -3,21 +3,19 @@
  *
  * {@link https://electronjs.org/docs/api/ipc-main}
  */
-import ip from 'ip'
-import electronSettings from 'electron-settings'
-import { ipcMain } from 'electron'
+import { ipcMain, IpcMainInvokeEvent } from 'electron'
 
 import * as channels from '../../shared/channels'
-import { darkSky } from './dark-sky'
 import debug from '../utils/debug'
-import getPort from '../utils/get-port'
-import { weatherAlerts } from './weather-alerts'
+import { config } from './config'
+import { forecast } from './forecast'
+import { weatherAlerts } from './weatherAlerts'
 
-export const handlers = new Map()
+export const handlers = new Map<string, (event: IpcMainInvokeEvent) => any>()
 
 const setHandler = (
-  [requestChannel, responseChannel, errorChannel],
-  handler
+  [requestChannel, responseChannel, errorChannel]: [string, string, string],
+  handler: () => Promise<any>
 ) => {
   handlers.set(requestChannel, event => {
     debug('request: %s', requestChannel)
@@ -35,25 +33,13 @@ const setHandler = (
 }
 
 setHandler(
-  [
-    channels.serverConfigRequest,
-    channels.serverConfigResponse,
-    channels.serverConfigError,
-  ],
-  () => getPort().then(port => `http://${ip.address()}:${port}`)
+  [channels.configError, channels.configResponse, channels.configError],
+  config
 )
 
 setHandler(
   [channels.forecastRequest, channels.forecastResponse, channels.forecastError],
-  () => {
-    const apiKey = electronSettings.get('apiKey')
-
-    if (!apiKey) {
-      return Promise.reject(new Error('No API key'))
-    }
-
-    return darkSky({ apiKey })
-  }
+  forecast
 )
 
 setHandler(
@@ -62,16 +48,16 @@ setHandler(
     channels.weatherAlertsResponse,
     channels.weatherAlertsError,
   ],
-  () => weatherAlerts({})
+  weatherAlerts
 )
 
-export const off = () => {
+export const removeListeners = () => {
   handlers.forEach((handler, channel) => {
     ipcMain.removeListener(channel, handler)
   })
 }
 
-export const on = () => {
+export const addListeners = () => {
   handlers.forEach((handler, channel) => {
     ipcMain.on(channel, handler)
   })

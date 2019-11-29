@@ -5,8 +5,13 @@ import { Box } from 'grommet'
 import { Alert } from './Alert'
 import { LoadingIndicator } from './LoadingIndicator'
 import { WeatherAlert } from './WeatherAlert'
+import { WeatherAlertsState } from '../reducers/weatherAlerts'
 
-export const WeatherAlertList = ({ data, error, isLoading }) => {
+export const WeatherAlertList = ({
+  data,
+  error,
+  isLoading,
+}: WeatherAlertsState) => {
   if (isLoading) {
     return <LoadingIndicator />
   } else if (error) {

@@ -4,18 +4,18 @@ import { Button, Box } from 'grommet'
 import { History } from 'history'
 import { Store } from 'redux'
 
-import { Root as SharedRoot } from '../../shared/containers/Root'
+import {
+  Root as SharedRoot,
+  RootProps as SharedRootProps,
+} from '../../shared/components/Root'
 
-export interface RootProps {
-  history: History
-  store: Store
-}
+export type RootProps = SharedRootProps
 
 export interface RootState {
   routes: any
 }
 
-class Root extends Component<RootProps, RootState> {
+export class Root extends Component<RootProps, RootState> {
   constructor(props: RootProps) {
     super(props)
 

@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { WeatherAlertList } from './WeatherAlertList'
-import { WeatherAlert } from '../../main/services/weather-alerts'
+import { WeatherAlertsEntry } from '../../server/services/weatherAlerts'
+import { WeatherAlertsState } from '../reducers/weatherAlerts'
 
-const data: WeatherAlert[] = [
+const data = [
   {
     'cap:areaDesc': ['Uncomfortably near, it here'],
     'cap:effective': [new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString()],
@@ -34,7 +35,7 @@ const data: WeatherAlert[] = [
       },
     ],
   },
-]
+] as WeatherAlertsEntry[]
 
 export default {
   _data: data,
@@ -42,18 +43,31 @@ export default {
   title: 'Components|WeatherAlertList',
 }
 
-export const Default = () => <WeatherAlertList data={data} />
+export const Default = () => (
+  <WeatherAlertList
+    {...({
+      data,
+    } as WeatherAlertsState)}
+  />
+)
 
 export const Error = () => (
-  <WeatherAlertList data={[]} error="Failed to fetch alerts" />
+  <WeatherAlertList
+    {...(({
+      data: [],
+      error: 'Failed to fetch alerts',
+    } as unknown) as WeatherAlertsState)}
+  />
 )
 
 export const NoAlerts = () => (
   <WeatherAlertList
-    data={[
-      {
-        title: ['Everything looks fine.'],
-      },
-    ]}
+    {...({
+      data: [
+        {
+          title: ['Everything looks fine.'],
+        },
+      ],
+    } as WeatherAlertsState)}
   />
 )

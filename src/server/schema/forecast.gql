@@ -1,0 +1,123 @@
+enum ForecastIcon {
+  CLEAR_DAY
+  CLEAR_NIGHT
+  CLOUDY
+  FOG
+  PARTLY_CLOUDY_DAY
+  PARTLY_CLOUDY_NIGHT
+  RAIN
+  SLEET
+  SNOW
+  WIND
+}
+
+enum ForecastPrecipType {
+  RAIN
+  SLEET
+  SNOW
+}
+
+# https://darksky.net/dev/docs#data-block
+interface ForecastDataBlock {
+  data: [ForecastDataPoint!]!
+  icon: ForecastIcon
+  summary: String
+}
+
+# https://darksky.net/dev/docs#data-point
+interface ForecastDataPoint {
+  cloudCover: Float
+  dewPoint: Float
+  humidity: Float
+  icon: ForecastIcon
+  ozone: Float
+  precipIntensityError: Float
+  precipProbability: Float
+  precipType: ForecastPrecipType
+  pressure: Float
+  summary: String
+  time: Int
+  uvIndex: Int
+  visibility: Float
+  windBearing: Int
+  windGust: Float
+  windSpeed: Float
+}
+
+type ForecastDataPointCurrently implements ForecastDataPoint {
+  apparentTemperature: Float
+  nearestStormBearing: Int
+  nearestStormDistance: Float
+  precipAccumulation: Float
+  temperature: Float
+}
+
+type ForecastDataBlockCurrently implements ForecastDataBlock {
+  data: [ForecastDataPointCurrently!]!
+  icon: ForecastIcon
+  summary: String
+}
+
+type ForecastDataPointHourly implements ForecastDataPoint {
+  apparentTemperature: Float
+  precipAccumulation: Float
+  temperature: Float
+}
+
+type ForecastDataBlockHourly implements ForecastDataBlock {
+  data: [ForecastDataPointHourly!]!
+  icon: ForecastIcon
+  summary: String
+}
+
+type ForecastDataPointDaily implements ForecastDataPoint {
+  apparentTemperatureHigh: Float
+  apparentTemperatureHighTime: Int
+  apparentTemperatureLow: Float
+  apparentTemperatureLowTime: Int
+  apparentTemperatureMax: Float
+  apparentTemperatureMaxTime: Int
+  apparentTemperatureMin: Float
+  apparentTemperatureMinTime: Int
+  moonPhase: Int
+  precipAccumulation: Float
+  precipIntensityMaxTime: Int
+  precipIntensityMax: Float
+  sunriseTime: Int
+  sunsetTime: Int
+  temperatureHigh: Float
+  temperatureHighTime: Int
+  temperatureLow: Float
+  temperatureLowTime: Int
+  temperatureMax: Float
+  temperatureMaxTime: Int
+  temperatureMin: Float
+  temperatureMinTime: Int
+  uvIndexTime: Int
+  windGustTime: Int
+}
+
+type ForecastDataBlockDaily implements ForecastDataBlock {
+  data: [ForecastDataPointDaily!]!
+  icon: ForecastIcon
+  summary: String
+}
+
+# https://darksky.net/dev/docs#flags
+type ForecastFlags {
+  nearestStation: Float!
+  sources: [String!]!
+  units: String!
+}
+
+type Forecast {
+  currently: ForecastDataPointCurrently!
+  daily: ForecastDataBlockDaily!
+  flags: ForecastFlags!
+  hourly: ForecastDataBlockHourly!
+  latitude: Float!
+  longitude: Float!
+  minutely: ForecastDataBlockMinutely!
+  offset: Int!
+  timezone: String!
+}
