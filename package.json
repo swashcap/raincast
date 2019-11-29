@@ -7,7 +7,7 @@
     "build": "yarn clean && mkdirp dist && run-p build:*",
     "build:main": "tsc --build tsconfig.main.json",
     "build:render": "NODE_ENV=production webpack",
-    "clean": "rimraf dist",
+    "clean": "./scripts/clean.sh",
     "format": "prettier --write '*.js' '{src,test,types}/**/*'",
     "start": "run-p watch start:electron",
     "start:electron": "wait-on http://localhost:8080 dist/main/index.js && electron .",
